@@ -37,7 +37,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
                 //get difficulty selection
                 RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
                 double difficulty = 1.0;
-                /*
+
                 switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
                     case R.id.radioEasy_id:
                         difficulty = 1.0;
@@ -52,7 +52,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
                         difficulty = 1.0;
                         break;
                 }
-                */
+                
 
                 //get sprint selection
 

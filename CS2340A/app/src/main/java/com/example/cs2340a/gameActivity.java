@@ -36,6 +36,7 @@ public class gameActivity extends AppCompatActivity {
         //hpString = String.valueOf(healthPoints);
         hpTextView = findViewById(R.id.healthPoints_id);
         //hpTextView.setText(healthPoints);
+        hpTextView.setText("HP: " + healthPoints);
 
 
 
