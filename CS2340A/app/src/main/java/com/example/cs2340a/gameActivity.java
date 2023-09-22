@@ -10,20 +10,38 @@ import android.widget.TextView;
 
 public class gameActivity extends AppCompatActivity {
 
+    private double difficulty;
+    private int healthPoints;
+    private String hpString;
     Button tempEndButton;
-    private TextView healthTextView;
-    private int difficulty; // Establishes difficulty
+    TextView playerNameTextView;
+    TextView hpTextView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        // gets and displays player name. input from initial configuration activity
+        playerNameTextView = findViewById(R.id.playerNameDisplay_id);
+        String playernameString = getIntent().getStringExtra("key");
+        playerNameTextView.setText(playernameString);
+
+        // Get difficulty selected from Main screen.
+        difficulty = getIntent().getDoubleExtra("difficulty", 1);
+        // starting HP 100 for easy, 75 for med, 50 for hard.
+        healthPoints = (int) (100 * difficulty);
+        // Display starting health points
+        //hpString = String.valueOf(healthPoints);
+        hpTextView = findViewById(R.id.healthPoints_id);
+        //hpTextView.setText(healthPoints);
+        hpTextView.setText("HP: " + healthPoints);
+
+
+
+        //temporary button to get to the end screen.
         tempEndButton = (Button) findViewById(R.id.tempEndButton_id);
-        healthTextView = findViewById(R.id.healthTextView);
-        // Connects difficulty value from iniConfig Screen
-        difficulty = getIntent().getIntExtra("difficulty", 1);
-        healthTextView.setText("Health: " + difficulty);
 
         tempEndButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +52,5 @@ public class gameActivity extends AppCompatActivity {
 
             }
         });
-
     }
 }
