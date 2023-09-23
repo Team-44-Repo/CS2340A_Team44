@@ -16,6 +16,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
     EditText playerNameInput;
 
     Button startGameButton;
+    Button exitbtn;
 
 
     @Override
@@ -25,6 +26,15 @@ public class initialConfigurationActivity extends AppCompatActivity {
 
         playerNameInput = (EditText) findViewById(R.id.playerNameInput_id);
         startGameButton = (Button) findViewById(R.id.startGameButton_id);
+
+        //exit button functionality
+        exitbtn = (Button)findViewById(R.id.exitbtn);
+        exitbtn.setOnClickListener(v -> {
+            Intent exit = new Intent(Intent.ACTION_MAIN);
+            exit.addCategory(Intent.CATEGORY_HOME);
+            exit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(exit);
+        });
 
 
         startGameButton.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +73,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
                     game.putExtra("difficulty", difficulty);
                     startActivity(game);
                 }
+
             }
         });
 
