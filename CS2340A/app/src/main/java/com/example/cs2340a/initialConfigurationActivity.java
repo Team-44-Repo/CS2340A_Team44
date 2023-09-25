@@ -80,15 +80,15 @@ public class initialConfigurationActivity extends AppCompatActivity {
                     break;
             }
 
-                //check if player name is valid and if sprite selected
-                if (checkAllFields()) {
-                    Intent game = new Intent(initialConfigurationActivity.this, gameActivity.class);
-                    game.putExtra("key", playerName);
-                    game.putExtra("difficulty", difficulty);
-                    game.putExtra("avatar", avatar);
-                    startActivity(game);
-                }
-            });
+            //check if player name is valid and if sprite selected
+            if (checkAllFields()) {
+                Intent game = new Intent(initialConfigurationActivity.this, gameActivity.class);
+                game.putExtra("key", playerName);
+                game.putExtra("difficulty", difficulty);
+                game.putExtra("avatar", avatar);
+                startActivity(game);
+            }
+        });
     }
 
     private boolean checkAllFields () {
