@@ -4,25 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
-import android.widget.ImageButton;
 
 public class initialConfigurationActivity extends AppCompatActivity {
 
-    String playerName = "Mark Test";
-    EditText playerNameInput;
+    private String playerName = "Mark Test";
+    private EditText playerNameInput;
 
-    Button startGameButton;
-    Button exitbtn;
-//    ImageButton avatar1 = (ImageButton) findViewById(R.id.avatar1);
-//    ImageButton avatar2 = (ImageButton) findViewById(R.id.avatar2);
-//    ImageButton avatar3 = (ImageButton) findViewById(R.id.avatar3);
+    private Button startGameButton;
+    private Button exitbtn;
+
     private int avatar;
 
 
@@ -35,7 +29,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
         startGameButton = (Button) findViewById(R.id.startGameButton_id);
 
         //exit button functionality
-        exitbtn = (Button)findViewById(R.id.exitbtn);
+        exitbtn = (Button) findViewById(R.id.exitbtn);
         exitbtn.setOnClickListener(v -> {
             Intent exit = new Intent(Intent.ACTION_MAIN);
             exit.addCategory(Intent.CATEGORY_HOME);
@@ -45,27 +39,27 @@ public class initialConfigurationActivity extends AppCompatActivity {
 
         startGameButton.setOnClickListener(v -> {
 
-                //get player name
-                playerName = playerNameInput.getText().toString();
+            //get player name
+            playerName = playerNameInput.getText().toString();
 
-                //get difficulty selection
-                RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
-                double difficulty = 1.0;
+            //get difficulty selection
+            RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
+            double difficulty = 1.0;
 
-                switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
-                    case R.id.radioEasy_id:
-                        difficulty = 1.0;
-                        break;
-                    case R.id.radioMedium_id:
-                        difficulty = 0.75;
-                        break;
-                    case R.id.radioHard_id:
-                        difficulty = 0.5;
-                        break;
-                    default:
-                        difficulty = 1.0;
-                        break;
-                }
+            switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
+                case R.id.radioEasy_id:
+                    difficulty = 1.0;
+                    break;
+                case R.id.radioMedium_id:
+                    difficulty = 0.75;
+                    break;
+                case R.id.radioHard_id:
+                    difficulty = 0.5;
+                    break;
+                default:
+                    difficulty = 1.0;
+                    break;
+            }
 
             //get character selection
             RadioGroup characterRadioGroup = findViewById(R.id.characterSelectRadioGroup_id);
