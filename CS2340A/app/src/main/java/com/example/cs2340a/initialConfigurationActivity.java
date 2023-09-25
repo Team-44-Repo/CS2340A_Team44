@@ -102,6 +102,14 @@ public class initialConfigurationActivity extends AppCompatActivity {
             playerNameInput.setError("Must input a player name.");
             return false;
         }
+        RadioGroup characterRadioGroup = findViewById(R.id.characterSelectRadioGroup_id);
+        if (characterRadioGroup.getCheckedRadioButtonId() == 0) {
+            return false;
+        }
+        RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
+        if (difficultyRadioGroup.getCheckedRadioButtonId() == 0) {
+            return false;
+        }
         // after all validation return true.
         return true;
     }
