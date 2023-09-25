@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 public class gameActivity extends AppCompatActivity {
 
@@ -16,6 +17,9 @@ public class gameActivity extends AppCompatActivity {
     Button tempEndButton;
     TextView playerNameTextView;
     TextView hpTextView;
+    ImageView sprite;
+
+    private int avatar;
 
 
     @Override
@@ -38,6 +42,16 @@ public class gameActivity extends AppCompatActivity {
         //hpTextView.setText(healthPoints);
         hpTextView.setText("HP: " + healthPoints);
 
+        // gets sprite
+        avatar = getIntent().getIntExtra("avatar", 3);
+        sprite = findViewById(R.id.spriteView);
+        if (avatar == 1) {
+            sprite.setImageDrawable(getResources().getDrawable(R.drawable.player1));
+        } else if (avatar == 2) {
+            sprite.setImageDrawable(getResources().getDrawable(R.drawable.player2));
+        } else if (avatar == 3) {
+            sprite.setImageDrawable(getResources().getDrawable(R.drawable.player3));
+        }
 
 
         //temporary button to get to the end screen.
