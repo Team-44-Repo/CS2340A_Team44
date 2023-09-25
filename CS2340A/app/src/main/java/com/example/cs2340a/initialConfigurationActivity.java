@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.ImageButton;
 
 public class initialConfigurationActivity extends AppCompatActivity {
 
@@ -17,6 +20,10 @@ public class initialConfigurationActivity extends AppCompatActivity {
 
     Button startGameButton;
     Button exitbtn;
+//    ImageButton avatar1 = (ImageButton) findViewById(R.id.avatar1);
+//    ImageButton avatar2 = (ImageButton) findViewById(R.id.avatar2);
+//    ImageButton avatar3 = (ImageButton) findViewById(R.id.avatar3);
+    private int avatar;
 
 
     @Override
@@ -36,10 +43,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
             startActivity(exit);
         });
 
-
-        startGameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        startGameButton.setOnClickListener(v -> {
 
                 //get player name
                 playerName = playerNameInput.getText().toString();
@@ -63,20 +67,34 @@ public class initialConfigurationActivity extends AppCompatActivity {
                         break;
                 }
 
+            //get character selection
+            RadioGroup characterRadioGroup = findViewById(R.id.characterSelectRadioGroup_id);
+            avatar = 1;
 
-                //get sprint selection
+            switch (characterRadioGroup.getCheckedRadioButtonId()) {
+                case R.id.character1:
+                    avatar = 1;
+                    break;
+                case R.id.character2:
+                    avatar = 2;
+                    break;
+                case R.id.character3:
+                    avatar = 3;
+                    break;
+                default:
+                    avatar = 1;
+                    break;
+            }
 
                 //check if player name is valid and if sprite selected
                 if (checkAllFields()) {
                     Intent game = new Intent(initialConfigurationActivity.this, gameActivity.class);
                     game.putExtra("key", playerName);
                     game.putExtra("difficulty", difficulty);
+                    game.putExtra("avatar", avatar);
                     startActivity(game);
                 }
-
-            }
-        });
-
+            });
     }
 
     private boolean checkAllFields () {
