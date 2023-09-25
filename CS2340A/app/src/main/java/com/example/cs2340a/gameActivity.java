@@ -14,10 +14,11 @@ public class gameActivity extends AppCompatActivity {
     private double difficulty;
     private int healthPoints;
     private String hpString;
-    Button tempEndButton;
-    TextView playerNameTextView;
-    TextView hpTextView;
-    ImageView sprite;
+    private Button tempEndButton;
+    private TextView playerNameTextView;
+    private TextView hpTextView;
+    private TextView difficultyText;
+    private ImageView sprite;
 
     private int avatar;
 
@@ -41,6 +42,18 @@ public class gameActivity extends AppCompatActivity {
         hpTextView = findViewById(R.id.healthPoints_id);
         //hpTextView.setText(healthPoints);
         hpTextView.setText("HP: " + healthPoints);
+
+        difficultyText = findViewById(R.id.dificulty_id);
+        if (difficulty == 0.5) {
+            difficultyText.setText("difficulty: Hard");
+        } else if (difficulty == 0.75) {
+            difficultyText.setText("difficulty: medium");
+        } else {
+            difficultyText.setText("difficulty: easy");
+        }
+
+
+
 
         // gets sprite
         avatar = getIntent().getIntExtra("avatar", 3);
