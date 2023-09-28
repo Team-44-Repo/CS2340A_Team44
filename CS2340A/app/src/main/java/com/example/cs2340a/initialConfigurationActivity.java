@@ -1,8 +1,6 @@
 package com.example.cs2340a;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -37,29 +35,27 @@ public class initialConfigurationActivity extends AppCompatActivity {
             startActivity(exit);
         });
 
-        startGameButton.setOnClickListener(v -> {
+       startGameButton.setOnClickListener(v -> {
+           //get player name
+           playerName = playerNameInput.getText().toString();
+           //get difficulty selection
+           RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
+           double difficulty = 1.0;
 
-            //get player name
-            playerName = playerNameInput.getText().toString();
-
-            //get difficulty selection
-            RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
-            double difficulty = 1.0;
-
-            switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
-                case R.id.radioEasy_id:
-                    difficulty = 1.0;
-                    break;
-                case R.id.radioMedium_id:
-                    difficulty = 0.75;
-                    break;
-                case R.id.radioHard_id:
-                    difficulty = 0.5;
-                    break;
-                default:
-                    difficulty = 1.0;
-                    break;
-            }
+           switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
+           case R.id.radioEasy_id:
+               difficulty = 1.0;
+               break;
+           case R.id.radioMedium_id:
+               difficulty = 0.75;
+               break;
+           case R.id.radioHard_id:
+               difficulty = 0.5;
+               break;
+           default:
+               difficulty = 1.0;
+               break;
+           }
 
             //get character selection
             RadioGroup characterRadioGroup = findViewById(R.id.characterSelectRadioGroup_id);
@@ -80,15 +76,15 @@ public class initialConfigurationActivity extends AppCompatActivity {
                     break;
             }
 
-                //check if player name is valid and if sprite selected
-                if (checkAllFields()) {
-                    Intent game = new Intent(initialConfigurationActivity.this, gameActivity.class);
-                    game.putExtra("key", playerName);
-                    game.putExtra("difficulty", difficulty);
-                    game.putExtra("avatar", avatar);
-                    startActivity(game);
-                }
-            });
+            //check if player name is valid and if sprite selected
+           if (checkAllFields()) {
+                Intent game = new Intent(initialConfigurationActivity.this, gameActivity.class);
+                game.putExtra("key", playerName);
+                game.putExtra("difficulty", difficulty);
+                game.putExtra("avatar", avatar);
+                startActivity(game);
+            }
+        });
     }
 
     private boolean checkAllFields () {
