@@ -1,4 +1,4 @@
-package com.example.cs2340a;
+package com.example.cs2340a.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+
+import com.example.cs2340a.R;
 
 public class initialConfigurationActivity extends AppCompatActivity {
 

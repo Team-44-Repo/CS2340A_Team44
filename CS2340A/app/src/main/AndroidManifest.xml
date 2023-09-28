@@ -13,16 +13,16 @@
         android:theme="@style/Theme.CS2340A"
         tools:targetApi="31">
         <activity
-            android:name=".endActivity"
+            android:name=".View.endActivity"
             android:exported="false" />
         <activity
-            android:name=".gameActivity"
+            android:name=".View.gameActivity"
             android:exported="false" />
         <activity
-            android:name=".initialConfigurationActivity"
+            android:name=".View.initialConfigurationActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
