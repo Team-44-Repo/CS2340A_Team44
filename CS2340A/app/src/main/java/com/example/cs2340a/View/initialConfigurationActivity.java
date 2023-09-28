@@ -1,4 +1,4 @@
-package com.example.cs2340a;
+package com.example.cs2340a.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+
+import com.example.cs2340a.R;
 
 public class initialConfigurationActivity extends AppCompatActivity {
 
@@ -77,6 +79,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
             }
 
             //check if player name is valid and if sprite selected
+CS2340A/app/src/main/java/com/example/cs2340a/initialConfigurationActivity.java
            if (checkAllFields()) {
                 Intent game = new Intent(initialConfigurationActivity.this, gameActivity.class);
                 game.putExtra("key", playerName);
