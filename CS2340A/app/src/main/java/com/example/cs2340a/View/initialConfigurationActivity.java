@@ -79,7 +79,6 @@ public class initialConfigurationActivity extends AppCompatActivity {
             }
 
             //check if player name is valid and if sprite selected
-CS2340A/app/src/main/java/com/example/cs2340a/initialConfigurationActivity.java
            if (checkAllFields()) {
                 Intent game = new Intent(initialConfigurationActivity.this, gameActivity.class);
                 game.putExtra("key", playerName);

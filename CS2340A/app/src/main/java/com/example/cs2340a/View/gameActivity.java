@@ -3,6 +3,8 @@ package com.example.cs2340a.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,14 +23,24 @@ public class gameActivity extends AppCompatActivity {
     private TextView hpTextView;
     private TextView difficultyText;
     private ImageView sprite;
+//    private Bitmap bitmap;
+    private Canvas canvas;
+//    Bitmap.Config config;
 
     private int avatar;
+    private Tilemap tilemap;
+    private SpriteSheet spriteSheet;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        tilemap = new Tilemap(spriteSheet);
+//        canvas.drawBitmap(tilemap);
+//        setFocusable(true);
         setContentView(R.layout.activity_game);
+//        bitmap = Bitmap.createBitmap(600, 600, config);
+//        canvas = new Canvas();
 
         // gets and displays player name. input from initial configuration activity
         playerNameTextView = findViewById(R.id.playerNameDisplay_id);
