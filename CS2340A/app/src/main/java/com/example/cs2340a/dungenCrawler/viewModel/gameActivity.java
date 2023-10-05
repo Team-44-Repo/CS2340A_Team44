@@ -1,9 +1,8 @@
-package com.example.cs2340a.View;
+package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.widget.TextView;
 import android.widget.ImageView;
 
 import com.example.cs2340a.R;
+import com.example.cs2340a.dungenCrawler.SpriteSheet;
+import com.example.cs2340a.dungenCrawler.Tilemap;
 
 public class gameActivity extends AppCompatActivity {
 
@@ -47,7 +48,7 @@ public class gameActivity extends AppCompatActivity {
         String playernameString = getIntent().getStringExtra("key");
         playerNameTextView.setText(playernameString);
 
-        // Get difficulty selected from Main screen.
+        // Get difficulty selected from Welcome screen.
         difficulty = getIntent().getDoubleExtra("difficulty", 1);
         // starting HP 100 for easy, 75 for med, 50 for hard.
         healthPoints = (int) (100 * difficulty);

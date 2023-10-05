@@ -1,4 +1,4 @@
-package com.example.cs2340a.View;
+package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,4 +1,4 @@
-package com.example.cs2340a.View;
+package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,25 +8,26 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.cs2340a.R;
+import com.example.cs2340a.dungenCrawler.initialConfigurationActivity;
 
 public class MainActivity extends AppCompatActivity {
-
-    private Button startButton;
-    private Button exitBtnStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startButton = (Button) findViewById(R.id.startButton_id);
-        exitBtnStart = (Button) findViewById(R.id.exitBtnStart);
+        //local fields
+        Button startButton = (Button) findViewById(R.id.startButton_id);
+        Button exitBtnStart = (Button) findViewById(R.id.exitBtnStart);
 
+        //start button functionality
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this, initialConfigurationActivity.class);
+                Intent intent = new Intent(MainActivity.this,
+                        initialConfigurationActivity.class);
                 startActivity(intent);
 
             }

@@ -1,4 +1,4 @@
-package com.example.cs2340a.View;
+package com.example.cs2340a.dungenCrawler;
 
 public class MapLayout {
     public static final int TILE_WIDTH_PIXELS = 64;
