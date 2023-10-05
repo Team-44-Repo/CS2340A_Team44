@@ -1,4 +1,4 @@
-package com.example.cs2340a.View;
+package com.example.cs2340a.dungenCrawler;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -8,15 +8,12 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.example.cs2340a.R;
+import com.example.cs2340a.dungenCrawler.viewModel.gameActivity;
 
 public class initialConfigurationActivity extends AppCompatActivity {
 
     private String playerName = "Mark Test";
     private EditText playerNameInput;
-
-    private Button startGameButton;
-    private Button exitbtn;
-
     private int avatar;
 
 
@@ -26,10 +23,10 @@ public class initialConfigurationActivity extends AppCompatActivity {
         setContentView(R.layout.initial_configuration_activty);
 
         playerNameInput = (EditText) findViewById(R.id.playerNameInput_id);
-        startGameButton = (Button) findViewById(R.id.startGameButton_id);
+        Button startGameButton = (Button) findViewById(R.id.startGameButton_id);
 
         //exit button functionality
-        exitbtn = (Button) findViewById(R.id.exitbtn);
+        Button exitbtn = (Button) findViewById(R.id.exitbtn);
         exitbtn.setOnClickListener(v -> {
             Intent exit = new Intent(Intent.ACTION_MAIN);
             exit.addCategory(Intent.CATEGORY_HOME);
@@ -38,8 +35,9 @@ public class initialConfigurationActivity extends AppCompatActivity {
         });
 
        startGameButton.setOnClickListener(v -> {
-           //get player name
+           //set player name to entered name
            playerName = playerNameInput.getText().toString();
+
            //get difficulty selection
            RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
            double difficulty = 1.0;
@@ -94,6 +92,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
 
         // after all validation return true.
         return (checkPlayerName() && checkCharPicked() && checkDifficultyPicked()) ;
+
         /*
         if (playerName == null || playerName.trim().isEmpty()) {
             playerNameInput.setError("Must input a player name.");
