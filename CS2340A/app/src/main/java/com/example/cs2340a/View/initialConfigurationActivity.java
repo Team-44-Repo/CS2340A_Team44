@@ -90,6 +90,11 @@ public class initialConfigurationActivity extends AppCompatActivity {
     }
 
     private boolean checkAllFields () {
+
+
+        // after all validation return true.
+        return (checkPlayerName() && checkCharPicked() && checkDifficultyPicked()) ;
+        /*
         if (playerName == null || playerName.trim().isEmpty()) {
             playerNameInput.setError("Must input a player name.");
             return false;
@@ -104,5 +109,32 @@ public class initialConfigurationActivity extends AppCompatActivity {
         }
         // after all validation return true.
         return true;
+        */
     }
+
+    private boolean checkPlayerName () {
+        if (playerName == null || playerName.trim().isEmpty()) {
+            playerNameInput.setError("Must input a player name.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkCharPicked () {
+        RadioGroup characterRadioGroup = findViewById(R.id.characterSelectRadioGroup_id);
+        if (characterRadioGroup.getCheckedRadioButtonId() == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkDifficultyPicked () {
+        RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
+        if (difficultyRadioGroup.getCheckedRadioButtonId() == 0) {
+            return false;
+        }
+        return true;
+    }
+
+
 }
