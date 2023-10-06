@@ -1,4 +1,4 @@
-package com.example.cs2340a.dungenCrawler;
+package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -8,19 +8,17 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.example.cs2340a.R;
-import com.example.cs2340a.dungenCrawler.viewModel.gameActivity;
 
-public class initialConfigurationActivity extends AppCompatActivity {
+public class InitialConfigActivity extends AppCompatActivity {
 
     private String playerName = "Mark Test";
     private EditText playerNameInput;
     private int avatar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.initial_configuration_activty);
+        setContentView(R.layout.initial_config_activty);
 
         playerNameInput = (EditText) findViewById(R.id.playerNameInput_id);
         Button startGameButton = (Button) findViewById(R.id.startGameButton_id);
@@ -34,51 +32,51 @@ public class initialConfigurationActivity extends AppCompatActivity {
             startActivity(exit);
         });
 
-       startGameButton.setOnClickListener(v -> {
-           //set player name to entered name
-           playerName = playerNameInput.getText().toString();
+        startGameButton.setOnClickListener(v -> {
+            //set player name to entered name
+            playerName = playerNameInput.getText().toString();
 
-           //get difficulty selection
-           RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
-           double difficulty = 1.0;
+            //get difficulty selection
+            RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
+            double difficulty = 1.0;
 
-           switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
-           case R.id.radioEasy_id:
-               difficulty = 1.0;
-               break;
-           case R.id.radioMedium_id:
-               difficulty = 0.75;
-               break;
-           case R.id.radioHard_id:
-               difficulty = 0.5;
-               break;
-           default:
-               difficulty = 1.0;
-               break;
-           }
+            switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
+            case R.id.radioEasy_id:
+                difficulty = 1.0;
+                break;
+            case R.id.radioMedium_id:
+                difficulty = 0.75;
+                break;
+            case R.id.radioHard_id:
+                difficulty = 0.5;
+                break;
+            default:
+                difficulty = 1.0;
+                break;
+            }
 
             //get character selection
             RadioGroup characterRadioGroup = findViewById(R.id.characterSelectRadioGroup_id);
             avatar = 1;
 
             switch (characterRadioGroup.getCheckedRadioButtonId()) {
-                case R.id.character1:
-                    avatar = 1;
-                    break;
-                case R.id.character2:
-                    avatar = 2;
-                    break;
-                case R.id.character3:
-                    avatar = 3;
-                    break;
-                default:
-                    avatar = 1;
-                    break;
+            case R.id.character1:
+                avatar = 1;
+                break;
+            case R.id.character2:
+                avatar = 2;
+                break;
+            case R.id.character3:
+                avatar = 3;
+                break;
+            default:
+                avatar = 1;
+                break;
             }
 
             //check if player name is valid and if sprite selected
-           if (checkAllFields()) {
-                Intent game = new Intent(initialConfigurationActivity.this, gameActivity.class);
+            if (checkAllFields()) {
+                Intent game = new Intent(InitialConfigActivity.this, GameActivity.class);
                 game.putExtra("key", playerName);
                 game.putExtra("difficulty", difficulty);
                 game.putExtra("avatar", avatar);
@@ -87,11 +85,11 @@ public class initialConfigurationActivity extends AppCompatActivity {
         });
     }
 
-    private boolean checkAllFields () {
+    private boolean checkAllFields() {
 
 
         // after all validation return true.
-        return (checkPlayerName() && checkCharPicked() && checkDifficultyPicked()) ;
+        return (checkPlayerName() && checkCharPicked() && checkDifficultyPicked());
 
         /*
         if (playerName == null || playerName.trim().isEmpty()) {
@@ -111,7 +109,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
         */
     }
 
-    private boolean checkPlayerName () {
+    private boolean checkPlayerName() {
         if (playerName == null || playerName.trim().isEmpty()) {
             playerNameInput.setError("Must input a player name.");
             return false;
@@ -119,7 +117,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean checkCharPicked () {
+    private boolean checkCharPicked() {
         RadioGroup characterRadioGroup = findViewById(R.id.characterSelectRadioGroup_id);
         if (characterRadioGroup.getCheckedRadioButtonId() == 0) {
             return false;
@@ -127,7 +125,7 @@ public class initialConfigurationActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean checkDifficultyPicked () {
+    private boolean checkDifficultyPicked() {
         RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
         if (difficultyRadioGroup.getCheckedRadioButtonId() == 0) {
             return false;

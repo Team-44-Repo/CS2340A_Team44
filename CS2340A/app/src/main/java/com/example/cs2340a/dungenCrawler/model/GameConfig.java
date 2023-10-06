@@ -1,8 +1,7 @@
 package com.example.cs2340a.dungenCrawler.model;
 
-import android.widget.EditText;
-
 public class GameConfig {
+
     /*
     private int avatar;
     private String playerName = "Test";

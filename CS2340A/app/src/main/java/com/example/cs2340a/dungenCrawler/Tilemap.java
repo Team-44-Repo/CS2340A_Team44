@@ -42,6 +42,7 @@ public class Tilemap extends AppCompatActivity {
         }
     }
 
+    
     private Rect getRectByIdx(int idxRow, int idxCol) {
         return new Rect(idxCol * TILE_WIDTH_PIXELS, idxRow*TILE_HEIGHT_PIXELS, (idxCol + 1) * TILE_WIDTH_PIXELS, (idxRow + 1) * TILE_HEIGHT_PIXELS);
     }
