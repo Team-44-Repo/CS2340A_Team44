@@ -1,8 +1,10 @@
-package com.example.cs2340a;
+package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.cs2340a.R;
 
 public class endActivity extends AppCompatActivity {
 

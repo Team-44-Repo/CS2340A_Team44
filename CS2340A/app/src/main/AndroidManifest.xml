@@ -13,16 +13,19 @@
         android:theme="@style/Theme.CS2340A"
         tools:targetApi="31">
         <activity
-            android:name=".endActivity"
+            android:name=".dungenCrawler.viewModel.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".gameActivity"
+            android:name=".dungenCrawler.viewModel.endActivity"
             android:exported="false" />
         <activity
-            android:name=".initialConfigurationActivity"
+            android:name=".dungenCrawler.viewModel.gameActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".dungenCrawler.initialConfigurationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".dungenCrawler.viewModel.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
