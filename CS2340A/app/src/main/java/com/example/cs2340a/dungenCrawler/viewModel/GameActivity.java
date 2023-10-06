@@ -13,25 +13,31 @@ import android.widget.ImageView;
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.SpriteSheet;
 import com.example.cs2340a.dungenCrawler.Tilemap;
+import com.example.cs2340a.dungenCrawler.model.GameConfig;
+import com.example.cs2340a.dungenCrawler.model.Player;
 
 public class GameActivity extends AppCompatActivity {
 
     private double difficulty;
-    private int healthPoints;
-    private String hpString;
+    //private int healthPoints;
     private Button tempEndButton;
-    private TextView playerNameTextView;
-    private TextView hpTextView;
-    private TextView difficultyText;
-    private ImageView sprite;
+    //private ImageView sprite;
     //private Bitmap bitmap;
     private Canvas canvas;
     //Bitmap.Config config;
 
+    //viewModel elements >> findViewById()
+    private TextView playerNameTV;
+    private TextView difficultyTV;
+    private TextView hpTV;
+    private ImageView sprite;
+    private Button tempNextBtn;
+    private Button tempEndBtn;
 
-    private int avatar;
-    private Tilemap tilemap;
-    private SpriteSheet spriteSheet;
+
+    private int avatar; // del when working
+    //private Tilemap tilemap;
+    //private SpriteSheet spriteSheet;
 
 
     @Override
@@ -44,49 +50,55 @@ public class GameActivity extends AppCompatActivity {
         //bitmap = Bitmap.createBitmap(600, 600, config);
         //canvas = new Canvas();
 
-        //gets and displays player name. input from initial configuration activity
-        playerNameTextView = findViewById(R.id.playerNameDisplay_id);
-        String playernameString = getIntent().getStringExtra("key");
-        playerNameTextView.setText(playernameString);
-
-        // Get difficulty selected from Welcome screen.
-        difficulty = getIntent().getDoubleExtra("difficulty", 1);
-        // starting HP 100 for easy, 75 for med, 50 for hard.
-        healthPoints = (int) (100 * difficulty);
-        // Display starting health points
-        //hpString = String.valueOf(healthPoints);
-        hpTextView = findViewById(R.id.healthPoints_id);
-        //hpTextView.setText(healthPoints);
-        hpTextView.setText("HP: " + healthPoints);
-
-        difficultyText = findViewById(R.id.dificulty_id);
-        if (difficulty == 0.5) {
-            difficultyText.setText("difficulty: Hard");
-        } else if (difficulty == 0.75) {
-            difficultyText.setText("difficulty: medium");
-        } else {
-            difficultyText.setText("difficulty: easy");
-        }
-
-
-
-
-        // gets sprite
-        avatar = getIntent().getIntExtra("avatar", 3);
+        //viewModel elements >> findViewById()
+        playerNameTV = findViewById(R.id.playerNameDisplay_id);
+        difficultyTV = findViewById(R.id.dificulty_id);
+        hpTV = findViewById(R.id.healthPoints_id);
         sprite = findViewById(R.id.spriteView);
-        if (avatar == 1) {
-            sprite.setImageDrawable(getResources().getDrawable(R.drawable.player1));
-        } else if (avatar == 2) {
-            sprite.setImageDrawable(getResources().getDrawable(R.drawable.player2));
-        } else if (avatar == 3) {
-            sprite.setImageDrawable(getResources().getDrawable(R.drawable.player3));
+        //tempNextBtn = findViewById(R.id.#);
+        tempEndBtn = findViewById(R.id.tempEndButton_id);
+
+
+
+        //gets Player and GameConfig objects
+        Player player = getIntent().getParcelableExtra("player");
+        GameConfig gameConfig = getIntent().getParcelableExtra("gameConfig");
+
+        //and displays properties of Player & GameConfig
+        //  1   player name
+        playerNameTV.setText(player.getPlayerName());
+
+        //  2   difficulty
+        double diff = gameConfig.getDifficulty();
+        if (diff == 0.5) {
+            difficultyTV.setText("Hard Mode");
+        } else if (diff == 0.75) {
+            difficultyTV.setText("Regular Mode");
+        } else {
+            difficultyTV.setText("Easy Mode");
         }
+
+        //  2.5 healthpoints
+        hpTV.setText("HP: " + player.getHealthPoints());
+
+
+        // ************ I CANT GET THIS TO WORK using the object's sprite *******
+        //  3   gets sprite
+        //int test = player.getAvatarResId();
+        avatar = getIntent().getIntExtra("avatar", 3);
+
+        if (avatar == 1) {
+            sprite.setImageResource(R.drawable.player1);
+        } else if (avatar == 2) {
+            sprite.setImageResource(R.drawable.player2);
+        } else if (avatar == 3) {
+            sprite.setImageResource(R.drawable.player3);
+        }
+        // ************ old version - need to change  *******
 
 
         //temporary button to get to the end screen.
-        tempEndButton = (Button) findViewById(R.id.tempEndButton_id);
-
-        tempEndButton.setOnClickListener(new View.OnClickListener() {
+        tempEndBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
