@@ -1,4 +1,4 @@
-package com.example.cs2340a.dungenCrawler;
+package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.example.cs2340a.R;
-import com.example.cs2340a.dungenCrawler.viewModel.GameActivity;
 
 public class InitialConfigActivity extends AppCompatActivity {
 

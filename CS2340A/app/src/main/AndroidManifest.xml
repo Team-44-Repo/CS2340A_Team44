@@ -22,7 +22,7 @@
             android:name=".dungenCrawler.viewModel.GameActivity"
             android:exported="false" />
         <activity
-            android:name=".dungenCrawler.InitialConfigActivity"
+            android:name=".dungenCrawler.viewModel.InitialConfigActivity"
             android:exported="false" />
         <activity
             android:name=".dungenCrawler.viewModel.MainActivity"
