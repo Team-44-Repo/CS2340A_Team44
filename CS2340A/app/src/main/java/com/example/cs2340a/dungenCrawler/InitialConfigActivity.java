@@ -16,7 +16,6 @@ public class InitialConfigActivity extends AppCompatActivity {
     private EditText playerNameInput;
     private int avatar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

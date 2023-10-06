@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class Tile extends AppCompatActivity {
 
+
     protected final Rect mapLocationRect;
 
     public Tile(Rect mapLocationRect) {

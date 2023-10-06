@@ -1,6 +1,7 @@
 package com.example.cs2340a.dungenCrawler.model;
 
 public class GameConfig {
+
     /*
     private int avatar;
     private String playerName = "Test";

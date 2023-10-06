@@ -30,4 +30,5 @@ public class Sprite extends AppCompatActivity {
     public int getHeight() {
         return rect.height();
     }
+
 }

@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public class FloorTile extends Tile {
+
     private final Sprite sprite;
 
     public FloorTile(SpriteSheet spriteSheet, Rect mapLocationRect) {

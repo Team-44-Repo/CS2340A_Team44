@@ -28,6 +28,7 @@ public class GameActivity extends AppCompatActivity {
     private Canvas canvas;
     //Bitmap.Config config;
 
+
     private int avatar;
     private Tilemap tilemap;
     private SpriteSheet spriteSheet;

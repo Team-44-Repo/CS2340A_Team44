@@ -21,6 +21,7 @@ public class SpriteSheet extends AppCompatActivity {
                 bitmapOptions);
     }
 
+
     public Sprite getPlayerSprite() {
         return new Sprite(this,
                 new Rect(0, 0, 64, 64));

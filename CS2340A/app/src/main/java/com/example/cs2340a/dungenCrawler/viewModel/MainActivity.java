@@ -11,7 +11,6 @@ import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.InitialConfigActivity;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
