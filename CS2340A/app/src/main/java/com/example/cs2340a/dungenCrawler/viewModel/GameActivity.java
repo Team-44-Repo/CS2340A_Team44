@@ -14,7 +14,7 @@ import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.SpriteSheet;
 import com.example.cs2340a.dungenCrawler.Tilemap;
 
-public class gameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     private double difficulty;
     private int healthPoints;
@@ -24,9 +24,9 @@ public class gameActivity extends AppCompatActivity {
     private TextView hpTextView;
     private TextView difficultyText;
     private ImageView sprite;
-//    private Bitmap bitmap;
+    //private Bitmap bitmap;
     private Canvas canvas;
-//    Bitmap.Config config;
+    //Bitmap.Config config;
 
     private int avatar;
     private Tilemap tilemap;
@@ -36,14 +36,14 @@ public class gameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        tilemap = new Tilemap(spriteSheet);
-//        canvas.drawBitmap(tilemap);
-//        setFocusable(true);
+        //tilemap = new Tilemap(spriteSheet);
+        //canvas.drawBitmap(tilemap);
+        //setFocusable(true);
         setContentView(R.layout.activity_game);
-//        bitmap = Bitmap.createBitmap(600, 600, config);
-//        canvas = new Canvas();
+        //bitmap = Bitmap.createBitmap(600, 600, config);
+        //canvas = new Canvas();
 
-        // gets and displays player name. input from initial configuration activity
+        //gets and displays player name. input from initial configuration activity
         playerNameTextView = findViewById(R.id.playerNameDisplay_id);
         String playernameString = getIntent().getStringExtra("key");
         playerNameTextView.setText(playernameString);
@@ -89,7 +89,7 @@ public class gameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(gameActivity.this, endActivity.class);
+                Intent intent = new Intent(GameActivity.this, EndActivity.class);
                 startActivity(intent);
 
             }

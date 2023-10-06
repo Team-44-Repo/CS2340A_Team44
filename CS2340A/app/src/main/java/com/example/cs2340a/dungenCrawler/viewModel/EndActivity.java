@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.cs2340a.R;
 
-public class endActivity extends AppCompatActivity {
+public class EndActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -16,13 +16,13 @@
             android:name=".dungenCrawler.viewModel.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".dungenCrawler.viewModel.endActivity"
+            android:name=".dungenCrawler.viewModel.EndActivity"
             android:exported="false" />
         <activity
-            android:name=".dungenCrawler.viewModel.gameActivity"
+            android:name=".dungenCrawler.viewModel.GameActivity"
             android:exported="false" />
         <activity
-            android:name=".dungenCrawler.initialConfigurationActivity"
+            android:name=".dungenCrawler.InitialConfigActivity"
             android:exported="false" />
         <activity
             android:name=".dungenCrawler.viewModel.MainActivity"

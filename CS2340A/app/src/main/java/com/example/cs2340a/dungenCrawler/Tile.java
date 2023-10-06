@@ -5,7 +5,7 @@ import android.graphics.Rect;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-abstract public class Tile extends AppCompatActivity {
+public abstract class Tile extends AppCompatActivity {
 
     protected final Rect mapLocationRect;
 
@@ -19,10 +19,10 @@ abstract public class Tile extends AppCompatActivity {
     }
     public static Tile getTile(int idxTileType, SpriteSheet spriteSheet, Rect mapLocationRect) {
         switch (TileType.values()[idxTileType]) {
-            case FLOOR_TILE:
-                return new FloorTile(spriteSheet, mapLocationRect);
-            default:
-                return new FloorTile(spriteSheet, mapLocationRect);
+        case FLOOR_TILE:
+            return new FloorTile(spriteSheet, mapLocationRect);
+        default:
+            return new FloorTile(spriteSheet, mapLocationRect);
         }
     }
 
