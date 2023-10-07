@@ -1,4 +1,4 @@
-package com.example.cs2340a.View;
+package com.example.cs2340a.dungenCrawler;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,11 +17,14 @@ public class SpriteSheet extends AppCompatActivity {
     public SpriteSheet(Context context) {
         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
         bitmapOptions.inScaled = false;
-        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.team44_spritesheet, bitmapOptions);
+        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.team44_spritesheet,
+                bitmapOptions);
     }
 
+
     public Sprite getPlayerSprite() {
-        return new Sprite(this, new Rect(0, 0, 64, 64));
+        return new Sprite(this,
+                new Rect(0, 0, 64, 64));
     }
 
     public Bitmap getBitmap() {
@@ -33,6 +36,8 @@ public class SpriteSheet extends AppCompatActivity {
     }
 
     private Sprite getSpriteByIdx(int idxRow, int idxCol) {
-        return new Sprite(this, new Rect(idxCol * SPRITE_WIDTH_PIXELS, idxRow*SPRITE_HEIGHT_PIXELS, (idxCol + 1) * SPRITE_WIDTH_PIXELS, (idxRow + 1) * SPRITE_HEIGHT_PIXELS));
+        return new Sprite(this, new Rect(idxCol * SPRITE_WIDTH_PIXELS,
+                idxRow * SPRITE_HEIGHT_PIXELS, (idxCol + 1) * SPRITE_WIDTH_PIXELS,
+                (idxRow + 1) * SPRITE_HEIGHT_PIXELS));
     }
 }

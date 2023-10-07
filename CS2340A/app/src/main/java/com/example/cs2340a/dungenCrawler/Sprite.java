@@ -1,4 +1,4 @@
-package com.example.cs2340a.View;
+package com.example.cs2340a.dungenCrawler;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -18,7 +18,7 @@ public class Sprite extends AppCompatActivity {
         canvas.drawBitmap(
                 spriteSheet.getBitmap(),
                 rect,
-                new Rect(x, y, x+getWidth(), y+getHeight()),
+                new Rect(x, y, x + getWidth(), y + getHeight()),
                 null
         );
     }
@@ -30,4 +30,5 @@ public class Sprite extends AppCompatActivity {
     public int getHeight() {
         return rect.height();
     }
+
 }

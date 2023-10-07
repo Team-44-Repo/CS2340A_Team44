@@ -1,9 +1,9 @@
-package com.example.cs2340a.View;
+package com.example.cs2340a.dungenCrawler;
 
-import static com.example.cs2340a.View.MapLayout.NUM_COL_TILES;
-import static com.example.cs2340a.View.MapLayout.NUM_ROW_TILES;
-import static com.example.cs2340a.View.MapLayout.TILE_HEIGHT_PIXELS;
-import static com.example.cs2340a.View.MapLayout.TILE_WIDTH_PIXELS;
+import static com.example.cs2340a.dungenCrawler.MapLayout.NUM_COL_TILES;
+import static com.example.cs2340a.dungenCrawler.MapLayout.NUM_ROW_TILES;
+import static com.example.cs2340a.dungenCrawler.MapLayout.TILE_HEIGHT_PIXELS;
+import static com.example.cs2340a.dungenCrawler.MapLayout.TILE_WIDTH_PIXELS;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -42,6 +42,7 @@ public class Tilemap extends AppCompatActivity {
         }
     }
 
+    
     private Rect getRectByIdx(int idxRow, int idxCol) {
         return new Rect(idxCol * TILE_WIDTH_PIXELS, idxRow*TILE_HEIGHT_PIXELS, (idxCol + 1) * TILE_WIDTH_PIXELS, (idxRow + 1) * TILE_HEIGHT_PIXELS);
     }

@@ -1,9 +1,10 @@
-package com.example.cs2340a.View;
+package com.example.cs2340a.dungenCrawler;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public class FloorTile extends Tile {
+
     private final Sprite sprite;
 
     public FloorTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
