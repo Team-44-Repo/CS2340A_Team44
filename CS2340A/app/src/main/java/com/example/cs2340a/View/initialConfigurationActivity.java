@@ -11,8 +11,9 @@ import com.example.cs2340a.R;
 
 public class initialConfigurationActivity extends AppCompatActivity {
 
-    private String playerName = "Mark Test";
+    private String playerName;
     private EditText playerNameInput;
+    private double difficulty = 1.0;
 
     private Button startGameButton;
     private Button exitbtn;
@@ -42,7 +43,6 @@ public class initialConfigurationActivity extends AppCompatActivity {
            playerName = playerNameInput.getText().toString();
            //get difficulty selection
            RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id);
-           double difficulty = 1.0;
 
            switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
            case R.id.radioEasy_id:
@@ -104,5 +104,13 @@ public class initialConfigurationActivity extends AppCompatActivity {
         }
         // after all validation return true.
         return true;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public double getDifficulty() {
+        return difficulty;
     }
 }
