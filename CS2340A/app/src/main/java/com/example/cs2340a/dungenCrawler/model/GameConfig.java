@@ -1,28 +1,41 @@
 package com.example.cs2340a.dungenCrawler.model;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
+import com.example.cs2340a.dungenCrawler.SpriteSheet;
+
 public class GameConfig implements Parcelable {
 
-    //I'm not sure if its a bad, goo, or nutral idea to have these attributes in both
+    //I'm not sure if its a bad, good, or neutral idea to have these attributes in both
     //the Player class and the GameConfig class.
     private String playerName;
     private double difficulty;
     private CharSprite avatar;
     private int currRoomId;
+//    private final Tilemap tilemap;
 
     //basic constructor
     public GameConfig(String name, double diff, CharSprite sprite, int roomId) {
+//        super(context);
+//        SpriteSheet spriteSheet = new SpriteSheet(context);
+//        tilemap = new Tilemap(spriteSheet);
+//        setFocusable(true);
         this.playerName = name;
         this.difficulty = diff;
         this.avatar = sprite;
         this.currRoomId = roomId;
     }
-
     protected GameConfig(Parcel in) {
+//        super(context);
+//        SpriteSheet spriteSheet = new SpriteSheet(context);
+//        tilemap = new Tilemap(spriteSheet);
+//        setFocusable(true);
         playerName = in.readString();
         difficulty = in.readDouble();
         currRoomId = in.readInt();
@@ -77,5 +90,13 @@ public class GameConfig implements Parcelable {
         parcel.writeString(playerName);
         parcel.writeDouble(difficulty);
         parcel.writeInt(currRoomId);
+    }
+
+    public void draw(Canvas canvas) {
+//        super.draw(canvas);
+    }
+
+    public void update() {
+        GameDisplay.update();
     }
 }

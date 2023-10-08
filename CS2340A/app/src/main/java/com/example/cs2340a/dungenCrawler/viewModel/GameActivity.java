@@ -11,8 +11,6 @@ import android.widget.TextView;
 import android.widget.ImageView;
 
 import com.example.cs2340a.R;
-import com.example.cs2340a.dungenCrawler.SpriteSheet;
-import com.example.cs2340a.dungenCrawler.Tilemap;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
 

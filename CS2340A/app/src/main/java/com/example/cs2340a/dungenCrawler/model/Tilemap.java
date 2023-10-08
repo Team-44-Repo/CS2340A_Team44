@@ -1,4 +1,4 @@
-package com.example.cs2340a.dungenCrawler;
+package com.example.cs2340a.dungenCrawler.model;
 
 import static com.example.cs2340a.dungenCrawler.MapLayout.NUM_COL_TILES;
 import static com.example.cs2340a.dungenCrawler.MapLayout.NUM_ROW_TILES;
@@ -10,6 +10,10 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cs2340a.dungenCrawler.MapLayout;
+import com.example.cs2340a.dungenCrawler.SpriteSheet;
+import com.example.cs2340a.dungenCrawler.Tile;
 
 public class Tilemap extends AppCompatActivity {
 
@@ -47,12 +51,12 @@ public class Tilemap extends AppCompatActivity {
         return new Rect(idxCol * TILE_WIDTH_PIXELS, idxRow*TILE_HEIGHT_PIXELS, (idxCol + 1) * TILE_WIDTH_PIXELS, (idxRow + 1) * TILE_HEIGHT_PIXELS);
     }
 
-//    public void draw(Canvas canvas, GameDisplay gameDisplay) {
-//        canvas.drawBitmap(
-//                mapBitmap,
-//                gameDisplay.getGameRect(),
-//                gameDisplay.DISPLAY_RECT,
-//                null
-//        );
-//    }
+    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+        canvas.drawBitmap(
+                mapBitmap,
+                gameDisplay.getGameRect(),
+                gameDisplay.DISPLAY_RECT,
+                null
+        );
+    }
 }
