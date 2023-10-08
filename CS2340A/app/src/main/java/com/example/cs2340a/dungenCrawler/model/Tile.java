@@ -1,4 +1,4 @@
-package com.example.cs2340a.dungenCrawler;
+package com.example.cs2340a.dungenCrawler.model;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;

@@ -1,4 +1,4 @@
-package com.example.cs2340a.dungenCrawler;
+package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs2340a.R;
+import com.example.cs2340a.dungenCrawler.model.Sprite;
 
 public class SpriteSheet extends AppCompatActivity {
     private static final int SPRITE_WIDTH_PIXELS = 64;

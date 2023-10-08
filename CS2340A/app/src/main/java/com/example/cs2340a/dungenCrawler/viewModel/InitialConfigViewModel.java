@@ -12,7 +12,7 @@ import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
 
-public class InitialConfigActivity extends AppCompatActivity {
+public class InitialConfigViewModel extends AppCompatActivity {
 
     private int avatar; //del when working
 
@@ -126,7 +126,7 @@ public class InitialConfigActivity extends AppCompatActivity {
                 Player player = new Player(playerName, avAtar, 1, difficulty, hp);
                 GameConfig gameConfig = new GameConfig(playerName, difficulty, avAtar, 1);
 
-                Intent game = new Intent(InitialConfigActivity.this, GameActivity.class);
+                Intent game = new Intent(InitialConfigViewModel.this, GameRoom1ViewModel.class);
                 // next line is the Old way to pass avatar, but I can't git it to work
                 game.putExtra("avatar", avatar);
 
