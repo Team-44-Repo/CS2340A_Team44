@@ -16,16 +16,16 @@
             android:name=".dungenCrawler.viewModel.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".dungenCrawler.viewModel.EndActivity"
+            android:name=".dungenCrawler.viewModel.EndViewModel"
             android:exported="false" />
         <activity
-            android:name=".dungenCrawler.viewModel.GameActivity"
+            android:name=".dungenCrawler.viewModel.GameRoom1ViewModel"
             android:exported="false" />
         <activity
-            android:name=".dungenCrawler.viewModel.InitialConfigActivity"
+            android:name=".dungenCrawler.viewModel.InitialConfigViewModel"
             android:exported="false" />
         <activity
-            android:name=".dungenCrawler.viewModel.MainActivity"
+            android:name=".dungenCrawler.viewModel.MainViewModel"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

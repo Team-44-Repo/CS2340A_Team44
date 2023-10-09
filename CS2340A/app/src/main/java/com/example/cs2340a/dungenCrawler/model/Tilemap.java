@@ -1,9 +1,9 @@
 package com.example.cs2340a.dungenCrawler.model;
 
-import static com.example.cs2340a.dungenCrawler.MapLayout.NUM_COL_TILES;
-import static com.example.cs2340a.dungenCrawler.MapLayout.NUM_ROW_TILES;
-import static com.example.cs2340a.dungenCrawler.MapLayout.TILE_HEIGHT_PIXELS;
-import static com.example.cs2340a.dungenCrawler.MapLayout.TILE_WIDTH_PIXELS;
+import static com.example.cs2340a.dungenCrawler.model.MapLayout.NUM_COL_TILES;
+import static com.example.cs2340a.dungenCrawler.model.MapLayout.NUM_ROW_TILES;
+import static com.example.cs2340a.dungenCrawler.model.MapLayout.TILE_HEIGHT_PIXELS;
+import static com.example.cs2340a.dungenCrawler.model.MapLayout.TILE_WIDTH_PIXELS;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,9 +11,9 @@ import android.graphics.Rect;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cs2340a.dungenCrawler.MapLayout;
-import com.example.cs2340a.dungenCrawler.SpriteSheet;
-import com.example.cs2340a.dungenCrawler.Tile;
+import com.example.cs2340a.dungenCrawler.model.MapLayout;
+import com.example.cs2340a.dungenCrawler.model.SpriteSheet;
+import com.example.cs2340a.dungenCrawler.model.Tile;
 
 public class Tilemap extends AppCompatActivity {
 
@@ -51,12 +51,12 @@ public class Tilemap extends AppCompatActivity {
         return new Rect(idxCol * TILE_WIDTH_PIXELS, idxRow*TILE_HEIGHT_PIXELS, (idxCol + 1) * TILE_WIDTH_PIXELS, (idxRow + 1) * TILE_HEIGHT_PIXELS);
     }
 
-    public void draw(Canvas canvas, GameDisplay gameDisplay) {
-        canvas.drawBitmap(
-                mapBitmap,
-                gameDisplay.getGameRect(),
-                gameDisplay.DISPLAY_RECT,
-                null
-        );
-    }
+//    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+//        canvas.drawBitmap(
+//                mapBitmap,
+//                gameDisplay.getGameRect(),
+//                gameDisplay.DISPLAY_RECT,
+//                null
+//        );
+//    }
 }

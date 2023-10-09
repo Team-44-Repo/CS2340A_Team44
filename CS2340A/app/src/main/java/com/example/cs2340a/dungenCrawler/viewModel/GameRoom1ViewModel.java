@@ -14,7 +14,7 @@ import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
 
-public class GameActivity extends AppCompatActivity {
+public class GameRoom1ViewModel extends AppCompatActivity {
 
     private double difficulty;
     //private int healthPoints;
@@ -100,7 +100,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(GameActivity.this, EndActivity.class);
+                Intent intent = new Intent(GameRoom1ViewModel.this, EndViewModel.class);
                 startActivity(intent);
 
             }

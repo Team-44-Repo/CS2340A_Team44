@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.example.cs2340a.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainViewModel extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this,
-                        InitialConfigActivity.class);
+                Intent intent = new Intent(MainViewModel.this,
+                        InitialConfigViewModel.class);
                 startActivity(intent);
 
             }
