@@ -8,7 +8,7 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
-import com.example.cs2340a.dungenCrawler.SpriteSheet;
+import com.example.cs2340a.dungenCrawler.model.SpriteSheet;
 
 public class GameConfig implements Parcelable {
 

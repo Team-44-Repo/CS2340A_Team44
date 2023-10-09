@@ -7,8 +7,8 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
-import com.example.cs2340a.dungenCrawler.SpriteSheet;
-import com.example.cs2340a.dungenCrawler.Tile;
+import com.example.cs2340a.dungenCrawler.model.SpriteSheet;
+import com.example.cs2340a.dungenCrawler.model.Tile;
 
 //********************* WARNING/NOTE I only barley understand tile set stuff so this probably all
 // needs to be changed.
