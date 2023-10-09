@@ -7,12 +7,17 @@ import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import org.junit.Test;
 
 public class UnitTests {
-    @Test
+
+    /*
+    To find the API and commands to use for JUnit, use this link:
+    https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html#assertEquals(double,%20double,%20double)
+    * */
+    @Test // Elizabeth Grace Tuggle
     public void difficultyEasySelected() {
         GameConfig gConfig = new GameConfig("null", 1.0, null, 0);
         assertEquals(1.0, gConfig.getDifficulty(), 0);
     }
-    @Test
+    @Test // Elizabeth Grace Tuggle
     public void difficultyMediumSelected() {
         GameConfig gConfig = new GameConfig("null", 0.75, null, 0);
         assertEquals(0.75, gConfig.getDifficulty(), 0);
