@@ -29,6 +29,10 @@ public class UnitTests {
     public void storeHighScore () {
         LeaderboardViewModel leaderboard = new LeaderboardViewModel();
         leaderboard.addScores("clare", 15);
+        leaderboard.addScores("jake", 40);
+        leaderboard.addScores("mia", 30);
         assertEquals(15, leaderboard.leaderboard.getScores()[0]);
+        assertEquals(40, leaderboard.leaderboard.getScores()[0]);
+        assertEquals(30, leaderboard.leaderboard.getScores()[1]);
     }
 }
