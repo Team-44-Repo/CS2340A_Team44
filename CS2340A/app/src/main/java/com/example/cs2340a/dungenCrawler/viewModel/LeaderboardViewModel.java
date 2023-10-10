@@ -18,6 +18,10 @@ public class LeaderboardViewModel extends ViewModel {
         int index = 0;
         for (int i = 0; i < 5; i++) {
             if (leaderboard.getScores()[i] < score) {
+                for (int j = 4; j >= i; j--) {
+                    leaderboard.setScore(leaderboard.getScores()[j], j + 1);
+                    leaderboard.setName(leaderboard.getNames()[j], j + 1);
+                }
                 index = i;
             } else if (leaderboard.getScores()[i] == 0 && leaderboard.getNames()[i] == null) {
                 index = i;
