@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,12 +15,14 @@ import android.widget.TextView;
 
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
+import com.example.cs2340a.dungenCrawler.model.GameLoop;
 import com.example.cs2340a.dungenCrawler.model.Player;
 
 public class GameRoom2ViewModel extends AppCompatActivity {
 
     private double difficulty;
     //private int healthPoints;
+    private boolean gameActive;
     private Button toScreen3;
     //private ImageView sprite;
     //private Bitmap bitmap;
@@ -29,9 +33,14 @@ public class GameRoom2ViewModel extends AppCompatActivity {
     private TextView playerNameTV;
     private TextView difficultyTV;
     private TextView hpTV;
+    private TextView scorePlace;
     private ImageView sprite;
     private Button tempNextBtn;
     private Button tempEndBtn;
+//    private int score;
+    private CountDownTimer score;
+    private long timeLeftInMilliseconds;
+    private boolean isActive = true;
 
 
     private int avatar; // del when working
@@ -55,6 +64,7 @@ public class GameRoom2ViewModel extends AppCompatActivity {
         difficultyTV = findViewById(R.id.dificulty_id);
         hpTV = findViewById(R.id.healthPoints_id);
         sprite = findViewById(R.id.spriteView);
+        scorePlace = findViewById(R.id.score_id);
         //tempNextBtn = findViewById(R.id.#);
         toScreen3 = findViewById(R.id.toScreen3_id);
 
@@ -63,6 +73,8 @@ public class GameRoom2ViewModel extends AppCompatActivity {
         //gets Player and GameConfig objects
         Player player = getIntent().getParcelableExtra("player");
         GameConfig gameConfig = getIntent().getParcelableExtra("gameConfig");
+        timeLeftInMilliseconds = getIntent().getLongExtra("timeLeftInMilliseconds", timeLeftInMilliseconds);
+//        GameLoop gameLoop = getIntent().getParcelableExtra("gameLoop");
 
         //and displays properties of Player & GameConfig
         //  1   player name
@@ -95,7 +107,20 @@ public class GameRoom2ViewModel extends AppCompatActivity {
             sprite.setImageResource(R.drawable.player3);
         }
         // ************ old version - need to change  *******
+        if (isActive) {
+            startTimer();
+        }
 
+//        gameActive = true;
+//        while (gameActive) {
+//            try {
+//                Thread.sleep(1000);
+//                score++;
+//                scorePlace.setText("Score: " + score);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         //temporary button to get to the end screen.
         toScreen3.setOnClickListener(new View.OnClickListener() {
@@ -106,9 +131,33 @@ public class GameRoom2ViewModel extends AppCompatActivity {
                 intent.putExtra("avatar", avatar);
                 intent.putExtra("player", player);
                 intent.putExtra("gameConfig", gameConfig);
+                intent.putExtra("timeLeftInMilliseconds", timeLeftInMilliseconds);
+//                intent.putExtra("gameLoop", gameLoop);
                 startActivity(intent);
-
             }
         });
+    }
+    private void startTimer() {
+        score = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftInMilliseconds = l;
+                updateScore();
+            }
+
+            @Override
+            public void onFinish() {
+            }
+        }.start();
+    }
+
+    private void updateScore() {
+        int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
+
+        String timeLeftText;
+
+        timeLeftText = "" + seconds;
+
+        scorePlace.setText(timeLeftText);
     }
 }

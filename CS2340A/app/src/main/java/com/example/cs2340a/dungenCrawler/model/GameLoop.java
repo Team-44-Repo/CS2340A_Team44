@@ -1,10 +1,13 @@
 package com.example.cs2340a.dungenCrawler.model;
 
 import android.graphics.Canvas;
-import android.util.Log;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.SurfaceHolder;
 
-public class GameLoop extends Thread{
+import androidx.annotation.NonNull;
+
+public class GameLoop extends Thread implements Parcelable {
     public static final double MAX_UPS = 30.0;
     private static final double UPS_PERIOD = 1E+3/MAX_UPS;
 
@@ -14,11 +17,40 @@ public class GameLoop extends Thread{
     private boolean isRunning = false;
     private double averageUPS;
     private double averageFPS;
+    long startTime;
+    long elapsedTime;
+    long sleepTime;
 
+
+    public GameLoop(GameConfig game) {
+        this.game = game;
+    }
     public GameLoop(GameConfig game, SurfaceHolder surfaceHolder) {
         this.game = game;
         this.surfaceHolder = surfaceHolder;
     }
+
+    protected GameLoop(Parcel in) {
+        game = in.readParcelable(GameConfig.class.getClassLoader());
+        isRunning = in.readByte() != 0;
+        averageUPS = in.readDouble();
+        averageFPS = in.readDouble();
+        startTime = in.readLong();
+        elapsedTime = in.readLong();
+        sleepTime = in.readLong();
+    }
+
+    public static final Creator<GameLoop> CREATOR = new Creator<GameLoop>() {
+        @Override
+        public GameLoop createFromParcel(Parcel in) {
+            return new GameLoop(in);
+        }
+
+        @Override
+        public GameLoop[] newArray(int size) {
+            return new GameLoop[size];
+        }
+    };
 
     public double getAverageUPS() {
         return averageUPS;
@@ -29,22 +61,16 @@ public class GameLoop extends Thread{
     }
 
     public void startLoop() {
-        Log.d("GameLoop.java", "startLoop()");
         isRunning = true;
         start();
     }
 
     @Override
     public void run() {
-        Log.d("GameLoop.java", "run()");
         super.run();
 
         int updateCount = 0;
         int frameCount = 0;
-
-        long startTime;
-        long elapsedTime;
-        long sleepTime;
 
         Canvas canvas = null;
         startTime = System.currentTimeMillis();
@@ -95,12 +121,38 @@ public class GameLoop extends Thread{
         }
     }
     public void stopLoop() {
-        Log.d("GameLoop.java", "stopLoop()");
         isRunning = false;
         try {
             join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public int getElapsedTime() {
+        return (int) elapsedTime / 1000;
+    }
+    public long getStartTime() {
+        return startTime;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeParcelable(game, i);
+        parcel.writeByte((byte) (isRunning ? 1 : 0));
+        parcel.writeDouble(averageUPS);
+        parcel.writeDouble(averageFPS);
+        parcel.writeLong(startTime);
+        parcel.writeLong(elapsedTime);
+        parcel.writeLong(sleepTime);
     }
 }
