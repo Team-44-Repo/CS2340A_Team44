@@ -6,7 +6,7 @@ import com.example.cs2340a.dungenCrawler.model.Leaderboard;
 public class LeaderboardViewModel extends ViewModel {
     //we're going to have to add the leaderboard to the activity_end.xml and endViewModel
     //right now it doesn't show up on the screen this is just the logic
-    private Leaderboard leaderboard;
+    public Leaderboard leaderboard;
 
     //using leaderboard from Leaderboard class, but only getting the single instance
     public LeaderboardViewModel() {
