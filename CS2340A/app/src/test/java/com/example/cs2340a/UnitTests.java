@@ -38,12 +38,18 @@ public class UnitTests {
         GameConfig gConfig = new GameConfig("null", null, 3, 0);
         assertEquals(3, gConfig.getAvatar(), 0);
     }
+}
+    @Test // Angela Chang
+    public void avatar3Selected() {
+        GameConfig gConfig = new GameConfig("null", null, 3, 0);
+        assertEquals(3, gConfig.getAvatar(), 0);
+    }
 
     @Test // Angela Chang
     public void checkValidCurrRoomId() {
         GameConfig gConfig = new GameConfig("null", null, null, 1);
         assertEquals(1, gConfig.getCurrRoomId(), 0);
-
+    }
 
     @Test // Olivia Klemmer
     public void difficultyHardSelected() {
@@ -54,6 +60,7 @@ public class UnitTests {
     public void avatar1Selected() {
         GameConfig gConfig = new GameConfig("null", null, 1, 0);
         assertEquals(1, gConfig.getAvatar(), 0);
+    }
 
     @Test
     //Clare Cotter
