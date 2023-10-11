@@ -22,4 +22,16 @@ public class UnitTests {
         GameConfig gConfig = new GameConfig("null", 0.75, null, 0);
         assertEquals(0.75, gConfig.getDifficulty(), 0);
     }
+
+    @Test // Angela Chang
+    public void avatar2Selected() {
+        GameConfig gConfig = new GameConfig("null", null, 2, 0);
+        assertEquals(2, gConfig.getAvatar(), 0);
+    }
+
+    @Test // Angela Chang
+    public void checkValidCurrRoomId() {
+        GameConfig gConfig = new GameConfig("null", null, null, 1);
+        assertEquals(1, gConfig.getCurrRoomId(), 0);
+    }
 }
