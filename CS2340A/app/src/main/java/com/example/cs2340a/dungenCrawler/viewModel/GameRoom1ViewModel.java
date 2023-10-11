@@ -18,7 +18,7 @@ public class GameRoom1ViewModel extends AppCompatActivity {
 
     private double difficulty;
     //private int healthPoints;
-    private Button tempEndButton;
+    private Button toScreen2;
     //private ImageView sprite;
     //private Bitmap bitmap;
     private Canvas canvas;
@@ -54,7 +54,7 @@ public class GameRoom1ViewModel extends AppCompatActivity {
         hpTV = findViewById(R.id.healthPoints_id);
         sprite = findViewById(R.id.spriteView);
         //tempNextBtn = findViewById(R.id.#);
-        tempEndBtn = findViewById(R.id.tempEndButton_id);
+        toScreen2 = findViewById(R.id.toScreen2_id);
 
 
 
@@ -95,12 +95,15 @@ public class GameRoom1ViewModel extends AppCompatActivity {
         // ************ old version - need to change  *******
 
 
-        //temporary button to get to the end screen.
-        tempEndBtn.setOnClickListener(new View.OnClickListener() {
+        //temporary button to get to the next screen.
+        toScreen2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(GameRoom1ViewModel.this, EndViewModel.class);
+                Intent intent = new Intent(GameRoom1ViewModel.this, GameRoom2ViewModel.class);
+                intent.putExtra("avatar", avatar);
+                intent.putExtra("player", player);
+                intent.putExtra("gameConfig", gameConfig);
                 startActivity(intent);
 
             }

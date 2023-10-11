@@ -16,10 +16,10 @@
         tools:srcCompat="@drawable/room2" />
 
     <Button
-        android:id="@+id/tempEndButton_id"
+        android:id="@+id/toScreen3_id"
         android:layout_width="149dp"
         android:layout_height="71dp"
-        android:text="tempEndButton"
+        android:text="toScreen3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
