@@ -1,11 +1,12 @@
-package com.example.cs2340a;
+package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class endActivity extends AppCompatActivity {
+import com.example.cs2340a.R;
 
+public class EndViewModel extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

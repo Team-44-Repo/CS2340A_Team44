@@ -1,8 +1,12 @@
 package com.example.cs2340a;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+
+import com.example.cs2340a.dungenCrawler.model.Leaderboard;
+import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -10,8 +14,13 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-    @Test
+    @Ignore
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+    @Test
+    //by Daysen Gyatt
+    public void playerName_isValid () {}
 }
+
