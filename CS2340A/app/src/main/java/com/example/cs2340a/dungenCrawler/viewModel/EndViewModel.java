@@ -2,7 +2,10 @@ package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.cs2340a.R;
 
@@ -19,8 +22,7 @@ public class EndViewModel extends AppCompatActivity {
         restartBtn.setOnClickListener(new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainViewModel.this,
-                        InitialConfigViewModel.class);
+                Intent intent = new Intent(EndViewModel.this, MainViewModel.class);
                 startActivity(intent);
             }
         });

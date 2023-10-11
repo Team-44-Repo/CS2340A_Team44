@@ -100,7 +100,7 @@ public class GameRoom2ViewModel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(GameRoom2ViewModel.this, EndViewModel.class);
+                Intent intent = new Intent(GameRoom2ViewModel.this, GameRoom3ViewModel.class);
                 startActivity(intent);
 
             }

@@ -18,9 +18,9 @@
         <activity
             android:name=".dungenCrawler.viewModel.GameRoom2ViewModel"
             android:exported="false" />
-        <activity
-            android:name=".dungenCrawler.viewModel.WelcomeActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".dungenCrawler.viewModel.WelcomeActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".dungenCrawler.viewModel.EndViewModel"
             android:exported="false" />
