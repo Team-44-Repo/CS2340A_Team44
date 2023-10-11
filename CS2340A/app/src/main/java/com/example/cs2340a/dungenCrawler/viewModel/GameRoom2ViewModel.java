@@ -2,6 +2,7 @@ package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ public class GameRoom2ViewModel extends AppCompatActivity {
 
     private double difficulty;
     //private int healthPoints;
-    private Button tempEndButton;
+    private Button toScreen3;
     //private ImageView sprite;
     //private Bitmap bitmap;
     private Canvas canvas;
@@ -38,6 +39,7 @@ public class GameRoom2ViewModel extends AppCompatActivity {
     //private SpriteSheet spriteSheet;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +56,7 @@ public class GameRoom2ViewModel extends AppCompatActivity {
         hpTV = findViewById(R.id.healthPoints_id);
         sprite = findViewById(R.id.spriteView);
         //tempNextBtn = findViewById(R.id.#);
-        tempEndBtn = findViewById(R.id.tempEndButton_id);
+        toScreen3 = findViewById(R.id.toScreen3_id);
 
 
 
@@ -96,11 +98,14 @@ public class GameRoom2ViewModel extends AppCompatActivity {
 
 
         //temporary button to get to the end screen.
-        tempEndBtn.setOnClickListener(new View.OnClickListener() {
+        toScreen3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(GameRoom2ViewModel.this, GameRoom3ViewModel.class);
+                intent.putExtra("avatar", avatar);
+                intent.putExtra("player", player);
+                intent.putExtra("gameConfig", gameConfig);
                 startActivity(intent);
 
             }
