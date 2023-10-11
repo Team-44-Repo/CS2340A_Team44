@@ -3,7 +3,9 @@ package com.example.cs2340a;
 import static org.junit.Assert.assertEquals;
 
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
+
 import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
+
 
 import org.junit.Test;
 
@@ -24,6 +26,17 @@ public class UnitTests {
         assertEquals(0.75, gConfig.getDifficulty(), 0);
     }
 
+
+    @Test // Olivia Klemmer
+    public void difficultyHardSelected() {
+        GameConfig gConfig = new GameConfig("null", 0.5, null, 0);
+        assertEquals(0.5, gConfig.getDifficulty(), 0);
+    }
+    @Test // Olivia Klemmer
+    public void avatar1Selected() {
+        GameConfig gConfig = new GameConfig("null", null, 1, 0);
+        assertEquals(1, gConfig.getAvatar(), 0);
+
     @Test
     //Clare Cotter
     public void storeHighScore () {
@@ -34,5 +47,6 @@ public class UnitTests {
         assertEquals(15, leaderboard.leaderboard.getScores()[0]);
         assertEquals(40, leaderboard.leaderboard.getScores()[0]);
         assertEquals(30, leaderboard.leaderboard.getScores()[1]);
+
     }
 }
