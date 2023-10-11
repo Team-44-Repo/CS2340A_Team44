@@ -14,10 +14,10 @@
         tools:layout_editor_absoluteY="51dp" />
 
     <Button
-        android:id="@+id/tempEndButton_id"
+        android:id="@+id/toScreen2_id"
         android:layout_width="149dp"
         android:layout_height="71dp"
-        android:text="tempEndButton"
+        android:text="toScreen2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
