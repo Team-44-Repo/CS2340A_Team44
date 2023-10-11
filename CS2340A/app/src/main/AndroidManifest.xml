@@ -13,6 +13,12 @@
         android:theme="@style/Theme.CS2340A"
         tools:targetApi="31">
         <activity
+            android:name=".dungenCrawler.viewModel.GameRoom3ViewModel"
+            android:exported="false" />
+        <activity
+            android:name=".dungenCrawler.viewModel.GameRoom2ViewModel"
+            android:exported="false" />
+        <activity
             android:name=".dungenCrawler.viewModel.WelcomeActivity"
             android:exported="false" />
         <activity
