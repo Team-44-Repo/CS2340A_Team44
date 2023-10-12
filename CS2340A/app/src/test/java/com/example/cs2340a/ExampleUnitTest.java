@@ -5,9 +5,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import com.example.cs2340a.dungenCrawler.model.Leaderboard;
-import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *

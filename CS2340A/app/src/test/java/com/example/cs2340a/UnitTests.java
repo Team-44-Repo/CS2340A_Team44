@@ -8,9 +8,6 @@ import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
 
 
-import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
-
-
 import org.junit.Test;
 
 public class UnitTests {
