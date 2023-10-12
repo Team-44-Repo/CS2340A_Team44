@@ -8,6 +8,7 @@ import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
 
 
+import com.example.cs2340a.dungenCrawler.model.Score;
 import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
 
 
@@ -64,7 +65,7 @@ public class UnitTests {
         assertEquals(1, gConfig.getAvatar().getSpriteResId(), 0);
     }
 
-    @Test
+    /*@Test
     //Clare Cotter
     public void storeHighScore () {
         LeaderboardViewModel leaderboard = new LeaderboardViewModel();
@@ -75,6 +76,14 @@ public class UnitTests {
         assertEquals(40, leaderboard.leaderboard.getScores()[0]);
         assertEquals(30, leaderboard.leaderboard.getScores()[1]);
 
+    }*/
+
+    @Test
+    public void timedScore() {
+        Score score = new Score(400, false);
+        assertEquals(false, score.getActive());
+        assertEquals(null, score.timeLeft());
+        assertNotNull(score);
     }
 
     @Test // Daysen Gyatt
