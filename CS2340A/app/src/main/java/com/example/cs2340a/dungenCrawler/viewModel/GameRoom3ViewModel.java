@@ -123,7 +123,11 @@ public class GameRoom3ViewModel extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                gameLoop.stopLoop();
-                Intent intent = new Intent(GameRoom3ViewModel.this, EndViewModel.class);
+                Intent intent = new Intent(GameRoom3ViewModel.this, LeaderboardViewModel.class);
+                intent.putExtra("avatar", avatar);
+                intent.putExtra("player", player);
+                intent.putExtra("gameConfig", gameConfig);
+                intent.putExtra("timeLeftInMilliseconds", timeLeftInMilliseconds);
                 startActivity(intent);
 
             }
