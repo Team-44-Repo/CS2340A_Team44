@@ -1,8 +1,12 @@
 package com.example.cs2340a;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
+import com.example.cs2340a.dungenCrawler.model.Player;
+
 
 import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
 
@@ -29,31 +33,35 @@ public class UnitTests {
 
     @Test // Angela Chang
     public void avatar2Selected() {
-        GameConfig gConfig = new GameConfig("null", null, 2, 0);
-        assertEquals(2, gConfig.getAvatar(), 0);
+        CharSprite avatar = new CharSprite(2, "null");
+        GameConfig gConfig = new GameConfig("null", 1.0, avatar, 0);
+        assertEquals(2, gConfig.getAvatar().getSpriteResId(), 0);
     }
 
     @Test // Angela Chang
     public void avatar3Selected() {
-        GameConfig gConfig = new GameConfig("null", null, 3, 0);
-        assertEquals(3, gConfig.getAvatar(), 0);
+        CharSprite avatar = new CharSprite(3, "null");
+        GameConfig gConfig = new GameConfig("null", 1.0, avatar, 0);
+        assertEquals(3, gConfig.getAvatar().getSpriteResId(), 0);
     }
 
     @Test // Angela Chang
     public void checkValidCurrRoomId() {
-        GameConfig gConfig = new GameConfig("null", null, null, 1);
+        GameConfig gConfig = new GameConfig("null", 1.0, null, 1);
         assertEquals(1, gConfig.getCurrRoomId(), 0);
     }
 
     @Test // Olivia Klemmer
     public void difficultyHardSelected() {
+        CharSprite avatar = new CharSprite(1, "luna");
         GameConfig gConfig = new GameConfig("null", 0.5, null, 0);
         assertEquals(0.5, gConfig.getDifficulty(), 0);
     }
     @Test // Olivia Klemmer
     public void avatar1Selected() {
-        GameConfig gConfig = new GameConfig("null", null, 1, 0);
-        assertEquals(1, gConfig.getAvatar(), 0);
+        CharSprite avatar = new CharSprite(1, "null");
+        GameConfig gConfig = new GameConfig("null", 1, avatar, 0);
+        assertEquals(1, gConfig.getAvatar().getSpriteResId(), 0);
     }
 
     @Test
@@ -68,4 +76,21 @@ public class UnitTests {
         assertEquals(30, leaderboard.leaderboard.getScores()[1]);
 
     }
+
+    @Test // Daysen Gyatt
+    public void playerCreated() {
+        CharSprite sprite = new CharSprite(R.drawable.player1, "char1");
+        Player playerTest = new Player("name", sprite, 2,0.5,100);
+        assertNotNull(playerTest);
+    }
+    @Test // Daysen Gyatt
+    public void GamConfigCreated() {
+        CharSprite sprite = new CharSprite(R.drawable.player1, "char1");
+        GameConfig gameConfigTest = new GameConfig("name", 0.5, sprite, 2);
+        assertNotNull(gameConfigTest);
+    }
+
+
 }
+
+
