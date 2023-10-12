@@ -29,9 +29,12 @@ public class InitialConfigViewModel extends AppCompatActivity {
         setContentView(R.layout.initial_config_activty);
 
         //viewModel elements
-        playerNameInput = (EditText) findViewById(R.id.playerNameInput_id); //for gathering playerName
-        difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id); //Radio button for difficulty
-        characterRadioGroup = findViewById(R.id.characterSelectRadioGroup_id); //Radio button for CharSprite
+        playerNameInput = (EditText) findViewById(R.id.playerNameInput_id); //for gathering
+        // playerName
+        difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup_id); //Radio button for
+        // difficulty
+        characterRadioGroup = findViewById(R.id.characterSelectRadioGroup_id); //Radio button for
+        // CharSprite
         exitbtn = (Button) findViewById(R.id.exitbtn); //exit btn
         startGameButton = (Button) findViewById(R.id.startGameButton_id); //startGame btn
 
@@ -78,7 +81,8 @@ public class InitialConfigViewModel extends AppCompatActivity {
             CharSprite avatar = new CharSprite(R.drawable.player1, "Char1"); //default Sprite is
             // Char1, player1.png
 
-            //      ii   Assign CharSprite object Resource Id and Sprite Name, based on selected sprite
+            //      ii   Assign CharSprite object Resource Id and Sprite Name, based on selected
+            sprite
             switch (characterRadioGroup.getCheckedRadioButtonId()) {
             case R.id.character1:
                 avatar.setSpriteResId(R.drawable.player1);

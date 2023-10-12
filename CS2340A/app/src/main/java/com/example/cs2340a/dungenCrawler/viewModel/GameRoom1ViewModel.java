@@ -6,8 +6,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Parcelable;
-import android.view.SurfaceHolder;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,9 +14,9 @@ import android.widget.ImageView;
 
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
-import com.example.cs2340a.dungenCrawler.model.GameLoop;
+
 import com.example.cs2340a.dungenCrawler.model.Player;
-import com.example.cs2340a.dungenCrawler.model.Score;
+
 
 public class GameRoom1ViewModel extends AppCompatActivity {
 
@@ -28,8 +27,8 @@ public class GameRoom1ViewModel extends AppCompatActivity {
     //private Bitmap bitmap;
     private Canvas canvas;
     //Bitmap.Config config;
-//    private GameLoop gameLoop;
-//    private boolean gameActive;
+    //private GameLoop gameLoop;
+    //private boolean gameActive;
     //viewModel elements >> findViewById()
     private TextView playerNameTV;
     private TextView difficultyTV;
@@ -38,7 +37,7 @@ public class GameRoom1ViewModel extends AppCompatActivity {
     private ImageView sprite;
     private Button tempNextBtn;
     private Button tempEndBtn;
-//    private Score score;
+    //    private Score score;
     private int seconds;
     private CountDownTimer score;
     private long timeLeftInMilliseconds = 60000;
@@ -107,40 +106,14 @@ public class GameRoom1ViewModel extends AppCompatActivity {
         }
         // ************ old version - need to change  *******
 
-//        score = new Score(timeLeft, true);
-//        score.setActive(true);
-//        score.startScore(scorePlace);
+        //        score = new Score(timeLeft, true);
+        //        score.setActive(true);
+        //        score.startScore(scorePlace);
 
 
         if (isActive) {
             startTimer();
         }
-
-//        gameLoop = new GameLoop(gameConfig);
-//        gameLoop.startLoop();
-//        gameActive = true;
-//        score = 100;
-//        score = gameLoop.getElapsedTime();
-//        scorePlace.setText("Score: " + score);
-//        while (score > 0) {
-//            try {
-//                Thread.sleep(1000);
-//                score--;
-//                scorePlace.setText("Score: " + score);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            scorePlace.setText("Score: " + score);
-//        }
-//        for (int i = 100; i > 0; i--) {
-//            try {
-//                Thread.sleep(1000);
-//                score--;
-//                scorePlace.setText("Score: " + score);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
 
 
 
@@ -154,10 +127,7 @@ public class GameRoom1ViewModel extends AppCompatActivity {
                 intent.putExtra("player", player);
                 intent.putExtra("gameConfig", gameConfig);
                 intent.putExtra("timeLeftInMilliseconds", timeLeftInMilliseconds);
-//                seconds = score.getSeconds();
-//                intent.putExtra("seconds", seconds);
-//                intent.putExtra("timeLeft", timeLeft);
-//                intent.putExtra("gameActive", gameActive);
+
                 startActivity(intent);
             }
         });

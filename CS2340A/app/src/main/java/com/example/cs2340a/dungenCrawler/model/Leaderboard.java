@@ -1,5 +1,4 @@
 package com.example.cs2340a.dungenCrawler.model;
-import java.util.ArrayList;
 
 public class Leaderboard {
     //singleton class with getters and setters
@@ -15,7 +14,7 @@ public class Leaderboard {
         //if scores array is null, make every score 0 since int can't be null
         if (scores == null) {
             this.scores = new int[5];
-            for (int i = 0; i < 5; i ++) {
+            for (int i = 0; i < 5; i++) {
                 scores[i] = 0;
             }
         } else {
