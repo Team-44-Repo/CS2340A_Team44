@@ -9,7 +9,6 @@ import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.model.Score;
 
-
 import org.junit.Test;
 
 public class UnitTests {
