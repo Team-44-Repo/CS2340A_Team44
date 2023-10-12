@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Parcelable;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
-import com.example.cs2340a.dungenCrawler.model.GameLoop;
+
 import com.example.cs2340a.dungenCrawler.model.Player;
 
 public class GameRoom2ViewModel extends AppCompatActivity {
@@ -37,7 +37,7 @@ public class GameRoom2ViewModel extends AppCompatActivity {
     private ImageView sprite;
     private Button tempNextBtn;
     private Button tempEndBtn;
-//    private int score;
+    //    private int score;
     private CountDownTimer score;
     private long timeLeftInMilliseconds;
     private boolean isActive = true;
@@ -73,8 +73,9 @@ public class GameRoom2ViewModel extends AppCompatActivity {
         //gets Player and GameConfig objects
         Player player = getIntent().getParcelableExtra("player");
         GameConfig gameConfig = getIntent().getParcelableExtra("gameConfig");
-        timeLeftInMilliseconds = getIntent().getLongExtra("timeLeftInMilliseconds", timeLeftInMilliseconds);
-//        GameLoop gameLoop = getIntent().getParcelableExtra("gameLoop");
+        timeLeftInMilliseconds = getIntent().getLongExtra("timeLeftInMilliseconds",
+                timeLeftInMilliseconds);
+
 
         //and displays properties of Player & GameConfig
         //  1   player name
@@ -111,16 +112,7 @@ public class GameRoom2ViewModel extends AppCompatActivity {
             startTimer();
         }
 
-//        gameActive = true;
-//        while (gameActive) {
-//            try {
-//                Thread.sleep(1000);
-//                score++;
-//                scorePlace.setText("Score: " + score);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+
 
         //temporary button to get to the end screen.
         toScreen3.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +124,7 @@ public class GameRoom2ViewModel extends AppCompatActivity {
                 intent.putExtra("player", player);
                 intent.putExtra("gameConfig", gameConfig);
                 intent.putExtra("timeLeftInMilliseconds", timeLeftInMilliseconds);
-//                intent.putExtra("gameLoop", gameLoop);
+
                 startActivity(intent);
             }
         });

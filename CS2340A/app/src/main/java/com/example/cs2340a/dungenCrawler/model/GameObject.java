@@ -23,7 +23,7 @@ public abstract class GameObject {
     public double getDirectionX() { return directionX; }
     public double getDirectionY() { return directionY; }
 
-    public abstract void draw(Canvas canvas, GameDisplay gameDisplay);
+    //public abstract void draw(Canvas canvas, GameDisplay gameDisplay);
     public abstract void update();
 
     public static double getDistanceBetweenObjects(GameObject obj1, GameObject obj2) {

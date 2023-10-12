@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
-import com.example.cs2340a.dungenCrawler.model.GameLoop;
+
 import com.example.cs2340a.dungenCrawler.model.Player;
 
 public class GameRoom3ViewModel extends AppCompatActivity {
@@ -35,7 +35,7 @@ public class GameRoom3ViewModel extends AppCompatActivity {
     private ImageView sprite;
     private Button tempNextBtn;
     private Button tempEndBtn;
-//    private int score;
+
     private CountDownTimer score;
     private long timeLeftInMilliseconds;
     private boolean isActive = true;
@@ -68,8 +68,9 @@ public class GameRoom3ViewModel extends AppCompatActivity {
         //gets Player and GameConfig objects
         Player player = getIntent().getParcelableExtra("player");
         GameConfig gameConfig = getIntent().getParcelableExtra("gameConfig");
-//        GameLoop gameLoop = getIntent().getParcelableExtra("gameLoop");
-        timeLeftInMilliseconds = getIntent().getLongExtra("timeLeftInMilliseconds", timeLeftInMilliseconds);
+
+        timeLeftInMilliseconds = getIntent().getLongExtra("timeLeftInMilliseconds",
+                timeLeftInMilliseconds);
 
         //and displays properties of Player & GameConfig
         //  1   player name
@@ -107,22 +108,13 @@ public class GameRoom3ViewModel extends AppCompatActivity {
             startTimer();
         }
 
-//        gameActive = true;
-//        while (gameActive) {
-//            try {
-//                Thread.sleep(1000);
-//                score++;
-//                scorePlace.setText("Score: " + score);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
+
 
         //temporary button to get to the end screen.
         tempEndBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                gameLoop.stopLoop();
+
                 Intent intent = new Intent(GameRoom3ViewModel.this, LeaderboardViewModel.class);
                 intent.putExtra("avatar", avatar);
                 intent.putExtra("player", player);

@@ -3,7 +3,6 @@ package com.example.cs2340a.dungenCrawler.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
 
 public class Player implements Parcelable {
 
@@ -24,7 +23,7 @@ public class Player implements Parcelable {
         this.currRoomId = roomId;
         this.difficulty = difficulty;
         //this.healthPoints = 44;
-        this.healthPoints = (int)(100 * difficulty);
+        this.healthPoints = (int) (100 * difficulty);
     }
 
 

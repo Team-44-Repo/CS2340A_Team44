@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 
 public class GameLoop extends Thread implements Parcelable {
     public static final double MAX_UPS = 30.0;
-    private static final double UPS_PERIOD = 1E+3/MAX_UPS;
+    private static final double UPS_PERIOD = 1E+3 / MAX_UPS;
 
     private GameConfig game;
     private SurfaceHolder surfaceHolder;
@@ -17,9 +17,9 @@ public class GameLoop extends Thread implements Parcelable {
     private boolean isRunning = false;
     private double averageUPS;
     private double averageFPS;
-    long startTime;
-    long elapsedTime;
-    long sleepTime;
+    private long startTime;
+    private long elapsedTime;
+    private long sleepTime;
 
 
     public GameLoop(GameConfig game) {
@@ -74,7 +74,7 @@ public class GameLoop extends Thread implements Parcelable {
 
         Canvas canvas = null;
         startTime = System.currentTimeMillis();
-        while(isRunning) {
+        while (isRunning) {
             try {
                 canvas = surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
@@ -86,32 +86,32 @@ public class GameLoop extends Thread implements Parcelable {
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             } finally {
-                if(canvas != null) {
+                if (canvas != null) {
                     try {
                         surfaceHolder.unlockCanvasAndPost(canvas);
                         frameCount++;
-					} catch(Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             }
             elapsedTime = System.currentTimeMillis() - startTime;
-            sleepTime = (long) (updateCount*UPS_PERIOD - elapsedTime);
-            if(sleepTime > 0) {
+            sleepTime = (long) (updateCount * UPS_PERIOD - elapsedTime);
+            if (sleepTime > 0) {
                 try {
                     sleep(sleepTime);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            while(sleepTime < 0 && updateCount < MAX_UPS-1) {
+            while (sleepTime < 0 && updateCount < MAX_UPS - 1) {
                 game.update();
                 updateCount++;
                 elapsedTime = System.currentTimeMillis() - startTime;
-                sleepTime = (long) (updateCount*UPS_PERIOD - elapsedTime);
+                sleepTime = (long) (updateCount * UPS_PERIOD - elapsedTime);
             }
             elapsedTime = System.currentTimeMillis() - startTime;
-            if(elapsedTime >= 1000) {
+            if (elapsedTime >= 1000) {
                 averageUPS = updateCount / (1E-3 * elapsedTime);
                 averageFPS = frameCount / (1E-3 * elapsedTime);
                 updateCount = 0;
