@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Parcelable;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,7 +15,9 @@ import android.widget.ImageView;
 
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
+import com.example.cs2340a.dungenCrawler.model.GameLoop;
 import com.example.cs2340a.dungenCrawler.model.Player;
+import com.example.cs2340a.dungenCrawler.model.Score;
 
 public class GameRoom1ViewModel extends AppCompatActivity {
 
@@ -23,14 +28,21 @@ public class GameRoom1ViewModel extends AppCompatActivity {
     //private Bitmap bitmap;
     private Canvas canvas;
     //Bitmap.Config config;
-
+//    private GameLoop gameLoop;
+//    private boolean gameActive;
     //viewModel elements >> findViewById()
     private TextView playerNameTV;
     private TextView difficultyTV;
     private TextView hpTV;
+    private TextView scorePlace;
     private ImageView sprite;
     private Button tempNextBtn;
     private Button tempEndBtn;
+//    private Score score;
+    private int seconds;
+    private CountDownTimer score;
+    private long timeLeftInMilliseconds = 60000;
+    private boolean isActive = true;
 
 
     private int avatar; // del when working
@@ -53,6 +65,7 @@ public class GameRoom1ViewModel extends AppCompatActivity {
         difficultyTV = findViewById(R.id.dificulty_id);
         hpTV = findViewById(R.id.healthPoints_id);
         sprite = findViewById(R.id.spriteView);
+        scorePlace = findViewById(R.id.score_id);
         //tempNextBtn = findViewById(R.id.#);
         toScreen2 = findViewById(R.id.toScreen2_id);
 
@@ -94,6 +107,42 @@ public class GameRoom1ViewModel extends AppCompatActivity {
         }
         // ************ old version - need to change  *******
 
+//        score = new Score(timeLeft, true);
+//        score.setActive(true);
+//        score.startScore(scorePlace);
+
+
+        if (isActive) {
+            startTimer();
+        }
+
+//        gameLoop = new GameLoop(gameConfig);
+//        gameLoop.startLoop();
+//        gameActive = true;
+//        score = 100;
+//        score = gameLoop.getElapsedTime();
+//        scorePlace.setText("Score: " + score);
+//        while (score > 0) {
+//            try {
+//                Thread.sleep(1000);
+//                score--;
+//                scorePlace.setText("Score: " + score);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            scorePlace.setText("Score: " + score);
+//        }
+//        for (int i = 100; i > 0; i--) {
+//            try {
+//                Thread.sleep(1000);
+//                score--;
+//                scorePlace.setText("Score: " + score);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
+
 
         //temporary button to get to the next screen.
         toScreen2.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +153,37 @@ public class GameRoom1ViewModel extends AppCompatActivity {
                 intent.putExtra("avatar", avatar);
                 intent.putExtra("player", player);
                 intent.putExtra("gameConfig", gameConfig);
+                intent.putExtra("timeLeftInMilliseconds", timeLeftInMilliseconds);
+//                seconds = score.getSeconds();
+//                intent.putExtra("seconds", seconds);
+//                intent.putExtra("timeLeft", timeLeft);
+//                intent.putExtra("gameActive", gameActive);
                 startActivity(intent);
-
             }
         });
+    }
+
+    private void startTimer() {
+        score = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftInMilliseconds = l;
+                updateScore();
+            }
+
+            @Override
+            public void onFinish() {
+            }
+        }.start();
+    }
+
+    private void updateScore() {
+        int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
+
+        String timeLeftText;
+
+        timeLeftText = "" + seconds;
+
+        scorePlace.setText(timeLeftText);
     }
 }

@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 
 import com.example.cs2340a.dungenCrawler.model.SpriteSheet;
 
+import java.sql.Time;
+
 public class GameConfig implements Parcelable {
 
     //I'm not sure if its a bad, good, or neutral idea to have these attributes in both
@@ -18,6 +20,7 @@ public class GameConfig implements Parcelable {
     private double difficulty;
     private CharSprite avatar;
     private int currRoomId;
+    private int score;
 //    private final Tilemap tilemap;
 
     //basic constructor
@@ -30,6 +33,7 @@ public class GameConfig implements Parcelable {
         this.difficulty = diff;
         this.avatar = sprite;
         this.currRoomId = roomId;
+//        this.score = score;
     }
     protected GameConfig(Parcel in) {
 //        super(context);
@@ -66,6 +70,7 @@ public class GameConfig implements Parcelable {
     public int getCurrRoomId() {
         return currRoomId;
     }
+    public int getScore() { return score; }
     public void setPlayerName(String name) {
         this.playerName = name;
     }
