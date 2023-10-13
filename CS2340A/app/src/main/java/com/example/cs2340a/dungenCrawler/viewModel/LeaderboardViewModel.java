@@ -44,6 +44,7 @@ public class LeaderboardViewModel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard_view_model);
 
+        // Instantiate
         leaderboard = Leaderboard.getInstance();
         playerNameTV = findViewById(R.id.playerNameDisplayEnd_id);
         score1 = findViewById(R.id.score_id);
@@ -52,16 +53,16 @@ public class LeaderboardViewModel extends AppCompatActivity {
         score4 = findViewById(R.id.score_id4);
         score5 = findViewById(R.id.score_id5);
 
+        // Carry over data from past screens
         timeLeft = (int) getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);
         player = getIntent().getParcelableExtra("player");
 
+        // Initialize Leaderboard stuff
         leaderboard.addScores(timeLeft, player.getPlayerName());
         scores = leaderboard.getScores();
-        System.out.println("Scores after Add: " + scores);
         names = leaderboard.getNames();
-        System.out.println("Names after Add: " + names);
 
-//        score1.setText("" + player.getPlayerName() + ", " + timeLeft);
+        // Set texts
         playerNameTV.setText(player.getPlayerName());
         score1.setText(names[0] + ", " + scores[0]);
         score2.setText(names[1] + ", " + scores[1]);
@@ -69,6 +70,7 @@ public class LeaderboardViewModel extends AppCompatActivity {
         score4.setText(names[3] + ", " + scores[3]);
         score5.setText(names[4] + ", " + scores[4]);
 
+        // Restart button
         Button restartBtn = (Button) findViewById(R.id.restartBtn);
 
         // restart button functionality

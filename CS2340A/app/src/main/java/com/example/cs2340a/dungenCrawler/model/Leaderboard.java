@@ -1,5 +1,4 @@
 package com.example.cs2340a.dungenCrawler.model;
-import java.util.Arrays;
 
 public class Leaderboard {
     //singleton class with getters and setters
@@ -26,9 +25,6 @@ public class Leaderboard {
             this.scores = scores;
         }
     }
-//    private Leaderboard() {
-//        this(null, null);
-//    }
 
     //one instance of leaderboard
     public static synchronized Leaderboard getInstance() {
@@ -47,11 +43,14 @@ public class Leaderboard {
         return scores;
     }
 
-    public void setScore(int score, int index) { scores[index] = score; }
+    public void setScore(int score, int index) {
+        scores[index] = score;
+    }
 
     public void setName(String name, int index) {
         names[index] = name;
     }
+
     public void addScores(int score, String name) {
         for (int i = 0; i < 5; i++) {
             if (scores[i] == 0) {
@@ -70,49 +69,29 @@ public class Leaderboard {
                 } else {
                     int count = i;
                     scores[5] = score;
-                    int placeholder;
-                    String placeholderName;
-                    while (count + 1 <= 5) {
-                        System.out.println("Starting while loop...");
-                        if (scores[count] < scores[count + 1]) {
-                            placeholder = scores[count];
-                            placeholderName = names[count];
-                            scores[count] = scores[count + 1];
-                            names[count] = names[count + 1];
-                            scores[count + 1] = placeholder;
-                            names[count + 1] = placeholderName;
-                            count++;
-                        } else {
-                            count++;
-                        }
-                    }
-//                    names[count] = name;
+                    names[5] = name;
+                    bubbleSort(scores);
                     break;
                 }
             }
         }
-        //        if ((scores[index] != 0) {
-//            int placeholder;
-//            int placeholder2;
-//            for (int i = index + 1; i < 5; i++) {
-//                if (scores[i] != 0 && scores[i] != placeholder) {
-//                    placeholder = scores[i];
-//                    if (scores[i + 1] != 0) {
-//                        placeholder2 = scores[i + 1];
-//                        scores[i + 1] = placeholder;
-//                    }
-//                }
-//            }
-//        } else {
-//            scores[index] = score;
-//        }
-//        if (scores[index] != 0) {
-//            scores[6] = score;
-//            System.out.println("Unsorted: " + scores);
-//            Arrays.sort(scores);
-//            System.out.println("Sorted: " + scores);
-//        } else {
-//            scores[index] = score;
-//        }
+    }
+
+    private void bubbleSort(int[] arr) {
+        int n = arr.length;
+        int temp = 0;
+        String tempName;
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+                if (arr[j - 1] < arr[j]) {
+                    temp = arr[j - 1];
+                    tempName = names[j - 1];
+                    arr[j - 1] = arr[j];
+                    names[j - 1] = names[j];
+                    arr[j] = temp;
+                    names[j] = tempName;
+                }
+            }
+        }
     }
 }
