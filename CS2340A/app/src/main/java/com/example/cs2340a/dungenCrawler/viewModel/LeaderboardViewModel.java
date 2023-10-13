@@ -13,17 +13,23 @@ import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.Leaderboard;
 import com.example.cs2340a.dungenCrawler.model.Player;
 
+import java.util.Date;
+
 public class LeaderboardViewModel extends AppCompatActivity {
 
     private Leaderboard leaderboard;
 
     private int timeLeft;
+    private Date date;
+    private int hours;
+    private int minutes;
 
     private Player player;
 
     private String[] names;
 
     private int[] scores;
+    private String[] times;
     private TextView score1;
     private TextView score2;
     private TextView score3;
@@ -58,17 +64,23 @@ public class LeaderboardViewModel extends AppCompatActivity {
         player = getIntent().getParcelableExtra("player");
 
         // Initialize Leaderboard stuff
-        leaderboard.addScores(timeLeft, player.getPlayerName());
+        date = new Date();
+        hours = date.getHours();
+        minutes = date.getMinutes();
+        String time = hours + ":" + minutes;
+
+        leaderboard.addScores(timeLeft, player.getPlayerName(), time);
         scores = leaderboard.getScores();
         names = leaderboard.getNames();
+        times = leaderboard.getTimes();
 
         // Set texts
         playerNameTV.setText(player.getPlayerName());
-        score1.setText(names[0] + ", " + scores[0]);
-        score2.setText(names[1] + ", " + scores[1]);
-        score3.setText(names[2] + ", " + scores[2]);
-        score4.setText(names[3] + ", " + scores[3]);
-        score5.setText(names[4] + ", " + scores[4]);
+        score1.setText(names[0] + ", " + scores[0] + ", " + times[0]);
+        score2.setText(names[1] + ", " + scores[1] + ", " + times[1]);
+        score3.setText(names[2] + ", " + scores[2] + ", " + times[2]);
+        score4.setText(names[3] + ", " + scores[3] + ", " + times[3]);
+        score5.setText(names[4] + ", " + scores[4] + ", " + times[4]);
 
         // Restart button
         Button restartBtn = (Button) findViewById(R.id.restartBtn);
