@@ -2,9 +2,10 @@ package com.example.cs2340a.dungenCrawler.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.MotionEvent;
 
 
-public class Player implements Parcelable {
+public class Player implements Parcelable, MovementStrategy {
 
     //******* MAKE SINGLETON *********
 
@@ -97,5 +98,8 @@ public class Player implements Parcelable {
         this.healthPoints = 200; //temp number so code runs
     }
 
-
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return false;
+    }
 }
