@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 import java.io.ByteArrayInputStream;
@@ -23,9 +24,9 @@ public class Player implements Parcelable, MovementStrategy {
     private double difficulty;
     private int healthPoints;
     int x = 990, y = 800, width = 74, height = 74;
-    private Bitmap sprite;
-    private ByteArrayOutputStream stream;
-    private byte[] compSprite;
+//    private Bitmap sprite;
+//    private ByteArrayOutputStream stream;
+//    private byte[] compSprite;
     private MovementStrategy movement;
 
     //temporary basic public constructor
@@ -39,16 +40,16 @@ public class Player implements Parcelable, MovementStrategy {
 //        System.out.println("Setting sprite decode...");
 //        System.out.println("Sprite: " + sprite);
 //        System.out.println("this.Sprite: " + this.sprite);
-        this.sprite = BitmapFactory.decodeResource(res, avaID);
+//        this.sprite = BitmapFactory.decodeResource(res, avaID);
 //        System.out.println("Creating scaled bitmap...");
 //        System.out.println("Sprite: " + sprite);
 //        System.out.println("this.Sprite: " + this.sprite);
-        this.sprite = Bitmap.createScaledBitmap(this.sprite, screenX, screenY, false);
+//        this.sprite = Bitmap.createScaledBitmap(this.sprite, screenX, screenY, false);
 //        System.out.println("Sprite: " + sprite);
 //        System.out.println("this.Sprite: " + this.sprite);
-        this.stream = new ByteArrayOutputStream();
-        sprite.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        this.compSprite = stream.toByteArray();
+//        this.stream = new ByteArrayOutputStream();
+//        sprite.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//        this.compSprite = stream.toByteArray();
 
         movement = new PlayerMovement(screenX, screenY, res, avaID);
     }
@@ -67,6 +68,7 @@ public class Player implements Parcelable, MovementStrategy {
         difficulty = in.readDouble();
         healthPoints = in.readInt();
         avatarID = in.readInt();
+        movement = in.readParcelable(PlayerMovement.class.getClassLoader());
 //        sprite = in.readParcelable(null);
     }
 
@@ -77,6 +79,7 @@ public class Player implements Parcelable, MovementStrategy {
         dest.writeDouble(difficulty);
         dest.writeInt(healthPoints);
         dest.writeInt(avatarID);
+        dest.writeParcelable((Parcelable) movement, 0);
 //        dest.writeParcelable(sprite, 0);
 //        dest.writeByteArray(compSprite);
     }
@@ -118,13 +121,14 @@ public class Player implements Parcelable, MovementStrategy {
     public int getHealthPoints() {
         return healthPoints;
     }
-    public Bitmap getSprite() {
-        System.out.println("Returning sprite...\n" + "Sprite: " + sprite);
-        return sprite;
-    }
+//    public Bitmap getSprite() {
+//        System.out.println("Returning sprite...\n" + "Sprite: " + sprite);
+//        return sprite;
+//    }
     public int getX() { return x; }
     public int getY() { return y; }
-    public byte[] getCompSprite() { return compSprite; }
+    public MovementStrategy getMovement() { return movement; }
+//    public byte[] getCompSprite() { return compSprite; }
 
     public void setPlayerName(String name) {
         this.playerName = name;
@@ -139,8 +143,8 @@ public class Player implements Parcelable, MovementStrategy {
     public void setDifficulty(double diff) { this.difficulty = diff; }
     public void setX(int x) { this.x = x; }
     public void setY(int y) { this.y = y; }
-    public void setSprite(Bitmap sprite) { this.sprite = sprite; }
-    public void setCompSprite(byte[] compSprite) { this.compSprite = compSprite; }
+//    public void setSprite(Bitmap sprite) { this.sprite = sprite; }
+//    public void setCompSprite(byte[] compSprite) { this.compSprite = compSprite; }
 //    public void setSprite(int avatar) {
 //        sprite = BitmapFactory.decodeResource(getResources(), avatar);
 //        sprite = Bitmap.createScaledBitmap(sprite, screenX, screenY, false);
@@ -151,7 +155,27 @@ public class Player implements Parcelable, MovementStrategy {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return false;
+    public boolean onKey(KeyEvent event) {
+        return movement.onKey(event);
+    }
+
+    @Override
+    public boolean isMovingUp() {
+        return movement.isMovingUp();
+    }
+
+    @Override
+    public boolean isMovingDown() {
+        return movement.isMovingDown();
+    }
+
+    @Override
+    public boolean isMovingLeft() {
+        return movement.isMovingLeft();
+    }
+
+    @Override
+    public boolean isMovingRight() {
+        return movement.isMovingRight();
     }
 }

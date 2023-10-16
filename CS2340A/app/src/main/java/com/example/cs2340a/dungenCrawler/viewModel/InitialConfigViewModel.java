@@ -140,7 +140,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 Player player = new Player(playerName, difficulty, point.x, point.y, getResources(), avatar);
 //                Player player = new Player(playerName, avatar, 1, difficulty, hp);
                 GameConfig gameConfig = new GameConfig(playerName, difficulty, avAtar, 1);
-                byte[] compSprite = player.getCompSprite();
+//                byte[] compSprite = player.getCompSprite();
 
                 Intent game = new Intent(InitialConfigViewModel.this, GameRoom1ViewModel.class);
                 // next line is the Old way to pass avatar, but I can't git it to work
@@ -149,7 +149,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 //pass Player and GameConfig objects (using Parcable)
                 game.putExtra("player", player);
                 game.putExtra("gameConfig", gameConfig);
-                game.putExtra("compSprite", compSprite);
+//                game.putExtra("compSprite", compSprite);
                 startActivity(game);
             }
         });
