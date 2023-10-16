@@ -8,6 +8,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.example.cs2340a.dungenCrawler.view.GameView;
+
 
 public class GameConfig implements Parcelable {
 
@@ -18,7 +20,6 @@ public class GameConfig implements Parcelable {
     private CharSprite avatar;
     private int currRoomId;
     private int score;
-
 
     //basic constructor
     public GameConfig(String name, double diff, CharSprite sprite, int roomId) {
