@@ -10,13 +10,25 @@ public class PlayerMovement implements MovementStrategy {
     boolean isMoving = false;
     int x, y, width, height;
     Bitmap avatar;
-    public PlayerMovement(int screenY, int screenX, Resources res, int resID) {
+    public PlayerMovement(int screenX, int screenY, Resources res, int resID) {
+
         avatar = BitmapFactory.decodeResource(res, resID);
+
         width = avatar.getWidth();
         height = avatar.getHeight();
 
         width /= 4;
         height /= 4;
+
+        avatar = Bitmap.createScaledBitmap(avatar, width, height, false);
+    }
+
+    public Bitmap getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Bitmap a) {
+        this.avatar = a;
     }
 
     @Override

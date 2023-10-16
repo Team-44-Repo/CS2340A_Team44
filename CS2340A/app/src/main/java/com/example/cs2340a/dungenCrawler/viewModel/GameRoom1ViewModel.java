@@ -3,6 +3,8 @@ package com.example.cs2340a.dungenCrawler.viewModel;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -31,7 +33,9 @@ public class GameRoom1ViewModel extends AppCompatActivity {
     private TextView difficultyTV;
     private TextView hpTV;
     private TextView scorePlace;
-    private ImageView sprite;
+//    private ImageView sprite;
+    private byte[] compSprite;
+    private Bitmap sprite;
     private Button tempNextBtn;
     private Button tempEndBtn;
     private int seconds;
@@ -52,18 +56,17 @@ public class GameRoom1ViewModel extends AppCompatActivity {
         Point point = new Point();
         getWindowManager().getDefaultDisplay().getSize(point);
 
-        System.out.println("point.x: " + point.x);
-        System.out.println("point.y: " + point.y);
-        gameView = new GameView(this, point.x, point.y, R.drawable.room1);
+        Player player = getIntent().getParcelableExtra("player");
+        GameConfig gameConfig = getIntent().getParcelableExtra("gameConfig");
+        avatar = getIntent().getIntExtra("avatar", R.drawable.player1);
+//        compSprite = getIntent().getByteArrayExtra("compSprite");
+//        player.setSprite(BitmapFactory.decodeByteArray(compSprite, 0, compSprite.length));
+
+        gameView = new GameView(this, point.x, point.y, R.drawable.room1, player, 1);
 
 //        setContentView(R.layout.activity_game);
         System.out.println("Activating gameView...");
         setContentView(gameView);
-
-
-
-//        gameView.resume();
-//        gameView.run();
 
 //        playerNameTV = findViewById(R.id.playerNameDisplay_id);
 //        difficultyTV = findViewById(R.id.dificulty_id);

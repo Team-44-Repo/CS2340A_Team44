@@ -1,31 +1,38 @@
 package com.example.cs2340a.dungenCrawler.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.SurfaceView;
 
+import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.Background;
+import com.example.cs2340a.dungenCrawler.model.Player;
 
 public class GameView extends SurfaceView implements Runnable {
 
     private Thread thread;
     private boolean isPlaying;
-    private Background bg1, bg2, bg3;
+    private Background bg;
     private int screenX, screenY;
-    private float screenRatioX, screenRatioY;
+    private int screenNum;
+    private static float screenRatioX, screenRatioY;
+    Bitmap sprite;
+    private Player player;
     private Paint paint;
-    public GameView(Context context, int screenX, int screenY, int resID) {
+    public GameView(Context context, int screenX, int screenY, int resBGID, Player player, int screenNum) {
         super(context);
 
         this.screenX = screenX;
         this.screenY = screenY;
+        this.player = player;
+        this.screenNum = screenNum;
         screenRatioX = 1920f / screenX;
         screenRatioY = 1080f / screenY;
 
-        bg1 = new Background(screenX, screenY, getResources(), resID);
-
-//        bg1.setX(screenX);
+        bg = new Background(screenX, screenY, getResources(), resBGID);
 
         paint = new Paint();
     }
@@ -40,17 +47,31 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
     private void draw() {
-        System.out.println("Drawing...");
         if (getHolder().getSurface().isValid()) {
             Canvas canvas = getHolder().lockCanvas();
-            canvas.drawBitmap(bg1.getBackground(), bg1.getX(), bg1.getY(), paint);
-
+            canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), paint);
+//            System.out.println("Sprite: " + player.getSprite() + "\n" +
+//                "PlayerX: " + player.getX() + "\n" +
+//                    "PlayerY: " + player.getY());
+            if (screenNum == 1) {
+                player.setX(990);
+                player.setY(800);
+            }
+            if (player.getAvatarID() == R.drawable.player1) {
+                sprite = BitmapFactory.decodeResource(getResources(), R.drawable.player1);
+                canvas.drawBitmap(sprite, player.getX(), player.getY(), paint);
+            } else if (player.getAvatarID() == R.drawable.player2) {
+                sprite = BitmapFactory.decodeResource(getResources(), R.drawable.player2);
+                canvas.drawBitmap(sprite, player.getX(), player.getY(), paint);
+            } else if (player.getAvatarID() == R.drawable.player3) {
+                sprite = BitmapFactory.decodeResource(getResources(), R.drawable.player3);
+                canvas.drawBitmap(sprite, player.getX(), player.getY(), paint);
+            }
             getHolder().unlockCanvasAndPost(canvas);
         }
     }
 
     private void sleep() {
-        System.out.println("Sleeping...");
         try {
             Thread.sleep(17);
         } catch (InterruptedException e) {
@@ -59,7 +80,6 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
     private void update() {
-        System.out.println("Updating...");
     }
 
     public void resume() {
