@@ -15,6 +15,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private Thread thread;
     private boolean isPlaying;
+    private int x, y;
     private Background bg;
     private int screenX, screenY;
     private int screenNum;
@@ -31,6 +32,13 @@ public class GameView extends SurfaceView implements Runnable {
         this.screenNum = screenNum;
         screenRatioX = 1920f / screenX;
         screenRatioY = 1080f / screenY;
+
+        if (screenNum == 1) {
+            player.setX(990);
+            player.setY(800);
+            this.x = 990;
+            this.y = 800;
+        }
 
         bg = new Background(screenX, screenY, getResources(), resBGID);
 
@@ -50,13 +58,7 @@ public class GameView extends SurfaceView implements Runnable {
         if (getHolder().getSurface().isValid()) {
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), paint);
-//            System.out.println("Sprite: " + player.getSprite() + "\n" +
-//                "PlayerX: " + player.getX() + "\n" +
-//                    "PlayerY: " + player.getY());
-            if (screenNum == 1) {
-                player.setX(990);
-                player.setY(800);
-            }
+
             if (player.getAvatarID() == R.drawable.player1) {
                 sprite = BitmapFactory.decodeResource(getResources(), R.drawable.player1);
                 canvas.drawBitmap(sprite, player.getX(), player.getY(), paint);
@@ -67,6 +69,7 @@ public class GameView extends SurfaceView implements Runnable {
                 sprite = BitmapFactory.decodeResource(getResources(), R.drawable.player3);
                 canvas.drawBitmap(sprite, player.getX(), player.getY(), paint);
             }
+
             getHolder().unlockCanvasAndPost(canvas);
         }
     }
@@ -80,6 +83,11 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
     private void update() {
+        if (player.getMovement().isMovingUp()) {
+            System.out.println("Moving Up");
+            y -= 30;
+            player.setY(y);
+        }
     }
 
     public void resume() {
