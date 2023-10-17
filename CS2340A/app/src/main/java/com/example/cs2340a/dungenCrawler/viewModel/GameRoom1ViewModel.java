@@ -10,6 +10,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -67,6 +68,7 @@ public class GameRoom1ViewModel extends AppCompatActivity {
 //        setContentView(R.layout.activity_game);
         System.out.println("Activating gameView...");
         setContentView(gameView);
+        gameView.onKey(gameView, KeyEvent.KEYCODE_W, gameView.getUp());
 
 //        playerNameTV = findViewById(R.id.playerNameDisplay_id);
 //        difficultyTV = findViewById(R.id.dificulty_id);
