@@ -1,5 +1,6 @@
 package com.example.cs2340a.dungenCrawler.model;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,19 +8,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 
-public class PlayerMovement implements MovementStrategy, Parcelable {
+public class PlayerMovement extends Activity implements MovementStrategy, Parcelable, View.OnKeyListener {
+
+    //
     private Player player;
     private boolean isMovingUp = false;
     private boolean isMovingDown = false;
     private boolean isMovingLeft = false;
     private boolean isMovingRight = false;
-    private KeyEvent up;
-    private KeyEvent down;
-    private KeyEvent left;
-    private KeyEvent right;
 
     private int x, y, width, height;
     private Bitmap avatar;
@@ -33,11 +34,6 @@ public class PlayerMovement implements MovementStrategy, Parcelable {
         width /= 4;
         height /= 4;
 
-        up = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_W);
-        down = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_S);
-        left = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_A);
-        right = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_D);
-
         avatar = Bitmap.createScaledBitmap(avatar, width, height, false);
     }
 
@@ -47,10 +43,6 @@ public class PlayerMovement implements MovementStrategy, Parcelable {
         isMovingDown = in.readByte() != 0;
         isMovingLeft = in.readByte() != 0;
         isMovingRight = in.readByte() != 0;
-        up = in.readParcelable(KeyEvent.class.getClassLoader());
-        down = in.readParcelable(KeyEvent.class.getClassLoader());
-        left = in.readParcelable(KeyEvent.class.getClassLoader());
-        right = in.readParcelable(KeyEvent.class.getClassLoader());
         x = in.readInt();
         y = in.readInt();
         width = in.readInt();
@@ -77,6 +69,34 @@ public class PlayerMovement implements MovementStrategy, Parcelable {
     public boolean isMovingDown() { return isMovingDown; }
     public boolean isMovingLeft() { return isMovingLeft; }
     public boolean isMovingRight() { return isMovingRight; }
+    public void setUp(boolean up) { this.isMovingUp = up; }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        int index = event.getActionIndex();
+//        int action = event.getActionMasked();
+//        int pointerId = event.getPointerId(index);
+//
+//        switch(action) {
+//            case MotionEvent.ACTION_DOWN:
+//                if(mVelocityTracker == null) {
+//                    mVelocityTracker = VelocityTracker.obtain();
+//                }
+//                else {
+//                    mVelocityTracker.clear();
+//                }
+//                mVelocityTracker.addMovement(event);
+//                break;
+//            case MotionEvent.ACTION_MOVE:
+//                mVelocityTracker.addMovement(event);
+//                mVelocityTracker.computeCurrentVelocity(1000);
+//                break;
+//            case MotionEvent.ACTION_UP:
+//            case MotionEvent.ACTION_CANCEL:
+//                mVelocityTracker.recycle();
+//                break;
+//        }
+//        return true;
+//    }
 
     public void setAvatar(Bitmap a) {
         this.avatar = a;
@@ -104,8 +124,14 @@ public class PlayerMovement implements MovementStrategy, Parcelable {
             }
         }
 
-        return true;
+        return false;
     }
+
+//    @Override
+//    public boolean dispatchKeyEvent(KeyEvent event) {
+//        System.out.println("Key Pressed: " + event.getKeyCode());
+//        return super.dispatchKeyEvent(event);
+//    }
 
     @Override
     public int describeContents() {
@@ -119,14 +145,35 @@ public class PlayerMovement implements MovementStrategy, Parcelable {
         parcel.writeByte((byte) (isMovingDown ? 1 : 0));
         parcel.writeByte((byte) (isMovingLeft ? 1 : 0));
         parcel.writeByte((byte) (isMovingRight ? 1 : 0));
-        parcel.writeParcelable(up, i);
-        parcel.writeParcelable(down, i);
-        parcel.writeParcelable(left, i);
-        parcel.writeParcelable(right, i);
         parcel.writeInt(x);
         parcel.writeInt(y);
         parcel.writeInt(width);
         parcel.writeInt(height);
         parcel.writeParcelable(avatar, i);
+    }
+
+    @Override
+    public boolean onKey(View view, int i, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            System.out.println("ActionDown...");
+            switch (event.getKeyCode()) {
+                case KeyEvent.KEYCODE_W:
+                    System.out.println("W down");
+                    isMovingUp = true;
+                    System.out.println("isMovingUp: " + isMovingUp);
+                    break;
+                case KeyEvent.KEYCODE_A:
+                    isMovingLeft = true;
+                    break;
+                case KeyEvent.KEYCODE_S:
+                    isMovingDown = true;
+                    break;
+                case KeyEvent.KEYCODE_D:
+                    isMovingRight = true;
+                    break;
+            }
+        }
+
+        return false;
     }
 }

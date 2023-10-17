@@ -178,4 +178,8 @@ public class Player implements Parcelable, MovementStrategy {
     public boolean isMovingRight() {
         return movement.isMovingRight();
     }
+
+    @Override
+    public void setUp(boolean up) {
+    }
 }

@@ -11,4 +11,5 @@ public interface MovementStrategy {
     boolean isMovingDown();
     boolean isMovingLeft();
     boolean isMovingRight();
+    void setUp(boolean up);
 }
