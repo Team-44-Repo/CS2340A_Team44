@@ -12,6 +12,7 @@ import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
+import com.example.cs2340a.dungenCrawler.model.Score;
 
 public class InitialConfigViewModel extends AppCompatActivity {
 
@@ -137,7 +138,8 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 Point point = new Point();
                 getWindowManager().getDefaultDisplay().getSize(point);
 
-                Player player = new Player(playerName, difficulty, point.x, point.y, getResources(), avatar);
+                Score score = new Score(60000, false); 
+                Player player = new Player(playerName, difficulty, point.x, point.y, getResources(), avatar, score);
 //                Player player = new Player(playerName, avatar, 1, difficulty, hp);
                 GameConfig gameConfig = new GameConfig(playerName, difficulty, avAtar, 1);
 //                byte[] compSprite = player.getCompSprite();

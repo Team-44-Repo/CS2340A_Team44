@@ -20,6 +20,7 @@ import com.example.cs2340a.dungenCrawler.model.Player;
 public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Callback, View.OnKeyListener {
 
     private Thread thread;
+    private int score = 0;
     private boolean isPlaying;
     private int x, y;
     private Background bg;
@@ -29,6 +30,7 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
     Bitmap sprite;
     private Player player;
     private Paint paint;
+    private Paint whitePaint;
     private KeyEvent up;
     private KeyEvent down;
     private KeyEvent left;
@@ -42,6 +44,9 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
         this.screenNum = screenNum;
         screenRatioX = 1920f / screenX;
         screenRatioY = 1080f / screenY;
+
+        player.getScore().setActive(true);
+        player.getScore().startScore();
 
         if (screenNum == 1) {
             player.setX(990);
@@ -58,6 +63,9 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
         bg = new Background(screenX, screenY, getResources(), resBGID);
 
         paint = new Paint();
+        whitePaint = new Paint();
+        int color = R.color.white;
+        whitePaint.setColor(getResources().getColor(color));
     }
     @Override
     public void run() {
@@ -74,6 +82,11 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
         if (getHolder().getSurface().isValid()) {
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), paint);
+            whitePaint.setTextSize(50);
+            canvas.drawText(player.getPlayerName(), 50, 50, whitePaint);
+            canvas.drawText(player.getDifficultyTitle(), 500, 50, whitePaint);
+            canvas.drawText(player.getHealthString(), 2000, 50, whitePaint);
+            canvas.drawText("Score: " + score, 1500, 1000, whitePaint);
 
             if (player.getAvatarID() == R.drawable.player1) {
                 sprite = BitmapFactory.decodeResource(getResources(), R.drawable.player1);
@@ -99,6 +112,7 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
     }
 
     private void update() {
+        score++;
         if (player.getMovement().onKey(up)) {
             System.out.println("Moving Up");
             y -= 30;
