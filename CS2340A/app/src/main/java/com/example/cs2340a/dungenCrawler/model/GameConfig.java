@@ -1,16 +1,15 @@
 package com.example.cs2340a.dungenCrawler.model;
 
-import android.content.Context;
+
 import android.graphics.Canvas;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.view.SurfaceView;
+
 
 import androidx.annotation.NonNull;
 
-import com.example.cs2340a.dungenCrawler.model.SpriteSheet;
+import com.example.cs2340a.dungenCrawler.view.GameView;
 
-import java.sql.Time;
 
 public class GameConfig implements Parcelable {
 
@@ -21,25 +20,18 @@ public class GameConfig implements Parcelable {
     private CharSprite avatar;
     private int currRoomId;
     private int score;
-//    private final Tilemap tilemap;
 
     //basic constructor
     public GameConfig(String name, double diff, CharSprite sprite, int roomId) {
-//        super(context);
-//        SpriteSheet spriteSheet = new SpriteSheet(context);
-//        tilemap = new Tilemap(spriteSheet);
-//        setFocusable(true);
+
         this.playerName = name;
         this.difficulty = diff;
         this.avatar = sprite;
         this.currRoomId = roomId;
-//        this.score = score;
+
     }
     protected GameConfig(Parcel in) {
-//        super(context);
-//        SpriteSheet spriteSheet = new SpriteSheet(context);
-//        tilemap = new Tilemap(spriteSheet);
-//        setFocusable(true);
+
         playerName = in.readString();
         difficulty = in.readDouble();
         currRoomId = in.readInt();
@@ -70,7 +62,8 @@ public class GameConfig implements Parcelable {
     public int getCurrRoomId() {
         return currRoomId;
     }
-    public int getScore() { return score; }
+    public int getScore() {
+        return score; }
     public void setPlayerName(String name) {
         this.playerName = name;
     }
@@ -98,10 +91,10 @@ public class GameConfig implements Parcelable {
     }
 
     public void draw(Canvas canvas) {
-//        super.draw(canvas);
+
     }
 
     public void update() {
-        GameDisplay.update();
+        //GameDisplay.update();
     }
 }

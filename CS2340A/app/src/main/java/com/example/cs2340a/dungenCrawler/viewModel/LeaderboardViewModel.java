@@ -9,21 +9,32 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cs2340a.R;
+
 import com.example.cs2340a.dungenCrawler.model.Leaderboard;
 import com.example.cs2340a.dungenCrawler.model.Player;
 
+import java.util.Date;
+
 public class LeaderboardViewModel extends AppCompatActivity {
 
-    //public Leaderboard leaderboard;
+    private Leaderboard leaderboard;
 
-    public long timeLeft;
+    private int timeLeft;
+    private Date date;
+    private int hours;
+    private int minutes;
 
     private Player player;
 
-    //private String[] names;
+    private String[] names;
 
-    //private long[] scores;
-    private TextView scoreboard;
+    private int[] scores;
+    private String[] times;
+    private TextView score1;
+    private TextView score2;
+    private TextView score3;
+    private TextView score4;
+    private TextView score5;
 
     private TextView playerNameTV;
 
@@ -38,34 +49,44 @@ public class LeaderboardViewModel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard_view_model);
-        //leaderboard = Leaderboard.getInstance();
+
+        // Instantiate
+        leaderboard = Leaderboard.getInstance();
         playerNameTV = findViewById(R.id.playerNameDisplayEnd_id);
-        scoreboard = findViewById(R.id.score_id);
-        timeLeft = getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);
+        score1 = findViewById(R.id.score_id);
+        score2 = findViewById(R.id.score_id2);
+        score3 = findViewById(R.id.score_id3);
+        score4 = findViewById(R.id.score_id4);
+        score5 = findViewById(R.id.score_id5);
 
-
+        // Carry over data from past screens
+        timeLeft = (int) getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);
         player = getIntent().getParcelableExtra("player");
+
+        // Initialize Leaderboard stuff
+        date = new Date();
+        hours = date.getHours();
+        minutes = date.getMinutes();
+        String time = hours + ":" + minutes;
+
+        leaderboard.addScores(timeLeft, player.getPlayerName(), time);
+        scores = leaderboard.getScores();
+        names = leaderboard.getNames();
+        times = leaderboard.getTimes();
+
+        // Set texts
         playerNameTV.setText(player.getPlayerName());
+        score1.setText(names[0] + ", " + scores[0] + ", " + times[0]);
+        score2.setText(names[1] + ", " + scores[1] + ", " + times[1]);
+        score3.setText(names[2] + ", " + scores[2] + ", " + times[2]);
+        score4.setText(names[3] + ", " + scores[3] + ", " + times[3]);
+        score5.setText(names[4] + ", " + scores[4] + ", " + times[4]);
 
-//        leaderboard.setName(player.getPlayerName(), 0);
-//        leaderboard.setScore((int) timeLeft,0);
-//        for (int i = 0; i < 5; i++) {
-//            names[i] = "hello";
-//            scores[i] = 25;
-//        }
-//        try {
-//            names[0] = player.getPlayerName();
-//            scores[0] = timeLeft;
-//        } catch (NullPointerException e) {
-//            e.printStackTrace();
-//        }
-
-        scoreboard.setText("" + player.getPlayerName() + ", " + timeLeft);
-
+        // Restart button
         Button restartBtn = (Button) findViewById(R.id.restartBtn);
 
         // restart button functionality
-        restartBtn.setOnClickListener(new View.OnClickListener () {
+        restartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LeaderboardViewModel.this,
@@ -75,25 +96,6 @@ public class LeaderboardViewModel extends AppCompatActivity {
         });
     }
 
-
-
-
-//    public void addScores(String name, int score) {
-//        int index = 0;
-//        for (int i = 0; i < 5; i++) {
-//            if (leaderboard.getScores()[i] < score) {
-//                for (int j = 4; j >= i; j--) {
-//                    leaderboard.setScore(leaderboard.getScores()[j], j + 1);
-//                    leaderboard.setName(leaderboard.getNames()[j], j + 1);
-//                }
-//                index = i;
-//            } else if (leaderboard.getScores()[i] == 0 && leaderboard.getNames()[i] == null) {
-//                index = i;
-//            }
-//        }
-//        leaderboard.setScore(score, index);
-//        leaderboard.setName(name, index);
-//    }
 
 
 }

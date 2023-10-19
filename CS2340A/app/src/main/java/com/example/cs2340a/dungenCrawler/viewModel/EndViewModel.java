@@ -17,14 +17,15 @@ public class EndViewModel extends AppCompatActivity {
         setContentView(R.layout.activity_end);
 
 
-        // when the game ends, this method should be called to see if score should be set to leaderboard
+        // when the game ends, this method should be called to see if score should be set to
+        // leaderboard
         // takes in the name of the player and score they just received
 
         // local fields
         Button restartBtn = (Button) findViewById(R.id.restartBtn);
 
         // restart button functionality
-        restartBtn.setOnClickListener(new View.OnClickListener () {
+        restartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EndViewModel.this,

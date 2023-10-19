@@ -3,6 +3,7 @@ package com.example.cs2340a;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+
 import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
@@ -61,24 +62,17 @@ public class UnitTests {
         assertEquals(1, gConfig.getAvatar().getSpriteResId(), 0);
     }
 
-    /*@Test
-    //Clare Cotter
-    public void storeHighScore () {
-        LeaderboardViewModel leaderboard = new LeaderboardViewModel();
-        leaderboard.addScores("clare", 15);
-        leaderboard.addScores("jake", 40);
-        leaderboard.addScores("mia", 30);
-        assertEquals(15, leaderboard.leaderboard.getScores()[0]);
-        assertEquals(40, leaderboard.leaderboard.getScores()[0]);
-        assertEquals(30, leaderboard.leaderboard.getScores()[1]);
-
-    }*/
-
-    @Test
+    @Test // Clare Cotter
     public void timedScore() {
         Score score = new Score(400, false);
-        assertEquals(false, score.getActive());
         assertEquals(null, score.timeLeft());
+        assertNotNull(score);
+    }
+
+    @Test // Clare Cotter
+    public void timedScore2() {
+        Score score = new Score(400, false);
+        assertEquals(false, score.getActive());
         assertNotNull(score);
     }
 
@@ -95,6 +89,17 @@ public class UnitTests {
         assertNotNull(gameConfigTest);
     }
 
+    @Test //Catherine Trobradovic
+    public void checkValidCurrRoom2Id() {
+        GameConfig gConfig = new GameConfig("null", 1.0, null, 2);
+        assertEquals(2, gConfig.getCurrRoomId(), 0);
+    }
+
+    @Test //Catherine Trobradovic
+    public void checkValidCurrRoom3Id() {
+        GameConfig gConfig = new GameConfig("null", 1.0, null, 3);
+        assertEquals(3, gConfig.getCurrRoomId(), 0);
+    }
 
 }
 
