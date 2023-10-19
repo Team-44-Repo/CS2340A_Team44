@@ -26,25 +26,7 @@ import com.example.cs2340a.dungenCrawler.view.GameView;
 
 public class GameRoom1ViewModel extends AppCompatActivity {
 
-    private double difficulty;
-    private Button toScreen2;
-    private Canvas canvas;
     private GameView gameView;
-    private TextView playerNameTV;
-    private TextView difficultyTV;
-    private TextView hpTV;
-    private TextView scorePlace;
-//    private ImageView sprite;
-    private byte[] compSprite;
-    private Bitmap sprite;
-    private Button tempNextBtn;
-    private Button tempEndBtn;
-    private int seconds;
-    private CountDownTimer score;
-    private long timeLeftInMilliseconds = 60000;
-    private boolean isActive = true;
-
-
     private int avatar; // del when working
 
 

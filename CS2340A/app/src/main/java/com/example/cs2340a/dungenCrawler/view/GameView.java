@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -15,11 +16,13 @@ import androidx.annotation.NonNull;
 
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.Background;
+import com.example.cs2340a.dungenCrawler.model.CollisionMap;
 import com.example.cs2340a.dungenCrawler.model.Player;
 
 public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Callback, View.OnKeyListener {
 
     private Thread thread;
+    private CollisionMap collisionMap;
     private int score = 0;
     private boolean isPlaying;
     private int x, y;
@@ -47,6 +50,8 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
 
         player.getScore().setActive(true);
         player.getScore().startScore();
+
+        collisionMap = new CollisionMap(screenNum);
 
         if (screenNum == 1) {
             player.setX(990);
@@ -82,6 +87,10 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
         if (getHolder().getSurface().isValid()) {
             Canvas canvas = getHolder().lockCanvas();
             canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), paint);
+            canvas.drawRect(collisionMap.getTopBorder(), paint);
+            canvas.drawRect(collisionMap.getBottomBorder(), paint);
+            canvas.drawRect(collisionMap.getLeftBorder(), paint);
+            canvas.drawRect(collisionMap.getRightBorder(), paint);
             whitePaint.setTextSize(50);
             canvas.drawText(player.getPlayerName(), 50, 50, whitePaint);
             canvas.drawText(player.getDifficultyTitle(), 500, 50, whitePaint);
@@ -113,10 +122,23 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
 
     private void update() {
         score++;
-        if (player.getMovement().onKey(up)) {
+        if (player.getMovement().onKey(up)) { // Not currently in use
             System.out.println("Moving Up");
             y -= 30;
             player.setY(y);
+        }
+        if (Rect.intersects(player.getCollisionShape(), collisionMap.getTopBorder())) {
+            System.out.println("Intersecting Top...");
+            player.setY(49);
+        } else if (Rect.intersects(player.getCollisionShape(), collisionMap.getBottomBorder())) {
+            System.out.println("Intersecting Bottom...");
+            player.setY(999);
+        } else if (Rect.intersects(player.getCollisionShape(), collisionMap.getLeftBorder())) {
+            System.out.println("Intersecting Left...");
+            player.setX(49);
+        } else if (Rect.intersects(player.getCollisionShape(), collisionMap.getRightBorder())) {
+            System.out.println("Intersecting Right...");
+            player.setX(2099);
         }
     }
 
