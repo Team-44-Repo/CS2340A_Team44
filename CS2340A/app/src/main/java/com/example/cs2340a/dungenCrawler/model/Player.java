@@ -23,6 +23,7 @@ public class Player implements Parcelable, MovementStrategy {
     private int currRoomId; // not sure if this is where we should keep track of this.
     private double difficulty;
     private int healthPoints;
+    private Score score;
     int x = 990, y = 800, width = 74, height = 74;
 //    private Bitmap sprite;
 //    private ByteArrayOutputStream stream;
@@ -31,11 +32,12 @@ public class Player implements Parcelable, MovementStrategy {
 
     //temporary basic public constructor
 
-    public Player(String name, double difficulty, int screenX, int screenY, Resources res, int avaID) {
+    public Player(String name, double difficulty, int screenX, int screenY, Resources res, int avaID, Score score) {
         this.playerName = name;
         this.difficulty = difficulty;
         this.healthPoints = (int) (100 * difficulty);
         this.avatarID = avaID;
+        this.score = score;
 
 //        System.out.println("Setting sprite decode...");
 //        System.out.println("Sprite: " + sprite);
@@ -69,6 +71,7 @@ public class Player implements Parcelable, MovementStrategy {
         healthPoints = in.readInt();
         avatarID = in.readInt();
         movement = in.readParcelable(PlayerMovement.class.getClassLoader());
+        score = in.readParcelable(Score.class.getClassLoader());
 //        sprite = in.readParcelable(null);
     }
 
@@ -80,6 +83,7 @@ public class Player implements Parcelable, MovementStrategy {
         dest.writeInt(healthPoints);
         dest.writeInt(avatarID);
         dest.writeParcelable((Parcelable) movement, 0);
+        dest.writeParcelable((Parcelable) score, 0);
 //        dest.writeParcelable(sprite, 0);
 //        dest.writeByteArray(compSprite);
     }
@@ -118,6 +122,15 @@ public class Player implements Parcelable, MovementStrategy {
     public double getDifficulty() {
         return difficulty;
     }
+    public String getDifficultyTitle() {
+        if (difficulty == 0.5) {
+            return "Hard";
+        } else if (difficulty == 0.75) {
+            return "Medium";
+        } else {
+            return "Easy";
+        }
+    }
     public int getHealthPoints() {
         return healthPoints;
     }
@@ -125,8 +138,10 @@ public class Player implements Parcelable, MovementStrategy {
 //        System.out.println("Returning sprite...\n" + "Sprite: " + sprite);
 //        return sprite;
 //    }
+    public String getHealthString() { return "HP: " + healthPoints; }
     public int getX() { return x; }
     public int getY() { return y; }
+    public Score getScore() { return score; }
     public MovementStrategy getMovement() { return movement; }
 //    public byte[] getCompSprite() { return compSprite; }
 
@@ -143,6 +158,7 @@ public class Player implements Parcelable, MovementStrategy {
     public void setDifficulty(double diff) { this.difficulty = diff; }
     public void setX(int x) { this.x = x; }
     public void setY(int y) { this.y = y; }
+    public void setScoreActivity(boolean activity) { score.setActive(activity);}
 //    public void setSprite(Bitmap sprite) { this.sprite = sprite; }
 //    public void setCompSprite(byte[] compSprite) { this.compSprite = compSprite; }
 //    public void setSprite(int avatar) {

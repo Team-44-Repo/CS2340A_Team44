@@ -69,6 +69,7 @@ public class GameRoom1ViewModel extends AppCompatActivity {
         System.out.println("Activating gameView...");
         setContentView(gameView);
         gameView.onKey(gameView, KeyEvent.KEYCODE_W, gameView.getUp());
+        player.getScore().startScore();
 
 //        playerNameTV = findViewById(R.id.playerNameDisplay_id);
 //        difficultyTV = findViewById(R.id.dificulty_id);
