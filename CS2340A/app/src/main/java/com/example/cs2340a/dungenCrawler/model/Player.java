@@ -3,6 +3,7 @@ package com.example.cs2340a.dungenCrawler.model;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.KeyEvent;
@@ -24,10 +25,8 @@ public class Player implements Parcelable, MovementStrategy {
     private double difficulty;
     private int healthPoints;
     private Score score;
-    int x = 990, y = 800, width = 74, height = 74;
-//    private Bitmap sprite;
-//    private ByteArrayOutputStream stream;
-//    private byte[] compSprite;
+    private Rect collisionShape;
+    int x = 990, y = 800, width = 74, height = 74; // Defaults for room1
     private MovementStrategy movement;
 
     //temporary basic public constructor
@@ -39,21 +38,8 @@ public class Player implements Parcelable, MovementStrategy {
         this.avatarID = avaID;
         this.score = score;
 
-//        System.out.println("Setting sprite decode...");
-//        System.out.println("Sprite: " + sprite);
-//        System.out.println("this.Sprite: " + this.sprite);
-//        this.sprite = BitmapFactory.decodeResource(res, avaID);
-//        System.out.println("Creating scaled bitmap...");
-//        System.out.println("Sprite: " + sprite);
-//        System.out.println("this.Sprite: " + this.sprite);
-//        this.sprite = Bitmap.createScaledBitmap(this.sprite, screenX, screenY, false);
-//        System.out.println("Sprite: " + sprite);
-//        System.out.println("this.Sprite: " + this.sprite);
-//        this.stream = new ByteArrayOutputStream();
-//        sprite.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//        this.compSprite = stream.toByteArray();
-
         movement = new PlayerMovement(screenX, screenY, res, avaID);
+        collisionShape = new Rect(x, y, x + width, y + height);
     }
 //    public Player(String name, CharSprite sprite, int roomId, double difficulty, int hp) {
 //        this.playerName = name;
@@ -72,7 +58,7 @@ public class Player implements Parcelable, MovementStrategy {
         avatarID = in.readInt();
         movement = in.readParcelable(PlayerMovement.class.getClassLoader());
         score = in.readParcelable(Score.class.getClassLoader());
-//        sprite = in.readParcelable(null);
+        collisionShape = in.readParcelable(Rect.class.getClassLoader());
     }
 
     @Override
@@ -84,8 +70,7 @@ public class Player implements Parcelable, MovementStrategy {
         dest.writeInt(avatarID);
         dest.writeParcelable((Parcelable) movement, 0);
         dest.writeParcelable((Parcelable) score, 0);
-//        dest.writeParcelable(sprite, 0);
-//        dest.writeByteArray(compSprite);
+        dest.writeParcelable((Parcelable) collisionShape, 0);
     }
 
     @Override
@@ -134,16 +119,12 @@ public class Player implements Parcelable, MovementStrategy {
     public int getHealthPoints() {
         return healthPoints;
     }
-//    public Bitmap getSprite() {
-//        System.out.println("Returning sprite...\n" + "Sprite: " + sprite);
-//        return sprite;
-//    }
     public String getHealthString() { return "HP: " + healthPoints; }
     public int getX() { return x; }
     public int getY() { return y; }
     public Score getScore() { return score; }
     public MovementStrategy getMovement() { return movement; }
-//    public byte[] getCompSprite() { return compSprite; }
+    public Rect getCollisionShape() { return collisionShape; }
 
     public void setPlayerName(String name) {
         this.playerName = name;
@@ -159,12 +140,6 @@ public class Player implements Parcelable, MovementStrategy {
     public void setX(int x) { this.x = x; }
     public void setY(int y) { this.y = y; }
     public void setScoreActivity(boolean activity) { score.setActive(activity);}
-//    public void setSprite(Bitmap sprite) { this.sprite = sprite; }
-//    public void setCompSprite(byte[] compSprite) { this.compSprite = compSprite; }
-//    public void setSprite(int avatar) {
-//        sprite = BitmapFactory.decodeResource(getResources(), avatar);
-//        sprite = Bitmap.createScaledBitmap(sprite, screenX, screenY, false);
-//    }
 
     public void updateHealthPoints() {
         this.healthPoints = 200; //temp number so code runs
