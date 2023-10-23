@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 
+
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -13,6 +14,7 @@ import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 
 import com.example.cs2340a.dungenCrawler.model.Player;
+import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
 import com.example.cs2340a.dungenCrawler.view.GameView;
 
 
@@ -23,15 +25,16 @@ public class GameRoom2ViewModel extends AppCompatActivity implements GameView.Ca
     private Thread thread;
     private Player player;
     private GameConfig gameConfig;
+    private PlayerPosition playerPosition; //observer pattern
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Log.d("----room2--------",
-                "------------------------");
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Log.d("----room2--------", "------------------------");
         Point point = new Point();
 
         getWindowManager().getDefaultDisplay().getSize(point);
@@ -47,9 +50,9 @@ public class GameRoom2ViewModel extends AppCompatActivity implements GameView.Ca
         gameView = new GameView(this, point.x, point.y, R.drawable.room2, player, 2);
         gameView.setCallback((GameView.Callback) this);
         //Setting the GameView as the content view
-        Log.d("Activating gameView...", "");
+        Log.d("Activating gameView...",  "");
         setContentView(gameView);
-        Log.d("right after setContentView", "");
+        Log.d("right after setContentView",  "");
         player.getScore().startScore();
 
     }

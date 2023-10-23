@@ -1,16 +1,12 @@
 package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 
 
 public class Player implements Parcelable, MovementStrategy {
@@ -26,12 +22,16 @@ public class Player implements Parcelable, MovementStrategy {
     private int healthPoints;
     private Score score;
     private Rect collisionShape;
-    int x = 990, y = 800, width = 74, height = 74; // Defaults for room1
+    private int x = 990;
+    private int y = 800;
+    private int width = 74;
+    private int height = 74; // Defaults for room1
     private MovementStrategy movement;
 
     //temporary basic public constructor
 
-    public Player(String name, double difficulty, int screenX, int screenY, Resources res, int avaID, Score score) {
+    public Player(String name, double difficulty, int screenX, int screenY, Resources res,
+                  int avaID, Score score) {
         this.playerName = name;
         this.difficulty = difficulty;
         this.healthPoints = (int) (100 * difficulty);
@@ -39,7 +39,7 @@ public class Player implements Parcelable, MovementStrategy {
         this.score = score;
 
         movement = new PlayerMovement(screenX, screenY, res, avaID);
-        collisionShape = new Rect(x, y, x + width, y + height);//not used.
+        collisionShape = new Rect(x, y, x + width, y + height); //not used.
         // but idk if can delete
     }
 
@@ -98,7 +98,9 @@ public class Player implements Parcelable, MovementStrategy {
     public String getPlayerName() {
         return playerName;
     }
-    public int getAvatarID() { return avatarID; }
+    public int getAvatarID() {
+        return avatarID;
+    }
     /*
     public CharSprite getAvatar() {
         return avatar;
@@ -125,12 +127,24 @@ public class Player implements Parcelable, MovementStrategy {
     public int getHealthPoints() {
         return healthPoints;
     }
-    public String getHealthString() { return "HP: " + healthPoints; }
-    public int getX() { return x; }
-    public int getY() { return y; }
-    public Score getScore() { return score; }
-    public MovementStrategy getMovement() { return movement; }
-    public Rect getCollisionShape() { return collisionShape; }
+    public String getHealthString() {
+        return "HP: " + healthPoints;
+    }
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
+    }
+    public Score getScore() {
+        return score;
+    }
+    public MovementStrategy getMovement() {
+        return movement;
+    }
+    public Rect getCollisionShape() {
+        return collisionShape;
+    }
 
     public void setPlayerName(String name) {
         this.playerName = name;
@@ -143,18 +157,30 @@ public class Player implements Parcelable, MovementStrategy {
     public void setCurrRoomId(int roomNum) {
         this.currRoomId = roomNum;
     }
-    public void setAvatarID(int avaID) { this.avatarID = avaID; }
-    public void setDifficulty(double diff) { this.difficulty = diff; }
-    public void setX(int x) { this.x = x; }
-    public void setY(int y) { this.y = y; }
-    public void setScoreActivity(boolean activity) { score.setActive(activity);}
+    public void setAvatarID(int avaID) {
+        this.avatarID = avaID;
+    }
+    public void setDifficulty(double diff) {
+        this.difficulty = diff;
+    }
+    public void setX(int x) {
+        this.x = x;
+    }
+    public void setY(int y) {
+        this.y = y;
+    }
+    public void setScoreActivity(boolean activity) {
+        score.setActive(activity);
+    }
 
     public void updateHealthPoints() {
+
         this.healthPoints = 200; //temp number so code runs
     }
 
     @Override
     public boolean onKey(KeyEvent event) {
+
         return movement.onKey(event);
     }
 

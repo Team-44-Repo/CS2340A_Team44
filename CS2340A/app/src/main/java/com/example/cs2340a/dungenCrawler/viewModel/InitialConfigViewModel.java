@@ -111,19 +111,19 @@ public class InitialConfigViewModel extends AppCompatActivity {
             switch (characterRadioGroup.getCheckedRadioButtonId()) {
             case R.id.character1:
                 avatar = R.drawable.player1;
-//                avatar = 1;
+
                 break;
             case R.id.character2:
                 avatar = R.drawable.player2;
-//                avatar = 2;
+
                 break;
             case R.id.character3:
                 avatar = R.drawable.player3;
-//                avatar = 3;
+
                 break;
             default:
                 avatar = R.drawable.player1;
-//                avatar = 1;
+
                 break;
             }
 
@@ -139,10 +139,10 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 getWindowManager().getDefaultDisplay().getSize(point);
 
                 Score score = new Score(60000, false); 
-                Player player = new Player(playerName, difficulty, point.x, point.y, getResources(), avatar, score);
-//                Player player = new Player(playerName, avatar, 1, difficulty, hp);
+                Player player = new Player(playerName, difficulty, point.x, point.y,
+                        getResources(), avatar, score);
                 GameConfig gameConfig = new GameConfig(playerName, difficulty, avAtar, 1);
-//                byte[] compSprite = player.getCompSprite();
+
 
                 Intent game = new Intent(InitialConfigViewModel.this, GameRoom1ViewModel.class);
                 // next line is the Old way to pass avatar, but I can't git it to work
@@ -151,7 +151,6 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 //pass Player and GameConfig objects (using Parcable)
                 game.putExtra("player", player);
                 game.putExtra("gameConfig", gameConfig);
-//                game.putExtra("compSprite", compSprite);
                 startActivity(game);
             }
         });

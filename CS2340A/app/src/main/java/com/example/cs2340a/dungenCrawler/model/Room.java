@@ -1,7 +1,5 @@
 package com.example.cs2340a.dungenCrawler.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Room {
     private String name; // A name or identifier for the room
@@ -65,3 +63,4 @@ public class Room {
 
     // Additional methods to handle room-specific behavior, such as rendering
 }
+
