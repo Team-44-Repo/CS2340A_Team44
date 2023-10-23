@@ -9,6 +9,8 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 
+
+
 public class GameConfig implements Parcelable {
 
     //I'm not sure if its a bad, good, or neutral idea to have these attributes in both
@@ -18,7 +20,6 @@ public class GameConfig implements Parcelable {
     private CharSprite avatar;
     private int currRoomId;
     private int score;
-
 
     //basic constructor
     public GameConfig(String name, double diff, CharSprite sprite, int roomId) {

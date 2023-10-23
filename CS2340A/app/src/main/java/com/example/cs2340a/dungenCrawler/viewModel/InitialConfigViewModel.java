@@ -2,6 +2,7 @@ package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,10 +12,13 @@ import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
+import com.example.cs2340a.dungenCrawler.model.Score;
 
 public class InitialConfigViewModel extends AppCompatActivity {
 
     private int avatar; //del when working
+
+    // make a BASE class in ViewModel that references everything
 
     //viewModel elements
     private EditText playerNameInput;
@@ -106,16 +110,20 @@ public class InitialConfigViewModel extends AppCompatActivity {
             avatar = 1;
             switch (characterRadioGroup.getCheckedRadioButtonId()) {
             case R.id.character1:
-                avatar = 1;
+                avatar = R.drawable.player1;
+
                 break;
             case R.id.character2:
-                avatar = 2;
+                avatar = R.drawable.player2;
+
                 break;
             case R.id.character3:
-                avatar = 3;
+                avatar = R.drawable.player3;
+
                 break;
             default:
-                avatar = 1;
+                avatar = R.drawable.player1;
+
                 break;
             }
 
@@ -127,8 +135,14 @@ public class InitialConfigViewModel extends AppCompatActivity {
             //check if player name is valid and if sprite selected
             if (checkAllFields(playerName)) {
                 //create Player and GameConfig objects with entered data
-                Player player = new Player(playerName, avAtar, 1, difficulty, hp);
+                Point point = new Point();
+                getWindowManager().getDefaultDisplay().getSize(point);
+
+                Score score = new Score(60000, false); 
+                Player player = new Player(playerName, difficulty, point.x, point.y, getResources(),
+                        avatar, score);
                 GameConfig gameConfig = new GameConfig(playerName, difficulty, avAtar, 1);
+
 
                 Intent game = new Intent(InitialConfigViewModel.this, GameRoom1ViewModel.class);
                 // next line is the Old way to pass avatar, but I can't git it to work
