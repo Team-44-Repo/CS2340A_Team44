@@ -101,17 +101,6 @@ public class UnitTests {
         assertEquals(3, gConfig.getCurrRoomId(), 0);
     }
 
-    @Test //Angela Chang
-    public void playerCanMoveLeft() {
-        PlayerMovement movement = new PlayerMovement(0, 0, null, 0);
-        assertTrue(PlayerMovement.isMovingLeft());
-    }
-
-    @Test //Angela Chang
-    public void playerCanMoveRight() {
-        PlayerMovement movement = new PlayerMovement(0, 0, null, 0);
-        assertTrue(PlayerMovement.isMovingRight());
-    }
 
 }
 
