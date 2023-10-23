@@ -8,8 +8,6 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.example.cs2340a.dungenCrawler.view.GameView;
-
 
 public class GameConfig implements Parcelable {
 

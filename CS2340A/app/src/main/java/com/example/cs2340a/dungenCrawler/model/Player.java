@@ -19,7 +19,7 @@ public class Player implements Parcelable, MovementStrategy {
 
     //attributes
     private String playerName;
-//    private CharSprite avatar;
+    //private CharSprite avatar;
     private int avatarID;
     private int currRoomId; // not sure if this is where we should keep track of this.
     private double difficulty;
@@ -39,16 +39,20 @@ public class Player implements Parcelable, MovementStrategy {
         this.score = score;
 
         movement = new PlayerMovement(screenX, screenY, res, avaID);
-        collisionShape = new Rect(x, y, x + width, y + height);
+        collisionShape = new Rect(x, y, x + width, y + height);//not used.
+        // but idk if can delete
     }
-//    public Player(String name, CharSprite sprite, int roomId, double difficulty, int hp) {
-//        this.playerName = name;
-////        this.avatar = sprite;
-//        this.currRoomId = roomId;
-//        this.difficulty = difficulty;
-//        //this.healthPoints = 44;
-//        this.healthPoints = (int) (100 * difficulty);
-//    }
+
+    public Player(String name, CharSprite sprite, int roomId, double difficulty, int hp) {
+        /*
+        this.playerName = name;
+        //this.avatar = sprite;
+        this.currRoomId = roomId;
+        this.difficulty = difficulty;
+        //this.healthPoints = 44;
+        this.healthPoints = (int) (100 * difficulty);
+         */
+    }
 
     protected Player(Parcel in) {
         playerName = in.readString();
@@ -95,12 +99,14 @@ public class Player implements Parcelable, MovementStrategy {
         return playerName;
     }
     public int getAvatarID() { return avatarID; }
-//    public CharSprite getAvatar() {
-//        return avatar;
-//    }
-//    public int getAvatarResId() {
-//        return avatar.getSpriteResId();
-//    }
+    /*
+    public CharSprite getAvatar() {
+        return avatar;
+    }
+    public int getAvatarResId() {
+        return avatar.getSpriteResId();
+    }
+     */
     public int getCurrRoomId() {
         return currRoomId;
     }
@@ -129,9 +135,11 @@ public class Player implements Parcelable, MovementStrategy {
     public void setPlayerName(String name) {
         this.playerName = name;
     }
-//    public void setAvatar(CharSprite sprite) {
-//        this.avatar = sprite;
-//    }
+    /*
+    public void setAvatar(CharSprite sprite) {
+        this.avatar = sprite;
+    }
+    */
     public void setCurrRoomId(int roomNum) {
         this.currRoomId = roomNum;
     }

@@ -4,25 +4,64 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
-    /*
-    private RoomType type;
-    private List<Integer> connectedRooms;
+    private String name; // A name or identifier for the room
+    private Room[] connectedRooms; // An array of rooms that are connected to this room
+    private Room connectedRoom; //the one room that is connected (sprint 3 - only one room
+    // connected)
+    private int initialPlayerX; // Initial player X-coordinate in the room
+    private int initialPlayerY; // Initial player Y-coordinate in the room
+    private int doorwayTopY;
+    private int doorwayBottomY;
+    private int doorwayLeftX;
+    private int doorwayRightX;
 
-    public Room(RoomType type) {
-        this.type = type;
-        this.connectedRooms = new ArrayList<>();
+
+    public Room(String name, int initialPlayerX, int initialPlayerY, int y1, int y2, int x1,
+                int x2) {
+        this.name = name;
+        this.initialPlayerX = initialPlayerX;
+        this.initialPlayerY = initialPlayerY;
+        this.doorwayTopY = y1;
+        this.doorwayBottomY = y2;
+        this.doorwayLeftX = x1;
+        this.doorwayRightX = x2;
     }
 
-    public RoomType getType() {
-        return type;
-    }
-
-    public List<Integer> getConnectedRooms() {
+    // Getters
+    public Room[] getConnectedRooms() {
         return connectedRooms;
     }
-
-    public void addConnectedRoom(int roomId) {
-        connectedRooms.add(roomId);
+    public Room getConnectedRoom() {
+        return connectedRoom;
     }
-    */
+    public int getInitialPlayerX() {
+        return initialPlayerX;
+    }
+    public int getInitialPlayerY() {
+        return initialPlayerY;
+    }
+    public int getDoorwayTopY() {
+        return doorwayTopY;
+    }
+    public int getDoorwayBottomY() {
+        return doorwayBottomY;
+    }
+    public int getDoorwayLeftX() {
+        return doorwayLeftX;
+    }
+    public int getDoorwayRightX() {
+        return doorwayRightX;
+    }
+
+
+    //setters
+    public void setConnectedRooms(Room[] connectedRooms) {
+        this.connectedRooms = connectedRooms;
+    }
+    public void setConnectedRoom(Room connectedRoom) {
+        this.connectedRoom = connectedRoom;
+    }
+
+
+    // Additional methods to handle room-specific behavior, such as rendering
 }
