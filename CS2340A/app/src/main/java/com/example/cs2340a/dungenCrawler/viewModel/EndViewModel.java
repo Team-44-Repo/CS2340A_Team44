@@ -9,13 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cs2340a.R;
-import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
 
 public class EndViewModel extends AppCompatActivity {
     private PlayerPosition playerPosition;
-    TextView winningTV;
-    TextView scoreTV;
+    private TextView winningTV;
+    private TextView scoreTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,13 +3,11 @@ package com.example.cs2340a.dungenCrawler.model;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-
-import com.example.cs2340a.R;
 
 public class Background {
 
-    private int x, y;
+    private int x;
+    private int y;
     private Bitmap background;
 
     public Background(int screenX, int screenY, Resources res, int resID) {
