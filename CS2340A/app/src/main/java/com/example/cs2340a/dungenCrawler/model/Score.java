@@ -3,11 +3,8 @@ package com.example.cs2340a.dungenCrawler.model;
 import android.os.CountDownTimer;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 
-import org.w3c.dom.Text;
 
 public class Score implements Parcelable {
     private CountDownTimer score;
@@ -43,30 +40,14 @@ public class Score implements Parcelable {
         }
     };
 
-//    public void startScore(TextView score) {
-//        if (isActive) {
-//            startTimer(score);
-//        }
-//    }
+
     public void startScore() {
         if (isActive) {
             System.out.println("Score starting...");
             startTimer();
         }
     }
-//    private void startTimer(TextView scoreText) {
-//        score = new CountDownTimer(timeLeftInMilliseconds, 1000) {
-//            @Override
-//            public void onTick(long l) {
-//                timeLeftInMilliseconds = l;
-//                updateScore(scoreText);
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//            }
-//        };
-//    }
+
 
     public void startTimer() {
         this.score = new CountDownTimer(timeLeftInMilliseconds, 1000) {
@@ -83,40 +64,37 @@ public class Score implements Parcelable {
         };
     }
 
-//    private void updateScore(TextView scoreText) {
-//        seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
-//
-//        timeLeftText = "" + seconds;
-//
-//        scoreText.setText("Score: " + timeLeftText);
-//    }
+
 
     public void updateScore() {
         this.seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
 
         timeLeftText = "" + seconds;
-
-//        scoreText.setText("Score: " + timeLeftText);
     }
 
     public String timeLeft() {
+
         return timeLeftText;
     }
 
     public boolean getActive() {
         return isActive;
-     }
+    }
     public void setActive(boolean active) {
+
         isActive = active;
     }
     public int getSeconds() {
+
         return seconds;
     }
 
-    public String getSecondsString() { return "Score: " + seconds; }
+    public String getSecondsString() {
+        return "Score: " + seconds; }
 
     @Override
     public int describeContents() {
+
         return 0;
     }
 

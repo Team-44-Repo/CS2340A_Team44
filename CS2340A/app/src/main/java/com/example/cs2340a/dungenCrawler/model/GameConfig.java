@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 
+
 public class GameConfig implements Parcelable {
 
     //I'm not sure if its a bad, good, or neutral idea to have these attributes in both

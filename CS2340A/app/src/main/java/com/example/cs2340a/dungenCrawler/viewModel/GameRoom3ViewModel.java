@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 
+
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -13,6 +14,7 @@ import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 
 import com.example.cs2340a.dungenCrawler.model.Player;
+import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
 import com.example.cs2340a.dungenCrawler.view.GameView;
 
 
@@ -23,6 +25,7 @@ public class GameRoom3ViewModel extends AppCompatActivity implements GameView.Ca
     private Thread thread;
     private Player player;
     private GameConfig gameConfig;
+    private PlayerPosition playerPosition; //observer pattern
 
 
     @Override
@@ -31,8 +34,7 @@ public class GameRoom3ViewModel extends AppCompatActivity implements GameView.Ca
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Log.d("----room3--------",
-                "------------------------");
+        Log.d("----room3--------", "------------------------");
         Point point = new Point();
 
         getWindowManager().getDefaultDisplay().getSize(point);

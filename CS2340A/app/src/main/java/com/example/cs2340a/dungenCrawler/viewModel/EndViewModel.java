@@ -14,7 +14,7 @@ import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
 public class EndViewModel extends AppCompatActivity {
     private PlayerPosition playerPosition;
     private TextView winningTV;
-    private TextView scoreTV;
+    //TextView scoreTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

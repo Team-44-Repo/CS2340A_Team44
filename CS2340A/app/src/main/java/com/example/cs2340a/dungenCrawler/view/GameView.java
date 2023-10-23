@@ -20,9 +20,9 @@ import com.example.cs2340a.dungenCrawler.model.CollisionMap;
 import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.model.Room;
 
-
-public class GameView extends SurfaceView implements Runnable,
-        SurfaceHolder.Callback, View.OnKeyListener {
+// GameView acts as a concrete observer
+public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Callback,
+        View.OnKeyListener {
 
     private Callback callback;
     private Thread thread;
@@ -51,9 +51,13 @@ public class GameView extends SurfaceView implements Runnable,
     private KeyEvent left;
     private KeyEvent right;
 
-    public GameView(Context context, int screenX, int screenY, int resBGID, Player player, int screenNum) {
-        super(context);
 
+
+    public GameView(Context context, int screenX, int screenY,
+                    int resBGID,
+                    Player player,
+                    int screenNum) {
+        super(context);
 
         this.screenX = screenX;
         this.screenY = screenY;
@@ -66,9 +70,9 @@ public class GameView extends SurfaceView implements Runnable,
         player.getScore().startScore();
 
         //Create 3 Room Objects
-        Room room1 = new Room("room1", 1200, 540,310,460,2090,2400);
-        Room room2 = new Room("room2", 30, 400,0,20,720,890);
-        Room room3 = new Room("room3", 800, 800,420,580,2090,2400);
+        Room room1 = new Room("room1", 1200, 540, 310, 460, 2090, 2400);
+        Room room2 = new Room("room2", 30, 400, 0, 20, 720, 890);
+        Room room3 = new Room("room3", 800, 800, 420, 580, 2090, 2400);
 
         room1.setConnectedRoom(room2);
         room2.setConnectedRoom(room3);
@@ -76,15 +80,18 @@ public class GameView extends SurfaceView implements Runnable,
 
         //set current room to what was passed in from viewModel
         switch (screenNum) {
-            case 1:
-                currRoom = room1;
-                break;
-            case 2:
-                currRoom = room2;
-                break;
-            case 3:
-                currRoom = room3;
-                break;
+        case 1:
+            currRoom = room1;
+            break;
+        case 2:
+            currRoom = room2;
+            break;
+        case 3:
+            currRoom = room3;
+            break;
+        default:
+            currRoom = room1;
+            break;
         }
 
         //makes player sprite start in the center of the screen
@@ -107,15 +114,9 @@ public class GameView extends SurfaceView implements Runnable,
 
 
         Log.d("leftX:" + currRoom.getDoorwayLeftX(), "");
-    }// end of constructor
+    } // end of constructor
 
-    public interface Callback {
-        void onRunnablePaused();
-    }
 
-    public void setCallback(Callback callback) {
-        this.callback = callback;
-    }
 
 
     @Override
@@ -133,6 +134,98 @@ public class GameView extends SurfaceView implements Runnable,
         }
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.d("in onTouchEvent", "");
+        x = (int) event.getX();
+        y = (int) event.getY();
+        switch (event.getAction()) {
+        case MotionEvent.ACTION_DOWN:
+            Log.d("in [0] actionDown", "");
+            // took out click to move sprite to where your mouse is
+            //player.setX((int) event.getX());
+            //player.setY((int) event.getY());
+            //Log.d(x + "," + y, "");
+            return true;
+        case MotionEvent.ACTION_MOVE:
+            Log.d("in [0] actionMove", "");
+            prevX = player.getX();
+            prevY = player.getY();
+            Log.d("x:" + x + " y:" + y, "");
+            Log.d("door|" + currRoom.getDoorwayLeftX() + ", " + currRoom.getDoorwayBottomY(), "");
+            //checking for player collision with doorway
+            Log.d("checking if doorway", "");
+            if (x >= currRoom.getDoorwayLeftX() && x <= currRoom.getDoorwayRightX()) {
+                if (y >= currRoom.getDoorwayTopY() && y <= currRoom.getDoorwayBottomY()) {
+                    player.setX(x);
+                    player.setY(y);
+                    pause();
+                    Log.d("paused-------------", "");
+                }
+            } else if (x < 20) {
+                Log.d("left: " + x + "," + y, "");
+                //player.setX(prevX);
+            } else if (x > 2090) {
+                Log.d("right: " + x + "," + y, "");
+                //player.setX(prevX);
+            } else if (y < 3) {
+                Log.d("top: " + x + "," + y, "");
+                //player.setY(prevY);
+            } else if (y > 810) {
+                Log.d("bottom: " + x + "," + y, "");
+                //player.setY(prevY);
+            } else { // there is no collision
+                player.setX(x);
+                player.setY(y);
+            }
+
+            //Log.d("post-(" + player.getX() + "," + player.getY(), "");
+            return true;
+        default:
+            player.setX(x);
+            player.setY(y);
+        }
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
+
+    }
+
+    @Override
+    public void surfaceChanged(@NonNull SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
+
+    }
+
+    @Override
+    public boolean onKey(View view, int i, KeyEvent event) {
+        /*
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            System.out.println("ActionDown...");
+            switch (event.getKeyCode()) {
+                case KeyEvent.KEYCODE_W:
+                    player.getMovement().setUp(true);
+                    break;
+                case KeyEvent.KEYCODE_A:
+                    isMovingLeft = true;
+                    break;
+                case KeyEvent.KEYCODE_S:
+                    isMovingDown = true;
+                    break;
+                case KeyEvent.KEYCODE_D:
+                    isMovingRight = true;
+                    break;
+            }
+        }
+        */
+        return true;
+    }
 
     private void update() {
         Log.d("in update()", "");
@@ -164,7 +257,6 @@ public class GameView extends SurfaceView implements Runnable,
         }
     }
 
-
     private void sleep() {
         Log.d("in sleep()", "");
         try {
@@ -174,17 +266,11 @@ public class GameView extends SurfaceView implements Runnable,
         }
     }
 
-    public boolean getDone() {
-        return done;
-    }
-
-
     public void resume() {
         isPlaying = true;
         thread = new Thread(this);
         thread.start();
     }
-
 
     public void pause() {
         try {
@@ -195,99 +281,17 @@ public class GameView extends SurfaceView implements Runnable,
         }
     }
 
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        Log.d("in onTouchEvent", "");
-        x = (int) event.getX();
-        y = (int) event.getY();
-        switch(event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                Log.d("in [0] actionDown", "");
-                // took out click to move sprite to where your mouse is
-                //player.setX((int) event.getX());
-                //player.setY((int) event.getY());
-                //Log.d(x + "," + y, "");
-                return true;
-            case MotionEvent.ACTION_MOVE:
-                Log.d("in [0] actionMove", "");
-                prevX = player.getX();
-                prevY = player.getY();
-                Log.d("x:" + x + " y:" + y, "");
-                Log.d("door|" + currRoom.getDoorwayLeftX() + ", " + currRoom.getDoorwayBottomY(), "");
-                //checking for player collision with doorway
-                Log.d("checking if doorway", "");
-                if (x >= currRoom.getDoorwayLeftX() && x <= currRoom.getDoorwayRightX()) {
-                    if (y >= currRoom.getDoorwayTopY() && y <= currRoom.getDoorwayBottomY()) {
-                        player.setX(x);
-                        player.setY(y);
-                        pause();
-                        Log.d("paused-------------", "");
-                    }
-                } else if (x < 20) {
-                    //Log.d("left: " + x + "," + y, "");
-                    //player.setX(prevX);
-                } else if (x > 2090) {
-                    //Log.d("right: " + x + "," + y, "");
-                    //player.setX(prevX);
-                } else if (y < 3) {
-                    //Log.d("top: " + x + "," + y, "");
-                    //player.setY(prevY);
-                } else if (y > 810) {
-                    //Log.d("bottom: " + x + "," + y, "");
-                    //player.setY(prevY);
-                } else { // there is no collision
-                    player.setX(x);
-                    player.setY(y);
-                }
-                //Log.d("post-(" + player.getX() + "," + player.getY(), "");
-                return true;
-        }
-        return super.onTouchEvent(event);
-    }
-
-    @Override
-    public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
-
-    }
-
-    @Override
-    public void surfaceChanged(@NonNull SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
-
-    }
-
-
-    @Override
-    public boolean onKey(View view, int i, KeyEvent event) {
-        /*
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            System.out.println("ActionDown...");
-            switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_W:
-                    player.getMovement().setUp(true);
-                    break;
-                case KeyEvent.KEYCODE_A:
-                    isMovingLeft = true;
-                    break;
-                case KeyEvent.KEYCODE_S:
-                    isMovingDown = true;
-                    break;
-                case KeyEvent.KEYCODE_D:
-                    isMovingRight = true;
-                    break;
-            }
-        }
-        */
-        return true;
-    }
-
-
     public KeyEvent getUp() {
         return up;
     }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
+
+    public interface Callback {
+        void onRunnablePaused();
+    }
+
+
 }

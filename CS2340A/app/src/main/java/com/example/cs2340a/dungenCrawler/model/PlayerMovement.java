@@ -7,22 +7,25 @@ import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
+
+
 import android.view.View;
 
 import androidx.annotation.NonNull;
 
-public class PlayerMovement extends Activity implements MovementStrategy, Parcelable, View.OnKeyListener {
+public class PlayerMovement extends Activity implements MovementStrategy, Parcelable,
+        View.OnKeyListener {
 
-    //
     private Player player;
     private boolean isMovingUp = false;
     private boolean isMovingDown = false;
     private boolean isMovingLeft = false;
     private boolean isMovingRight = false;
 
-    private int x, y, width, height;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
     private Bitmap avatar;
     public PlayerMovement(int screenX, int screenY, Resources res, int resID) {
 
@@ -65,38 +68,23 @@ public class PlayerMovement extends Activity implements MovementStrategy, Parcel
     public Bitmap getAvatar() {
         return avatar;
     }
-    public boolean isMovingUp() { return isMovingUp; }
-    public boolean isMovingDown() { return isMovingDown; }
-    public boolean isMovingLeft() { return isMovingLeft; }
-    public boolean isMovingRight() { return isMovingRight; }
-    public void setUp(boolean up) { this.isMovingUp = up; }
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        int index = event.getActionIndex();
-//        int action = event.getActionMasked();
-//        int pointerId = event.getPointerId(index);
-//
-//        switch(action) {
-//            case MotionEvent.ACTION_DOWN:
-//                if(mVelocityTracker == null) {
-//                    mVelocityTracker = VelocityTracker.obtain();
-//                }
-//                else {
-//                    mVelocityTracker.clear();
-//                }
-//                mVelocityTracker.addMovement(event);
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//                mVelocityTracker.addMovement(event);
-//                mVelocityTracker.computeCurrentVelocity(1000);
-//                break;
-//            case MotionEvent.ACTION_UP:
-//            case MotionEvent.ACTION_CANCEL:
-//                mVelocityTracker.recycle();
-//                break;
-//        }
-//        return true;
-//    }
+    public boolean isMovingUp() {
+        return isMovingUp;
+    }
+    public boolean isMovingDown() {
+        return isMovingDown;
+    }
+    public boolean isMovingLeft() {
+        return isMovingLeft;
+    }
+    public boolean isMovingRight() {
+        return isMovingRight;
+    }
+    public void setUp(boolean up) {
+        this.isMovingUp = up;
+    }
+
+
 
     public void setAvatar(Bitmap a) {
         this.avatar = a;
@@ -107,31 +95,31 @@ public class PlayerMovement extends Activity implements MovementStrategy, Parcel
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             System.out.println("ActionDown...");
             switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_W:
-                    System.out.println("W down");
-                    isMovingUp = true;
-                    System.out.println("isMovingUp: " + isMovingUp);
-                    break;
-                case KeyEvent.KEYCODE_A:
-                    isMovingLeft = true;
-                    break;
-                case KeyEvent.KEYCODE_S:
-                    isMovingDown = true;
-                    break;
-                case KeyEvent.KEYCODE_D:
-                    isMovingRight = true;
-                    break;
+            case KeyEvent.KEYCODE_W:
+                System.out.println("W down");
+                isMovingUp = true;
+                System.out.println("isMovingUp: " + isMovingUp);
+                break;
+            case KeyEvent.KEYCODE_A:
+                isMovingLeft = true;
+                break;
+            case KeyEvent.KEYCODE_S:
+                isMovingDown = true;
+                break;
+            case KeyEvent.KEYCODE_D:
+                isMovingRight = true;
+                break;
+            default:
+                System.out.println("W down");
+                isMovingUp = true;
+                System.out.println("isMovingUp: " + isMovingUp);
+                break;
             }
         }
 
         return false;
     }
 
-//    @Override
-//    public boolean dispatchKeyEvent(KeyEvent event) {
-//        System.out.println("Key Pressed: " + event.getKeyCode());
-//        return super.dispatchKeyEvent(event);
-//    }
 
     @Override
     public int describeContents() {
@@ -157,20 +145,25 @@ public class PlayerMovement extends Activity implements MovementStrategy, Parcel
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             System.out.println("ActionDown...");
             switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_W:
-                    System.out.println("W down");
-                    isMovingUp = true;
-                    System.out.println("isMovingUp: " + isMovingUp);
-                    break;
-                case KeyEvent.KEYCODE_A:
-                    isMovingLeft = true;
-                    break;
-                case KeyEvent.KEYCODE_S:
-                    isMovingDown = true;
-                    break;
-                case KeyEvent.KEYCODE_D:
-                    isMovingRight = true;
-                    break;
+            case KeyEvent.KEYCODE_W:
+                System.out.println("W down");
+                isMovingUp = true;
+                System.out.println("isMovingUp: " + isMovingUp);
+                break;
+            case KeyEvent.KEYCODE_A:
+                isMovingLeft = true;
+                break;
+            case KeyEvent.KEYCODE_S:
+                isMovingDown = true;
+                break;
+            case KeyEvent.KEYCODE_D:
+                isMovingRight = true;
+                break;
+            default:
+                System.out.println("W down");
+                isMovingUp = true;
+                System.out.println("isMovingUp: " + isMovingUp);
+                break;
             }
         }
 
