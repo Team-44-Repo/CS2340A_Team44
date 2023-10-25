@@ -69,7 +69,7 @@ public class GameRoom3ViewModel extends AppCompatActivity implements GameView.Ca
 
     public void switchGameRoom1View() {
         Log.d("switchGameRoom1View()", "");
-        Intent game2 = new Intent(GameRoom3ViewModel.this, EndViewModel.class);
+        Intent game2 = new Intent(GameRoom3ViewModel.this, LeaderboardViewModel.class);
         game2.putExtra("score", gameView.getScore());
         game2.putExtra("avatar", avatar);
         game2.putExtra("player", player);
