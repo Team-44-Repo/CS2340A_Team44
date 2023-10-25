@@ -66,9 +66,6 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
         screenRatioX = 2400f / screenX;
         screenRatioY = 1080f / screenY;
 
-        player.getScore().setActive(true);
-        player.getScore().startScore();
-
         //Create 3 Room Objects
         Room room1 = new Room("room1", 1200, 540, 310, 460, 2090, 2400);
         Room room2 = new Room("room2", 30, 400, 0, 20, 720, 890);
@@ -279,6 +276,14 @@ public class GameView extends SurfaceView implements Runnable, SurfaceHolder.Cal
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public KeyEvent getUp() {

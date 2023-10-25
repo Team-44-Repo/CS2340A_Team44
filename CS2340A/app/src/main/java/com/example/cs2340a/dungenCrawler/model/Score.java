@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 
 public class Score implements Parcelable {
     private CountDownTimer score;
-    private long timeLeftInMilliseconds = 60000;
+    private long timeLeftInMilliseconds;
     private String timeLeftText;
     private boolean isActive;
     private int seconds;
@@ -72,9 +72,13 @@ public class Score implements Parcelable {
         timeLeftText = "" + seconds;
     }
 
-    public String timeLeft() {
+    public String timeLeftText() {
 
         return timeLeftText;
+    }
+
+    public long timeLeft() {
+        return timeLeftInMilliseconds;
     }
 
     public boolean getActive() {
@@ -83,6 +87,9 @@ public class Score implements Parcelable {
     public void setActive(boolean active) {
 
         isActive = active;
+    }
+    public void setScore(long timeLeftInMilliseconds) {
+        this.timeLeftInMilliseconds = timeLeftInMilliseconds;
     }
     public int getSeconds() {
 
