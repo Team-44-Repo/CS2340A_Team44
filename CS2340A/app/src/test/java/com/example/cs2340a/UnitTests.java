@@ -15,7 +15,6 @@ import com.example.cs2340a.dungenCrawler.model.Score;
 import com.example.cs2340a.dungenCrawler.view.GameView;
 import com.example.cs2340a.dungenCrawler.viewModel.GameRoom1ViewModel;
 
-import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runner.manipulation.Ordering;
