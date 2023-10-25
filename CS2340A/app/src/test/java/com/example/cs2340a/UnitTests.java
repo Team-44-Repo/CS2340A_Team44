@@ -92,7 +92,7 @@ public class UnitTests {
     @Test // Clare Cotter
     public void timedScore() {
         Score score = new Score(400, false);
-        assertEquals(null, score.timeLeft());
+        assertEquals(null, score.timeLeftText());
         assertNotNull(score);
     }
     @Test // Clare Cotter

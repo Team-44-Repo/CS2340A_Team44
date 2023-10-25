@@ -24,6 +24,7 @@ public class GameRoom2ViewModel extends AppCompatActivity implements GameView.Ca
     private int avatar;
     private Thread thread;
     private Player player;
+    private int score;
     private GameConfig gameConfig;
     private PlayerPosition playerPosition; //observer pattern
 
@@ -42,18 +43,20 @@ public class GameRoom2ViewModel extends AppCompatActivity implements GameView.Ca
         player = getIntent().getParcelableExtra("player");
         gameConfig = getIntent().getParcelableExtra("gameConfig");
         avatar = getIntent().getIntExtra("avatar", R.drawable.player1);
+        score = getIntent().getIntExtra("score", 0);
+        System.out.println("Score after switch: " + score);
         //compSprite = getIntent().getByteArrayExtra("compSprite");
         //player.setSprite(BitmapFactory.decodeByteArray(compSprite, 0, compSprite.length));
 
 
         // Initialize Runnable GameView
         gameView = new GameView(this, point.x, point.y, R.drawable.room2, player, 2);
+        gameView.setScore(score);
         gameView.setCallback((GameView.Callback) this);
         //Setting the GameView as the content view
         Log.d("Activating gameView...",  "");
         setContentView(gameView);
         Log.d("right after setContentView",  "");
-        player.getScore().startScore();
 
     }
 
@@ -68,6 +71,7 @@ public class GameRoom2ViewModel extends AppCompatActivity implements GameView.Ca
     public void switchGameRoom1View() {
         Log.d("switchGameRoom1View()", "");
         Intent game2 = new Intent(GameRoom2ViewModel.this, GameRoom3ViewModel.class);
+        game2.putExtra("score", gameView.getScore());
         game2.putExtra("avatar", avatar);
         game2.putExtra("player", player);
         game2.putExtra("gameConfig", gameConfig);

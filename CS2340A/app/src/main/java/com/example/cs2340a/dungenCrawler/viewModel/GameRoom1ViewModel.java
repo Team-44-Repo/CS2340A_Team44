@@ -54,7 +54,6 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
         Log.d("Activating gameView...", "");
         setContentView(gameView);
         Log.d("right after setContentView", "");
-        player.getScore().startScore();
 
     }
 
@@ -69,6 +68,7 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
     public void switchGameRoom1View() {
         Log.d("switchGameRoom1View()", "");
         Intent game2 = new Intent(GameRoom1ViewModel.this, GameRoom2ViewModel.class);
+        game2.putExtra("score", gameView.getScore());
         game2.putExtra("avatar", avatar);
         game2.putExtra("player", player);
         game2.putExtra("gameConfig", gameConfig);
