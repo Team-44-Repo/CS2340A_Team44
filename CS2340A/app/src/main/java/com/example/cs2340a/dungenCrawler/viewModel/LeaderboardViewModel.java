@@ -22,6 +22,7 @@ public class LeaderboardViewModel extends AppCompatActivity {
     private int timeLeft;
     private Date date;
     private int hours;
+    private int score;
     private int minutes;
 
     private Player player;
@@ -60,8 +61,9 @@ public class LeaderboardViewModel extends AppCompatActivity {
         score5 = findViewById(R.id.score_id5);
 
         // Carry over data from past screens
-        timeLeft = (int) getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);
+        // timeLeft = (int) getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);
         player = getIntent().getParcelableExtra("player");
+        score = getIntent().getIntExtra("score", player.getScore().getSeconds());
 
         // Initialize Leaderboard stuff
         date = new Date();
@@ -69,7 +71,7 @@ public class LeaderboardViewModel extends AppCompatActivity {
         minutes = date.getMinutes();
         String time = hours + ":" + minutes;
 
-        leaderboard.addScores(timeLeft, player.getPlayerName(), time);
+        leaderboard.addScores(score, player.getPlayerName(), time);
         scores = leaderboard.getScores();
         names = leaderboard.getNames();
         times = leaderboard.getTimes();
