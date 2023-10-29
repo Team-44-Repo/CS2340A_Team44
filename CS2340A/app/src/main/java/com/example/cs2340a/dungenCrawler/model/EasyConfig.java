@@ -6,8 +6,8 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class EasyConfig extends GameConfig {
-    public EasyConfig(Player player) {
-        super(player);
+    public EasyConfig(Player player, Background bg) {
+        super(player, bg);
     }
 
     @Override
@@ -18,6 +18,7 @@ public class EasyConfig extends GameConfig {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeParcelable(super.getPlayer(), flags);
+        dest.writeParcelable(super.getBG(), flags);
     }
 
     protected EasyConfig(Parcel in) {

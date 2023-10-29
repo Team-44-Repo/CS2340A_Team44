@@ -37,12 +37,13 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
     //temporary basic public constructor
 
     public Player(String name, double difficulty, int screenX, int screenY, Resources res,
-                  int avaID, Score score) {
+                  int avaID) {
         this.playerName = name;
         this.difficulty = difficulty;
         this.healthPoints = (int) (100 * difficulty);
         this.avatarID = avaID;
-        this.score = score;
+        // this.score = score;
+        score = new Score();
 
         movement = new PlayerMovement(screenX, screenY, res, avaID);
         collisionShape = new Rect(x, y, x + width, y + height); //not used.
@@ -167,9 +168,9 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
     public void setY(int y) {
         this.y = y;
     }
-    public void setScoreActivity(boolean activity) {
-        score.setActive(activity);
-    }
+    // public void setScoreActivity(boolean activity) {
+    //    score.setActive(activity);
+    //}
 
     public void updateHealthPoints() {
 
@@ -213,7 +214,7 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
         canvas.drawText(playerName, 50, 50, paint);
         canvas.drawText(getDifficultyTitle(), 500, 50, paint);
         canvas.drawText(getHealthString(), 2000, 50, paint);
-        // canvas.drawText("Score: " + score, 1500, 1000, paint);
+        score.draw(canvas, resources);
 
         if (getAvatarID() == R.drawable.player1) {
             sprite = BitmapFactory.decodeResource(resources, R.drawable.player1);

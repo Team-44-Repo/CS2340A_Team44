@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Parcel;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -30,6 +31,13 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         super(context);
     }
 
+    public GameLoop(Context context, GameConfig gameConfig) {
+        this(context);
+        this.gameConfig = gameConfig;
+        bg = gameConfig.getBG();
+        bg.createBitmap(bg.getPoint(), getResources(), bg.getResID());
+    }
+
     @Override
     public void run() {
         System.out.println("GameLoop running...");
@@ -48,6 +56,8 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     private void update() {
         Log.d("in update()", "");
         // score++;
+        gameConfig.getPlayer().getScore().setScore
+                (gameConfig.getPlayer().getScore().getScore() + 1);
     }
 
     private void draw() {

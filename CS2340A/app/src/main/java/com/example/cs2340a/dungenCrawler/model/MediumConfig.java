@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 
 public class MediumConfig extends GameConfig {
 
-    public MediumConfig(Player player) {
-        super(player);
+    public MediumConfig(Player player, Background bg) {
+        super(player, bg);
     }
 
     @Override
@@ -18,6 +18,7 @@ public class MediumConfig extends GameConfig {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeParcelable(getPlayer(), flags);
+        dest.writeParcelable(super.getBG(), flags);
     }
 
     protected MediumConfig(Parcel in) {

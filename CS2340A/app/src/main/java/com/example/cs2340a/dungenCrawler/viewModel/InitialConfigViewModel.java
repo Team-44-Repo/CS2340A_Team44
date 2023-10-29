@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.example.cs2340a.R;
+import com.example.cs2340a.dungenCrawler.model.Background;
 import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.EasyConfig;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
@@ -142,17 +143,18 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 Point point = new Point();
                 getWindowManager().getDefaultDisplay().getSize(point);
 
-                Score score = new Score(60000, false); 
+                // Score score = new Score(60000, false);
                 Player player = new Player(playerName, difficulty, point.x, point.y,
-                        getResources(), avatar, score);
+                        getResources(), avatar);
+                Background bg = new Background(point, getResources(), R.drawable.room1);
                 if (difficulty == 1) {
-                    gameConfig = new EasyConfig(player);
+                    gameConfig = new EasyConfig(player, bg);
                 } else if (difficulty == 0.75) {
-                    gameConfig = new MediumConfig(player);
+                    gameConfig = new MediumConfig(player, bg);
                 } else if (difficulty == 0.5) {
-                    gameConfig = new HardConfig(player);
+                    gameConfig = new HardConfig(player, bg);
                 } else {
-                    gameConfig = new EasyConfig(player);
+                    gameConfig = new EasyConfig(player, bg);
                 }
 
 

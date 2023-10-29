@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 
 public class HardConfig extends GameConfig {
 
-    public HardConfig(Player player) {
-        super(player);
+    public HardConfig(Player player, Background bg) {
+        super(player, bg);
     }
 
     @Override
@@ -18,6 +18,7 @@ public class HardConfig extends GameConfig {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeParcelable(getPlayer(), flags);
+        dest.writeParcelable(super.getBG(), flags);
     }
 
     protected HardConfig(Parcel in) {

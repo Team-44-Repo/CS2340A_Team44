@@ -15,6 +15,8 @@ public abstract class GameConfig implements Parcelable {
     //I'm not sure if its a bad, good, or neutral idea to have these attributes in both
     //the Player class and the GameConfig class.
     private Player player;
+    private Background bg;
+    private int resID;
     /*
     private double difficulty;
     private CharSprite avatar;
@@ -26,12 +28,19 @@ public abstract class GameConfig implements Parcelable {
     public GameConfig (Player player) {
         this.player = player;
     }
+    public GameConfig (Player player, Background bg) {
+        this(player);
+        this.bg = bg;
+        resID = bg.getResID();
+    }
 
     protected GameConfig(Parcel in) {
         player = in.readParcelable(Player.class.getClassLoader());
+        bg = in.readParcelable(Background.class.getClassLoader());
     }
 
     public Player getPlayer() { return player; }
+    public Background getBG() { return bg; }
 
     public void setPlayer(Player player) { this.player = player; }
     //public GameConfig(String name, double diff, CharSprite sprite, int roomId) {
