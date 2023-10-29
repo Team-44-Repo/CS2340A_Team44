@@ -31,7 +31,6 @@
         android:layout_width="283dp"
         android:layout_height="30dp"
         android:text="NO player name input"
-        app:layout_constraintBottom_toTopOf="@+id/tempEndButton_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"

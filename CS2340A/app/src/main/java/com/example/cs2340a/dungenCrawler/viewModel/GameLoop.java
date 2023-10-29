@@ -15,7 +15,8 @@ import androidx.core.content.pm.ShortcutInfoCompat;
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.Background;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
-import com.example.cs2340a.dungenCrawler.view.GameView;
+//GameView was split
+//import com.example.cs2340a.dungenCrawler.view.GameView;
 
 public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Callback {
 
