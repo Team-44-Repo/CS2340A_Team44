@@ -10,32 +10,47 @@ import androidx.annotation.NonNull;
 
 
 
-public class GameConfig implements Parcelable {
+public abstract class GameConfig implements Parcelable {
 
     //I'm not sure if its a bad, good, or neutral idea to have these attributes in both
     //the Player class and the GameConfig class.
-    private String playerName;
+    private Player player;
+    /*
     private double difficulty;
     private CharSprite avatar;
     private int currRoomId;
     private int score;
+     */
 
     //basic constructor
-    public GameConfig(String name, double diff, CharSprite sprite, int roomId) {
-
-        this.playerName = name;
-        this.difficulty = diff;
-        this.avatar = sprite;
-        this.currRoomId = roomId;
-
+    public GameConfig (Player player) {
+        this.player = player;
     }
+
+    protected GameConfig(Parcel in) {
+        player = in.readParcelable(Player.class.getClassLoader());
+    }
+
+    public Player getPlayer() { return player; }
+
+    public void setPlayer(Player player) { this.player = player; }
+    //public GameConfig(String name, double diff, CharSprite sprite, int roomId) {
+
+        //this.playerName = name;
+        //this.difficulty = diff;
+        //this.avatar = sprite;
+        //this.currRoomId = roomId;
+
+    //}
+    /*
     protected GameConfig(Parcel in) {
 
         playerName = in.readString();
         difficulty = in.readDouble();
         currRoomId = in.readInt();
     }
-
+    */
+    /*
     public static final Creator<GameConfig> CREATOR = new Creator<GameConfig>() {
         @Override
         public GameConfig createFromParcel(Parcel in) {
@@ -88,12 +103,5 @@ public class GameConfig implements Parcelable {
         parcel.writeDouble(difficulty);
         parcel.writeInt(currRoomId);
     }
-
-    public void draw(Canvas canvas) {
-
-    }
-
-    public void update() {
-        //GameDisplay.update();
-    }
+    */
 }

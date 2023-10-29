@@ -39,15 +39,15 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
 
         getWindowManager().getDefaultDisplay().getSize(point);
 
-        player = getIntent().getParcelableExtra("player");
+        // player = getIntent().getParcelableExtra("player");
         gameConfig = getIntent().getParcelableExtra("gameConfig");
-        avatar = getIntent().getIntExtra("avatar", R.drawable.player1);
+        // avatar = getIntent().getIntExtra("avatar", R.drawable.player1);
         //compSprite = getIntent().getByteArrayExtra("compSprite");
         //player.setSprite(BitmapFactory.decodeByteArray(compSprite, 0, compSprite.length));
 
 
         // Initialize Runnable GameView
-        gameView = new GameView(this, point.x, point.y, R.drawable.room1, player,
+        gameView = new GameView(this, point.x, point.y, R.drawable.room1, gameConfig.getPlayer(),
                 1);
         gameView.setCallback((GameView.Callback) this);
         //Setting the GameView as the content view
