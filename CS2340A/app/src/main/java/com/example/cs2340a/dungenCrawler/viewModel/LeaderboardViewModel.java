@@ -63,12 +63,13 @@ public class LeaderboardViewModel extends AppCompatActivity {
         // Carry over data from past screens
         // timeLeft = (int) getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);
         player = getIntent().getParcelableExtra("player");
-        score = getIntent().getIntExtra("score", player.getScore().getSeconds());
+        // score = getIntent().getIntExtra("score", player.getScore().getSeconds());
 
         // Initialize Leaderboard stuff
         date = new Date();
         hours = date.getHours();
         minutes = date.getMinutes();
+        score = player.getScore().getScore();
         String time = hours + ":" + minutes;
 
         leaderboard.addScores(score, player.getPlayerName(), time);

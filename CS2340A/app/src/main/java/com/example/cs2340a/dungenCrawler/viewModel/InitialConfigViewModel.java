@@ -9,8 +9,12 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.example.cs2340a.R;
+import com.example.cs2340a.dungenCrawler.model.Background;
 import com.example.cs2340a.dungenCrawler.model.CharSprite;
+import com.example.cs2340a.dungenCrawler.model.EasyConfig;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
+import com.example.cs2340a.dungenCrawler.model.HardConfig;
+import com.example.cs2340a.dungenCrawler.model.MediumConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.model.Score;
 
@@ -26,6 +30,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
     private RadioGroup characterRadioGroup;
     private Button exitbtn;
     private Button startGameButton;
+    private GameConfig gameConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,18 +143,27 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 Point point = new Point();
                 getWindowManager().getDefaultDisplay().getSize(point);
 
-                Score score = new Score(60000, false); 
+                // Score score = new Score(60000, false);
                 Player player = new Player(playerName, difficulty, point.x, point.y,
-                        getResources(), avatar, score);
-                GameConfig gameConfig = new GameConfig(playerName, difficulty, avAtar, 1);
+                        getResources(), avatar);
+                Background bg = new Background(point, getResources(), R.drawable.room1);
+                if (difficulty == 1) {
+                    gameConfig = new EasyConfig(player, bg);
+                } else if (difficulty == 0.75) {
+                    gameConfig = new MediumConfig(player, bg);
+                } else if (difficulty == 0.5) {
+                    gameConfig = new HardConfig(player, bg);
+                } else {
+                    gameConfig = new EasyConfig(player, bg);
+                }
 
 
                 Intent game = new Intent(InitialConfigViewModel.this, GameRoom1ViewModel.class);
                 // next line is the Old way to pass avatar, but I can't git it to work
-                game.putExtra("avatar", avatar);
+                // game.putExtra("avatar", avatar);
 
                 //pass Player and GameConfig objects (using Parcable)
-                game.putExtra("player", player);
+                // game.putExtra("player", player);
                 game.putExtra("gameConfig", gameConfig);
                 startActivity(game);
             }

@@ -15,12 +15,12 @@ import com.example.cs2340a.dungenCrawler.model.GameConfig;
 
 import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
-import com.example.cs2340a.dungenCrawler.view.GameView;
+//import com.example.cs2340a.dungenCrawler.view.GameView;
 
 
-public class GameRoom3ViewModel extends AppCompatActivity implements GameView.Callback {
+public class GameRoom3ViewModel extends AppCompatActivity implements GameLoop.Callback {
 
-    private GameView gameView;
+    //private GameView gameView;
     private int avatar;
     private Thread thread;
     private Player player;
@@ -28,7 +28,12 @@ public class GameRoom3ViewModel extends AppCompatActivity implements GameView.Ca
     private GameConfig gameConfig;
     private PlayerPosition playerPosition; //observer pattern
 
+    @Override
+    public void onRunnablePaused() {
 
+    }
+
+    /*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,4 +93,5 @@ public class GameRoom3ViewModel extends AppCompatActivity implements GameView.Ca
         super.onResume();
         gameView.resume();
     }
+     */
 }
