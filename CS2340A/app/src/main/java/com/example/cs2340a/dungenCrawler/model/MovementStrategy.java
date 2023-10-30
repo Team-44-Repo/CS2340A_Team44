@@ -4,8 +4,6 @@ import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 
-import androidx.constraintlayout.widget.ConstraintSet;
-
 public interface MovementStrategy extends Parcelable {
     //boolean isMoving = false;
     int X = 0;
@@ -14,7 +12,7 @@ public interface MovementStrategy extends Parcelable {
     int HEIGHT = 0;
 
     boolean onKey(KeyEvent event);
-    boolean onTouchLogic(MotionEvent event, Player player);
+    boolean onTouchLogic(MotionEvent event, Player player, boolean onTouch);
     boolean isMovingUp();
     boolean isMovingDown();
     boolean isMovingLeft();

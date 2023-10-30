@@ -2,12 +2,8 @@ package com.example.cs2340a.dungenCrawler.model;
 
 
 import android.content.res.Resources;
-import android.graphics.Canvas;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-
-import androidx.annotation.NonNull;
 
 
 
@@ -19,10 +15,10 @@ public abstract class GameConfig implements Parcelable {
     private int resID;
 
     //basic constructor
-    public GameConfig (Player player) {
+    public GameConfig(Player player) {
         this.player = player;
     }
-    public GameConfig (Player player, Background bg) {
+    public GameConfig(Player player, Background bg) {
         this(player);
         this.bg = bg;
         resID = bg.getResID();
@@ -40,18 +36,18 @@ public abstract class GameConfig implements Parcelable {
                 2090, 2400);
 
         switch (room) {
-            case 1:
-                currRoom = room1;
-                break;
-            case 2:
-                currRoom = room2;
-                break;
-            case 3:
-                currRoom = room3;
-                break;
-            default:
-                currRoom = room1;
-                break;
+        case 1:
+            currRoom = room1;
+            break;
+        case 2:
+            currRoom = room2;
+            break;
+        case 3:
+            currRoom = room3;
+            break;
+        default:
+            currRoom = room1;
+            break;
         }
     }
 
@@ -60,9 +56,13 @@ public abstract class GameConfig implements Parcelable {
         bg = in.readParcelable(Background.class.getClassLoader());
     }
 
-    public Player getPlayer() { return player; }
-    public Background getBG() { return bg; }
-    public Room getCurrRoom() { return currRoom; }
+    public Player getPlayer() {
+        return player; }
+    public Background getBG() {
+        return bg; }
+    public Room getCurrRoom() {
+        return currRoom; }
 
-    public void setPlayer(Player player) { this.player = player; }
+    public void setPlayer(Player player) {
+        this.player = player; }
 }

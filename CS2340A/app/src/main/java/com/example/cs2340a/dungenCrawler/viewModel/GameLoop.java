@@ -89,7 +89,22 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        return gameConfig.getPlayer().getMovement().onTouchLogic(event, gameConfig.getPlayer());
+        System.out.println("TOUCHING");
+        boolean onTouch = super.onTouchEvent(event);
+        //gameConfig.getPlayer().getMovement().onTouchLogic(event, gameConfig.getPlayer(), onTouch);
+        Log.d("in onTouchEvent", "");
+        switch (event.getAction()) {
+        case MotionEvent.ACTION_DOWN:
+            Log.d("in [0] actionDown", "");
+            return true;
+        case MotionEvent.ACTION_MOVE:
+            Log.d("in [0] actionMove", "");
+            gameConfig.getPlayer().setX((int) event.getX());
+            gameConfig.getPlayer().setY((int) event.getY());
+            return true;
+        default:
+            return onTouch;
+        }
     }
 
     @Override

@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.view.KeyEvent;
 
 import com.example.cs2340a.R;
 
@@ -66,7 +65,9 @@ public class Player implements Parcelable, IDrawable {
         difficulty = in.readDouble();
         healthPoints = in.readInt();
         avatarID = in.readInt();
-        movement = in.readParcelable(MovementStrategy.class.getClassLoader());
+        screenX = in.readInt();
+        screenY = in.readInt();
+        movement = in.readParcelable(PlayerMovement.class.getClassLoader());
         score = in.readParcelable(Score.class.getClassLoader());
         collisionShape = in.readParcelable(Rect.class.getClassLoader());
     }
@@ -132,8 +133,12 @@ public class Player implements Parcelable, IDrawable {
     public int getY() {
         return y;
     }
-    public int getScreenX() { return screenX; }
-    public int getScreenY() { return screenY; }
+    public int getScreenX() {
+        return screenX;
+    }
+    public int getScreenY() {
+        return screenY;
+    }
     public Score getScore() {
         return score;
     }
@@ -159,7 +164,9 @@ public class Player implements Parcelable, IDrawable {
     public void setY(int y) {
         this.y = y;
     }
-    public void setMovement(MovementStrategy movement) { this.movement = movement; }
+    public void setMovement(MovementStrategy movement) {
+        this.movement = movement;
+    }
 
     public void updateHealthPoints() {
 

@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.KeyEvent;
 
@@ -162,20 +161,32 @@ public class PlayerMovement extends Activity implements MovementStrategy, View.O
         return false;
     }
 
-    public boolean onTouchLogic(MotionEvent event, Player player) {
+    public boolean onTouchLogic(MotionEvent event, Player player, boolean onTouch) {
+        System.out.println("onTouchLogic");
         Log.d("in onTouchEvent", "");
-        x = (int) event.getX();
-        y = (int) event.getY();
+        // player.setX((int) event.getX());
+        // player.setY((int) event.getY());
+        // System.out.println("Event Action: " + event.getAction());
+        /*
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                System.out.println("ACTION DOWN");
                 Log.d("in [0] actionDown", "");
                 return true;
             case MotionEvent.ACTION_MOVE:
+                System.out.println("ACTION MOVE");
                 Log.d("in [0] actionMove", "");
+                player.setX((int) event.getX());
+                player.setY((int) event.getX());
+                return true;
+
+         */
+        /*
                 prevX = player.getX();
                 prevY = player.getY();
                 Log.d("x:" + x + " y:" + y, "");
-                // Log.d("door|" + currRoom.getDoorwayLeftX() + ", " + currRoom.getDoorwayBottomY(), "");
+                // Log.d("door|" + currRoom.getDoorwayLeftX() + ", " +
+                currRoom.getDoorwayBottomY(), "");
                 //checking for player collision with doorway
                 Log.d("checking if doorway", "");
                 if (x >= currRoom.getDoorwayLeftX() && x <= currRoom.getDoorwayRightX()) {
@@ -207,8 +218,9 @@ public class PlayerMovement extends Activity implements MovementStrategy, View.O
             default:
                 player.setX(x);
                 player.setY(y);
-        }
-        return true;
+                return true;
+         */
+        return onTouch;
         // return super.onTouchEvent(event);
     }
 }
