@@ -50,14 +50,14 @@ public class Player implements Parcelable, IDrawable {
     }
 
     //public Player(String name, CharSprite sprite, int roomId, double difficulty, int hp) {
-        /*
+    /*
         this.playerName = name;
         //this.avatar = sprite;
         this.currRoomId = roomId;
         this.difficulty = difficulty;
         //this.healthPoints = 44;
         this.healthPoints = (int) (100 * difficulty);
-         */
+    */
     //}
 
     protected Player(Parcel in) {

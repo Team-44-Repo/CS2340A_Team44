@@ -5,6 +5,9 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 public interface MovementStrategy extends Parcelable, KeyEvent.Callback {
+    /*
+    This interface should be used as a blueprint for all Moveable objects in the game.
+     */
     //boolean isMoving = false;
     int X = 0;
     int Y = 0;

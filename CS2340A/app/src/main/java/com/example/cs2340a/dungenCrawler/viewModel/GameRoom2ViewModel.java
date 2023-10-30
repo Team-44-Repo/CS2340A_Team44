@@ -1,6 +1,7 @@
 package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
+/*
 
 import android.content.Intent;
 import android.graphics.Point;
@@ -16,6 +17,8 @@ import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
 //import com.example.cs2340a.dungenCrawler.view.GameView;
+
+ */
 
 
 public class GameRoom2ViewModel extends AppCompatActivity implements GameLoop.Callback {

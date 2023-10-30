@@ -6,8 +6,12 @@ import android.os.Parcel;
 import androidx.annotation.NonNull;
 
 public class MediumConfig extends GameConfig {
+    /*
+    Contains all game info specific to a game played on the MEDIUM difficulty.
+     */
 
-    public MediumConfig(Player player, Background bg) { super(player, bg); }
+    public MediumConfig(Player player, Background bg) {
+        super(player, bg); }
     /*
     public MediumConfig(Player player, Background bg, int room) { super(player, bg, room); }
      */

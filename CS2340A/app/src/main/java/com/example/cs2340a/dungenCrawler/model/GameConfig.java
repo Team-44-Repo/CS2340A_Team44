@@ -9,6 +9,13 @@ import android.os.Parcelable;
 
 public abstract class GameConfig implements Parcelable {
 
+    /*
+    This is where ALL base information of the game should be stored. This will need to be modified
+    more to adjust to the concrete classes: EasyConfig, MediumConfig, and HardConfig. These classes
+    will extend this class to add specifics based on their difficulty. Right now, there's nothing
+    specific in any other them, but any specific information regarding those difficulties should
+    be included in those classes hereafter.
+     */
     private Player player;
     private Background bg;
     private Room currRoom;

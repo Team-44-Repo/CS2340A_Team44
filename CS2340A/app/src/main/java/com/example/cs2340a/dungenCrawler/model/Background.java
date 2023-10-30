@@ -47,8 +47,10 @@ public class Background implements Parcelable {
     public void setY(int y) {
         this.y = y;
     }
-    public void setBitmap(Bitmap bitmap) { background = bitmap; }
+    public void setBitmap(Bitmap bitmap) {
+        background = bitmap; }
     public Bitmap getBackground() {
+
         return background;
     }
 
@@ -58,8 +60,10 @@ public class Background implements Parcelable {
     public int getY() {
         return y;
     }
-    public int getResID() { return resID; }
-    public Point getPoint() { return point; }
+    public int getResID() {
+        return resID; }
+    public Point getPoint() {
+        return point; }
 
     @Override
     public int describeContents() {

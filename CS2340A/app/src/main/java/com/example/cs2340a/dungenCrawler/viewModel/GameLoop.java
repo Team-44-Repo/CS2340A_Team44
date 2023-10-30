@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -15,6 +13,12 @@ import com.example.cs2340a.dungenCrawler.model.Background;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 
 public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Callback {
+    /*
+    This is how our game operates. Since it is Runnable, it allows for a continous loop to go on
+    until the GameLoop is no longer needed (AKA the game ends). Every loop, it runs 3 methods:
+    update(), draw(), and sleep() (more detail on them at their method locations). Anything that
+    needs to be monitored needs to be in here.
+     */
 
     private Callback callback;
     private GameConfig gameConfig;
@@ -33,6 +37,10 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         bg.createBitmap(bg.getPoint(), getResources(), bg.getResID());
     }
 
+    /*
+    This is how our game is running. It is an overriden method from the Runnable interface and
+    allows us to create a continuous loop that doesn't shut down.
+     */
     @Override
     public void run() {
         System.out.println("GameLoop running...");
@@ -48,6 +56,11 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         }
     }
 
+    /*
+    This is where things that constantly need to be checked should be put (collisions, item
+    interactions, score updates, etc.). It will constantly check whatever you put in here and
+    update it in real time to our current gameplay.
+     */
     private void update() {
         Log.d("in update()", "");
         gameConfig.getPlayer().getScore().setScore(gameConfig.getPlayer().getScore().getScore()
@@ -55,6 +68,11 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         // gameConfig.getPlayer().getMovement().onKeyDown();
     }
 
+    /*
+    This is how we are seeing everything on screen. It takes the updated information changed by
+    update() which is called before it and redraws the entire screen in real time with the updated
+    information. It draws this faster than we can see.
+     */
     private void draw() {
         Log.d("in draw()", "");
         if (getHolder().getSurface().isValid()) {
@@ -65,6 +83,10 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         }
     }
 
+    /*
+    This method gives us the brief amount of time for everything to process the changes correctly
+    so our game doesn't crash. THIS DOES NOT NEED TO BE TOUCHED ANY FURTHER.
+     */
     private void sleep() {
         Log.d("in sleep()", "");
         try {
@@ -74,59 +96,24 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         }
     }
 
+    /*
+    This resumes our game from our previous stopping point if we used pause().
+     */
     public void resume() {
         isPlaying = true;
         thread = new Thread(this);
         thread.start();
     }
 
+    /*
+    This temporarily pauses our run state without deleting our information.
+     */
     public void pause() {
         try {
             isPlaying = false;
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-    }
-    /*
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        System.out.println("TOUCHING");
-        boolean onTouch = super.onTouchEvent(event);
-        //gameConfig.getPlayer().getMovement().onTouchLogic(event, gameConfig.getPlayer(), onTouch);
-        Log.d("in onTouchEvent", "");
-        switch (event.getAction()) {
-        case MotionEvent.ACTION_DOWN:
-            Log.d("in [0] actionDown", "");
-            return true;
-        case MotionEvent.ACTION_MOVE:
-            Log.d("in [0] actionMove", "");
-            gameConfig.getPlayer().setX((int) event.getX());
-            gameConfig.getPlayer().setY((int) event.getY());
-            return true;
-        default:
-            return onTouch;
-        }
-    }
-     */
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        System.out.println("KEY DOWN");
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_W:
-                gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() - 30);
-                return true;
-            case KeyEvent.KEYCODE_A:
-                gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() - 30);
-                return true;
-            case KeyEvent.KEYCODE_S:
-                gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() + 30);
-                return true;
-            case KeyEvent.KEYCODE_D:
-                gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() + 30);
-                return true;
-            default:
-                return super.onKeyDown(keyCode, event);
         }
     }
 

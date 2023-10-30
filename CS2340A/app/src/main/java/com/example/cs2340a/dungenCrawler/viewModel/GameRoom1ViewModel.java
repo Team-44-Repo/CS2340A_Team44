@@ -71,24 +71,27 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         super.onPointerCaptureChanged(hasCapture);
     }
 
+    /*
+    Allows the Player to move with WASD key movement.
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         System.out.println("KEY DOWN");
         switch (keyCode) {
-            case KeyEvent.KEYCODE_W:
-                gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() - 30);
-                return true;
-            case KeyEvent.KEYCODE_A:
-                gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() - 30);
-                return true;
-            case KeyEvent.KEYCODE_S:
-                gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() + 30);
-                return true;
-            case KeyEvent.KEYCODE_D:
-                gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() + 30);
-                return true;
-            default:
-                return super.onKeyDown(keyCode, event);
+        case KeyEvent.KEYCODE_W:
+            gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() - 30);
+            return true;
+        case KeyEvent.KEYCODE_A:
+            gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() - 30);
+            return true;
+        case KeyEvent.KEYCODE_S:
+            gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() + 30);
+            return true;
+        case KeyEvent.KEYCODE_D:
+            gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() + 30);
+            return true;
+        default:
+            return super.onKeyDown(keyCode, event);
         }
     }
 }

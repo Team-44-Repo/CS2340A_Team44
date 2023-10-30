@@ -7,6 +7,10 @@ import androidx.annotation.NonNull;
 
 public class HardConfig extends GameConfig {
 
+    /*
+    Contains all game info specific to a game played on the HARD difficulty.
+     */
+
     public HardConfig(Player player, Background bg) {
         super(player, bg);
     }

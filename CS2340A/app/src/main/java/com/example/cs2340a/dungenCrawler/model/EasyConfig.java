@@ -2,11 +2,13 @@ package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.res.Resources;
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
 public class EasyConfig extends GameConfig {
+    /*
+    Contains all game info specific to a game played on the EASY difficulty.
+     */
     public EasyConfig(Player player, Background bg) {
         super(player, bg);
     }
