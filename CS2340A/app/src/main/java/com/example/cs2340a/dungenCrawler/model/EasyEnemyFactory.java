@@ -3,7 +3,7 @@ package com.example.cs2340a.dungenCrawler.model;
 public class Room1EnemyFactory extends EnemyFactory {
     @Override
     public Enemy spawnEnemy() {
-        //return new Room1Vampire?
+        //return new EasyVampire?
         return new Zombie();
     }
     // do it by difficulty
