@@ -6,7 +6,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class Room implements Parcelable {
+public abstract class Room implements Parcelable {
     private String name; // A name or identifier for the room
     private Room[] connectedRooms; // An array of rooms that are connected to this room
     private Room connectedRoom; //the one room that is connected (sprint 3 - only one room

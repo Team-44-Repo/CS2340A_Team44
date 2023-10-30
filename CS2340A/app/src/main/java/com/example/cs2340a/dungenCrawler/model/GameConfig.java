@@ -28,11 +28,11 @@ public abstract class GameConfig implements Parcelable {
         this(player, bg);
 
         //Create 3 Room Objects
-        Room room1 = new Room("room1", 1200, 540, 310, 460,
+        Room room1 = new RoomOne("room1", 1200, 540, 310, 460,
                 2090, 2400);
-        Room room2 = new Room("room2", 30, 400, 0, 20,
+        Room room2 = new RoomTwo("room2", 30, 400, 0, 20,
                 720, 890);
-        Room room3 = new Room("room3", 800, 800, 420, 580,
+        Room room3 = new RoomThree("room3", 800, 800, 420, 580,
                 2090, 2400);
 
         switch (room) {
