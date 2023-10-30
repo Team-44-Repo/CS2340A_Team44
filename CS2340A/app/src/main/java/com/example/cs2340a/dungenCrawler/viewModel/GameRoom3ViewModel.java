@@ -1,6 +1,7 @@
 package com.example.cs2340a.dungenCrawler.viewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
+/*
 
 import android.content.Intent;
 import android.graphics.Point;
@@ -17,16 +18,18 @@ import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
 //import com.example.cs2340a.dungenCrawler.view.GameView;
 
+ */
+
 
 public class GameRoom3ViewModel extends AppCompatActivity implements GameLoop.Callback {
 
     //private GameView gameView;
     private int avatar;
     private Thread thread;
-    private Player player;
-    private int score;
-    private GameConfig gameConfig;
-    private PlayerPosition playerPosition; //observer pattern
+    // private Player player;
+    // private int score;
+    // private GameConfig gameConfig;
+    // private PlayerPosition playerPosition; //observer pattern
 
     @Override
     public void onRunnablePaused() {

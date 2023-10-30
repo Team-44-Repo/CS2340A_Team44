@@ -1,13 +1,22 @@
 package com.example.cs2340a.dungenCrawler.model;
 
+import android.content.res.Resources;
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 
 public class MediumConfig extends GameConfig {
+    /*
+    Contains all game info specific to a game played on the MEDIUM difficulty.
+     */
 
     public MediumConfig(Player player, Background bg) {
-        super(player, bg);
+        super(player, bg); }
+    /*
+    public MediumConfig(Player player, Background bg, int room) { super(player, bg, room); }
+     */
+    public MediumConfig(Player player, Background bg, int room, Resources res) {
+        super(player, bg, room, res);
     }
 
     @Override

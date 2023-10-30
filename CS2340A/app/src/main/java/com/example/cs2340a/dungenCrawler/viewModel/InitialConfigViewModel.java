@@ -10,13 +10,12 @@ import android.widget.RadioGroup;
 
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.Background;
-import com.example.cs2340a.dungenCrawler.model.CharSprite;
+// import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.EasyConfig;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.HardConfig;
 import com.example.cs2340a.dungenCrawler.model.MediumConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
-import com.example.cs2340a.dungenCrawler.model.Score;
 
 public class InitialConfigViewModel extends AppCompatActivity {
 
@@ -108,7 +107,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
             }
             */
             //the next line is still part of the old way, but
-            CharSprite avAtar = new CharSprite(R.drawable.player1, "Char1");
+            // CharSprite avAtar = new CharSprite(R.drawable.player1, "Char1");
 
             //****** OLD WAY ********
             //  3   gathering Character Sprite selection
@@ -148,13 +147,13 @@ public class InitialConfigViewModel extends AppCompatActivity {
                         getResources(), avatar);
                 Background bg = new Background(point, getResources(), R.drawable.room1);
                 if (difficulty == 1) {
-                    gameConfig = new EasyConfig(player, bg);
+                    gameConfig = new EasyConfig(player, bg, 1, getResources());
                 } else if (difficulty == 0.75) {
-                    gameConfig = new MediumConfig(player, bg);
+                    gameConfig = new MediumConfig(player, bg, 1, getResources());
                 } else if (difficulty == 0.5) {
-                    gameConfig = new HardConfig(player, bg);
+                    gameConfig = new HardConfig(player, bg, 1, getResources());
                 } else {
-                    gameConfig = new EasyConfig(player, bg);
+                    gameConfig = new EasyConfig(player, bg, 1, getResources());
                 }
 
 

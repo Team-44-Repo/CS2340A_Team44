@@ -1,7 +1,12 @@
 package com.example.cs2340a.dungenCrawler.model;
 
 
-public class Room {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public abstract class Room implements Parcelable {
     private String name; // A name or identifier for the room
     private Room[] connectedRooms; // An array of rooms that are connected to this room
     private Room connectedRoom; //the one room that is connected (sprint 3 - only one room
@@ -51,13 +56,28 @@ public class Room {
         return doorwayRightX;
     }
 
-
     //setters
     public void setConnectedRooms(Room[] connectedRooms) {
         this.connectedRooms = connectedRooms;
     }
     public void setConnectedRoom(Room connectedRoom) {
         this.connectedRoom = connectedRoom;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeInt(initialPlayerX);
+        parcel.writeInt(initialPlayerY);
+        parcel.writeInt(doorwayTopY);
+        parcel.writeInt(doorwayBottomY);
+        parcel.writeInt(doorwayLeftX);
+        parcel.writeInt(doorwayRightX);
     }
 
 

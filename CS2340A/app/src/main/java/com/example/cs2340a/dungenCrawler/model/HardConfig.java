@@ -1,13 +1,26 @@
 package com.example.cs2340a.dungenCrawler.model;
 
+import android.content.res.Resources;
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 
 public class HardConfig extends GameConfig {
 
+    /*
+    Contains all game info specific to a game played on the HARD difficulty.
+     */
+
     public HardConfig(Player player, Background bg) {
         super(player, bg);
+    }
+    /*
+    public HardConfig(Player player, Background bg, int room) {
+        super(player, bg, room);
+    }
+     */
+    public HardConfig(Player player, Background bg, int room, Resources res) {
+        super(player, bg, room, res);
     }
 
     @Override
