@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
@@ -68,6 +69,27 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        System.out.println("KEY DOWN");
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_W:
+                gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() - 30);
+                return true;
+            case KeyEvent.KEYCODE_A:
+                gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() - 30);
+                return true;
+            case KeyEvent.KEYCODE_S:
+                gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() + 30);
+                return true;
+            case KeyEvent.KEYCODE_D:
+                gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() + 30);
+                return true;
+            default:
+                return super.onKeyDown(keyCode, event);
+        }
     }
 }
 

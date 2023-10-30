@@ -49,7 +49,7 @@ public class Player implements Parcelable, IDrawable {
         collisionShape = new Rect(x, y, x + width, y + height); //not used.
     }
 
-    public Player(String name, CharSprite sprite, int roomId, double difficulty, int hp) {
+    //public Player(String name, CharSprite sprite, int roomId, double difficulty, int hp) {
         /*
         this.playerName = name;
         //this.avatar = sprite;
@@ -58,7 +58,7 @@ public class Player implements Parcelable, IDrawable {
         //this.healthPoints = 44;
         this.healthPoints = (int) (100 * difficulty);
          */
-    }
+    //}
 
     protected Player(Parcel in) {
         playerName = in.readString();

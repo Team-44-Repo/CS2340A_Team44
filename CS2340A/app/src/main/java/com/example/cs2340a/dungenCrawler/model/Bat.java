@@ -6,10 +6,8 @@ import android.graphics.Paint;
 
 public class Bat extends Enemy implements IDrawable {
     public void attack() {
-        // Bat attack logic
-        // fly
-        // sleep
-        // hit
+        // check collision
+        // apply damage dealt
     }
 
     @Override

@@ -110,6 +110,25 @@ public class PlayerMovement extends Activity implements MovementStrategy, View.O
 
         return false;
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_W:
+                y -= 30;
+                return true;
+            case KeyEvent.KEYCODE_A:
+                x -= 30;
+                return true;
+            case KeyEvent.KEYCODE_S:
+                y += 30;
+                return true;
+            case KeyEvent.KEYCODE_D:
+                x += 30;
+                return true;
+            default:
+                return super.onKeyUp(keyCode, event);
+        }
+    }
 
 
     @Override

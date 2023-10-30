@@ -7,6 +7,7 @@ public abstract class Enemy {
 
     private int x;
     private int y;
+    private int speed;
     private Bitmap sprite;
     private Rect collisionShape;
     public int getX() {
@@ -14,6 +15,9 @@ public abstract class Enemy {
     }
     public int getY() {
         return y;
+    }
+    public int getSpeed() {
+        return speed;
     }
     public Bitmap getSprite() {
         return sprite;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -51,6 +52,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         Log.d("in update()", "");
         gameConfig.getPlayer().getScore().setScore(gameConfig.getPlayer().getScore().getScore()
                 + 1);
+        // gameConfig.getPlayer().getMovement().onKeyDown();
     }
 
     private void draw() {
@@ -86,7 +88,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             e.printStackTrace();
         }
     }
-
+    /*
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         System.out.println("TOUCHING");
@@ -104,6 +106,27 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             return true;
         default:
             return onTouch;
+        }
+    }
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        System.out.println("KEY DOWN");
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_W:
+                gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() - 30);
+                return true;
+            case KeyEvent.KEYCODE_A:
+                gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() - 30);
+                return true;
+            case KeyEvent.KEYCODE_S:
+                gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() + 30);
+                return true;
+            case KeyEvent.KEYCODE_D:
+                gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() + 30);
+                return true;
+            default:
+                return super.onKeyDown(keyCode, event);
         }
     }
 

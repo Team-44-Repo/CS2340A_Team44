@@ -4,7 +4,7 @@ import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 
-public interface MovementStrategy extends Parcelable {
+public interface MovementStrategy extends Parcelable, KeyEvent.Callback {
     //boolean isMoving = false;
     int X = 0;
     int Y = 0;
