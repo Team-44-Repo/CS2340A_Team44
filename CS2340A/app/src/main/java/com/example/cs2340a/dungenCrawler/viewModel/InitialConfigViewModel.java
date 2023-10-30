@@ -148,13 +148,13 @@ public class InitialConfigViewModel extends AppCompatActivity {
                         getResources(), avatar);
                 Background bg = new Background(point, getResources(), R.drawable.room1);
                 if (difficulty == 1) {
-                    gameConfig = new EasyConfig(player, bg);
+                    gameConfig = new EasyConfig(player, bg, 1, getResources());
                 } else if (difficulty == 0.75) {
-                    gameConfig = new MediumConfig(player, bg);
+                    gameConfig = new MediumConfig(player, bg, 1, getResources());
                 } else if (difficulty == 0.5) {
-                    gameConfig = new HardConfig(player, bg);
+                    gameConfig = new HardConfig(player, bg, 1, getResources());
                 } else {
-                    gameConfig = new EasyConfig(player, bg);
+                    gameConfig = new EasyConfig(player, bg, 1, getResources());
                 }
 
 

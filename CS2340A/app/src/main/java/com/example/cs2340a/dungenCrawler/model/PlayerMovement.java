@@ -6,24 +6,26 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.KeyEvent;
 
 
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 
-public class PlayerMovement extends Activity implements MovementStrategy, Parcelable,
-        View.OnKeyListener {
-
-    private Player player;
+public class PlayerMovement extends Activity implements MovementStrategy, View.OnKeyListener {
     private boolean isMovingUp = false;
     private boolean isMovingDown = false;
     private boolean isMovingLeft = false;
     private boolean isMovingRight = false;
 
+    private Room currRoom;
     private int x;
     private int y;
+    private int prevX;
+    private int prevY;
     private int width;
     private int height;
     private Bitmap avatar;
@@ -41,7 +43,6 @@ public class PlayerMovement extends Activity implements MovementStrategy, Parcel
     }
 
     protected PlayerMovement(Parcel in) {
-        player = in.readParcelable(Player.class.getClassLoader());
         isMovingUp = in.readByte() != 0;
         isMovingDown = in.readByte() != 0;
         isMovingLeft = in.readByte() != 0;
@@ -51,6 +52,7 @@ public class PlayerMovement extends Activity implements MovementStrategy, Parcel
         width = in.readInt();
         height = in.readInt();
         avatar = in.readParcelable(Bitmap.class.getClassLoader());
+        currRoom = in.readParcelable(Room.class.getClassLoader());
     }
 
     public static final Creator<PlayerMovement> CREATOR = new Creator<PlayerMovement>() {
@@ -64,10 +66,6 @@ public class PlayerMovement extends Activity implements MovementStrategy, Parcel
             return new PlayerMovement[size];
         }
     };
-
-    public Bitmap getAvatar() {
-        return avatar;
-    }
     public boolean isMovingUp() {
         return isMovingUp;
     }
@@ -82,12 +80,6 @@ public class PlayerMovement extends Activity implements MovementStrategy, Parcel
     }
     public void setUp(boolean up) {
         this.isMovingUp = up;
-    }
-
-
-
-    public void setAvatar(Bitmap a) {
-        this.avatar = a;
     }
 
     @Override
@@ -128,7 +120,6 @@ public class PlayerMovement extends Activity implements MovementStrategy, Parcel
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeParcelable(player, i);
         parcel.writeByte((byte) (isMovingUp ? 1 : 0));
         parcel.writeByte((byte) (isMovingDown ? 1 : 0));
         parcel.writeByte((byte) (isMovingLeft ? 1 : 0));
@@ -138,6 +129,7 @@ public class PlayerMovement extends Activity implements MovementStrategy, Parcel
         parcel.writeInt(width);
         parcel.writeInt(height);
         parcel.writeParcelable(avatar, i);
+        parcel.writeParcelable(currRoom, i);
     }
 
     @Override
@@ -168,5 +160,55 @@ public class PlayerMovement extends Activity implements MovementStrategy, Parcel
         }
 
         return false;
+    }
+
+    public boolean onTouchLogic(MotionEvent event, Player player) {
+        Log.d("in onTouchEvent", "");
+        x = (int) event.getX();
+        y = (int) event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.d("in [0] actionDown", "");
+                return true;
+            case MotionEvent.ACTION_MOVE:
+                Log.d("in [0] actionMove", "");
+                prevX = player.getX();
+                prevY = player.getY();
+                Log.d("x:" + x + " y:" + y, "");
+                // Log.d("door|" + currRoom.getDoorwayLeftX() + ", " + currRoom.getDoorwayBottomY(), "");
+                //checking for player collision with doorway
+                Log.d("checking if doorway", "");
+                if (x >= currRoom.getDoorwayLeftX() && x <= currRoom.getDoorwayRightX()) {
+                    if (y >= currRoom.getDoorwayTopY() && y <= currRoom.getDoorwayBottomY()) {
+                        player.setX(x);
+                        player.setY(y);
+                        // pause();
+                        Log.d("paused-------------", "");
+                    }
+                } else if (x < 20) {
+                    Log.d("left: " + x + "," + y, "");
+                    //player.setX(prevX);
+                } else if (x > 2090) {
+                    Log.d("right: " + x + "," + y, "");
+                    //player.setX(prevX);
+                } else if (y < 3) {
+                    Log.d("top: " + x + "," + y, "");
+                    //player.setY(prevY);
+                } else if (y > 810) {
+                    Log.d("bottom: " + x + "," + y, "");
+                    //player.setY(prevY);
+                } else { // there is no collision
+                    player.setX(x);
+                    player.setY(y);
+                }
+
+                //Log.d("post-(" + player.getX() + "," + player.getY(), "");
+                return true;
+            default:
+                player.setX(x);
+                player.setY(y);
+        }
+        return true;
+        // return super.onTouchEvent(event);
     }
 }

@@ -1,21 +1,17 @@
 package com.example.cs2340a.dungenCrawler.viewModel;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Parcel;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.pm.ShortcutInfoCompat;
 
-import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.Background;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
-import com.example.cs2340a.dungenCrawler.view.GameView;
 
 public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Callback {
 
@@ -24,8 +20,6 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     private Thread thread;
     private boolean isPlaying;
     private Background bg;
-    private Paint paint;
-    private Paint whitePaint;
 
     public GameLoop(Context context) {
         super(context);
@@ -55,16 +49,15 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
 
     private void update() {
         Log.d("in update()", "");
-        // score++;
-        gameConfig.getPlayer().getScore().setScore
-                (gameConfig.getPlayer().getScore().getScore() + 1);
+        gameConfig.getPlayer().getScore().setScore(gameConfig.getPlayer().getScore().getScore()
+                + 1);
     }
 
     private void draw() {
         Log.d("in draw()", "");
         if (getHolder().getSurface().isValid()) {
             Canvas canvas = getHolder().lockCanvas();
-            canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), paint);
+            canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), new Paint());
             gameConfig.getPlayer().draw(canvas, getResources());
             getHolder().unlockCanvasAndPost(canvas);
         }
@@ -92,6 +85,11 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return gameConfig.getPlayer().getMovement().onTouchLogic(event, gameConfig.getPlayer());
     }
 
     @Override
