@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class CollisionMap implements Parcelable, IDrawable {
+public class CollisionMap implements Parcelable, IDrawable, Collidable {
     /*
     This class is made to create the proper collision map based on the room the player is currently
     in. In the GameView class, there will need to be a method called in the update() function to
@@ -21,16 +21,20 @@ public class CollisionMap implements Parcelable, IDrawable {
     private Rect bottomBorder;
     private Rect leftBorder;
     private Rect rightBorder;
+    private int topBorderCollisionMark = 50;
+    private int bottomBorderCollisionMark = 800;
+    private int leftBorderCollisionMark = 50;
+    private int rightBorderCollisionMark = 2050;
     private Rect doorway; // will be used to create detection area to move to next room
     private int roomID;
 
     public CollisionMap(int roomID) {
         this.roomID = roomID;
 
-        topBorder = new Rect(0, 0, 1920, 50);
-        bottomBorder = new Rect(0, 1000, 2180, 1080);
+        topBorder = new Rect(0, 0, 2200, 50);
+        bottomBorder = new Rect(0, 975, 2200, 1080);
         leftBorder = new Rect(0, 0, 50, 1080);
-        rightBorder = new Rect(2100, 0, 2180, 1080);
+        rightBorder = new Rect(2175, 0, 2300, 1080);
 
         doorway = new Rect();
     }
@@ -61,6 +65,18 @@ public class CollisionMap implements Parcelable, IDrawable {
     public Rect getBottomBorder() { return bottomBorder; } // Call in draw() method in GameView
     public Rect getLeftBorder() { return leftBorder; } // Call in draw() method in GameView
     public Rect getRightBorder() { return rightBorder; } // Call in draw() method in GameView
+    public int getTopBorderCollisionMark() {
+        return topBorderCollisionMark;
+    }
+    public int getBottomBorderCollisionMark() {
+        return bottomBorderCollisionMark;
+    }
+    public int getLeftBorderCollisionMark() {
+        return leftBorderCollisionMark;
+    }
+    public int getRightBorderCollisionMark() {
+        return rightBorderCollisionMark;
+    }
 
     public static final int TILE_WIDTH_PIXELS = 83;
     public static final int TILE_HEIGHT_PIXELS = 84;

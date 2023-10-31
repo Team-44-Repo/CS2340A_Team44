@@ -65,6 +65,24 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         Log.d("in update()", "");
         gameConfig.getPlayer().getScore().setScore(gameConfig.getPlayer().getScore().getScore()
                 + 1);
+        gameConfig.getPlayer().update();
+        if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().
+                getCollisionMap().getBottomBorder())) {
+            gameConfig.getPlayer().
+                    setY(gameConfig.getCurrRoom().getCollisionMap().getBottomBorderCollisionMark());
+        } else if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().
+                getCollisionMap().getTopBorder())) {
+            gameConfig.getPlayer().
+                    setY(gameConfig.getCurrRoom().getCollisionMap().getTopBorderCollisionMark());
+        } else if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().
+                getCollisionMap().getLeftBorder())) {
+            gameConfig.getPlayer().
+                    setX(gameConfig.getCurrRoom().getCollisionMap().getLeftBorderCollisionMark());
+        } else if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().
+                getCollisionMap().getRightBorder())) {
+            gameConfig.getPlayer().
+                    setX(gameConfig.getCurrRoom().getCollisionMap().getRightBorderCollisionMark());
+        }
         // gameConfig.getPlayer().getMovement().onKeyDown();
     }
 
