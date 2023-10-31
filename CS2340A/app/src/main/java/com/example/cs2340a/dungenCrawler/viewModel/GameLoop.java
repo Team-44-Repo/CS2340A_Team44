@@ -24,7 +24,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     private GameConfig gameConfig;
     private Thread thread;
     private boolean isPlaying;
-    private Background bg;
+    // private Background bg;
 
     public GameLoop(Context context) {
         super(context);
@@ -33,8 +33,8 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     public GameLoop(Context context, GameConfig gameConfig) {
         this(context);
         this.gameConfig = gameConfig;
-        bg = gameConfig.getBG();
-        bg.createBitmap(bg.getPoint(), getResources(), bg.getResID());
+        // bg = gameConfig.getBG();
+        // bg.createBitmap(bg.getPoint(), getResources(), bg.getResID());
     }
 
     /*
@@ -77,7 +77,8 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         Log.d("in draw()", "");
         if (getHolder().getSurface().isValid()) {
             Canvas canvas = getHolder().lockCanvas();
-            canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), new Paint());
+            gameConfig.getCurrRoom().draw(canvas, getResources());
+            // canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), new Paint());
             gameConfig.getPlayer().draw(canvas, getResources());
             getHolder().unlockCanvasAndPost(canvas);
         }

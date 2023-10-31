@@ -1,3 +1,5 @@
+package com.example.cs2340a.dungenCrawler.model;
+
 public class HardEnemyFactory extends EnemyFactory {
     @Override
     public Enemy spawnEnemy() {

@@ -30,18 +30,27 @@ public abstract class GameConfig implements Parcelable {
         this.bg = bg;
         resID = bg.getResID();
     }
+    public GameConfig(Player player, Room room) {
+        this(player);
+        this.currRoom = room;
+    }
 
     public GameConfig(Player player, Background bg, int room, Resources res) {
         this(player, bg);
+        this.currRoom = new RoomOne("room1", 1200, 540, 310,
+                460, 2090, 2400, bg, 1);
 
         //Create 3 Room Objects
+        /*
         Room room1 = new RoomOne("room1", 1200, 540, 310, 460,
                 2090, 2400);
         Room room2 = new RoomTwo("room2", 30, 400, 0, 20,
                 720, 890);
         Room room3 = new RoomThree("room3", 800, 800, 420, 580,
                 2090, 2400);
+         */
 
+        /*
         switch (room) {
         case 1:
             currRoom = room1;
@@ -56,11 +65,13 @@ public abstract class GameConfig implements Parcelable {
             currRoom = room1;
             break;
         }
+         */
     }
 
     protected GameConfig(Parcel in) {
         player = in.readParcelable(Player.class.getClassLoader());
-        bg = in.readParcelable(Background.class.getClassLoader());
+        // bg = in.readParcelable(Background.class.getClassLoader());
+        currRoom = in.readParcelable(Room.class.getClassLoader());
     }
 
     public Player getPlayer() {

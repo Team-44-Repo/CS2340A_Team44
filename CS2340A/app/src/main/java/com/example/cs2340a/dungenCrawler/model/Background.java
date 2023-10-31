@@ -3,6 +3,8 @@ package com.example.cs2340a.dungenCrawler.model;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -10,7 +12,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 
-public class Background implements Parcelable {
+public class Background implements Parcelable, IDrawable {
 
     private int x;
     private int y;
@@ -87,4 +89,10 @@ public class Background implements Parcelable {
             return new Background[size];
         }
     };
+
+    @Override
+    public void draw(Canvas canvas, Resources resources) {
+        Paint paint = new Paint();
+        canvas.drawBitmap(background, x, y, paint);
+    }
 }

@@ -12,6 +12,9 @@ public class EasyConfig extends GameConfig {
     public EasyConfig(Player player, Background bg) {
         super(player, bg);
     }
+    public EasyConfig(Player player, Room room) {
+        super(player, room);
+    }
     /*
     public EasyConfig(Player player, Background bg, int room) {
         super(player, bg, room);
@@ -29,7 +32,8 @@ public class EasyConfig extends GameConfig {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeParcelable(super.getPlayer(), flags);
-        dest.writeParcelable(super.getBG(), flags);
+        //dest.writeParcelable(super.getBG(), flags);
+        dest.writeParcelable(super.getCurrRoom(), flags);
     }
 
     protected EasyConfig(Parcel in) {

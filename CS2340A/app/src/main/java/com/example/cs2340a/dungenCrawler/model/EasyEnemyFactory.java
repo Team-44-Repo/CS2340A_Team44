@@ -1,6 +1,6 @@
 package com.example.cs2340a.dungenCrawler.model;
 
-public class Room1EnemyFactory extends EnemyFactory {
+public class EasyEnemyFactory extends EnemyFactory {
     @Override
     public Enemy spawnEnemy() {
         //return new EasyVampire?
