@@ -24,8 +24,10 @@ public class Player implements Parcelable, IDrawable {
     private int healthPoints;
     private Score score;
     private Rect collisionShape;
-    private int x = 990;
-    private int y = 800;
+    private int x = 1200;
+    private int y = 540;
+    private int collisionOffsetX = 30;
+    private int collisionOffsetY = 70;
     private int screenX;
     private int screenY;
     private int width = 74;
@@ -46,19 +48,9 @@ public class Player implements Parcelable, IDrawable {
         this.screenY = screenY;
 
         movement = new PlayerMovement(screenX, screenY, res, avaID);
-        collisionShape = new Rect(x, y, x + width, y + height); //not used.
+        collisionShape = new Rect(x + collisionOffsetX, y + collisionOffsetY,
+                (x + collisionOffsetX) + width, (y + collisionOffsetY) + height);
     }
-
-    //public Player(String name, CharSprite sprite, int roomId, double difficulty, int hp) {
-    /*
-        this.playerName = name;
-        //this.avatar = sprite;
-        this.currRoomId = roomId;
-        this.difficulty = difficulty;
-        //this.healthPoints = 44;
-        this.healthPoints = (int) (100 * difficulty);
-    */
-    //}
 
     protected Player(Parcel in) {
         playerName = in.readString();
@@ -164,6 +156,9 @@ public class Player implements Parcelable, IDrawable {
     public void setY(int y) {
         this.y = y;
     }
+    public void setCollisionShape(Rect collisionShape) {
+        this.collisionShape = collisionShape;
+    }
     public void setMovement(MovementStrategy movement) {
         this.movement = movement;
     }
@@ -171,6 +166,11 @@ public class Player implements Parcelable, IDrawable {
     public void updateHealthPoints() {
 
         this.healthPoints = 200; //temp number so code runs
+    }
+
+    public void update() {
+        setCollisionShape(new Rect(x + collisionOffsetX, y + collisionOffsetY,
+                (x + collisionOffsetX) + width, (y + collisionOffsetY) + height));
     }
 
     @Override
@@ -181,6 +181,7 @@ public class Player implements Parcelable, IDrawable {
         canvas.drawText(getDifficultyTitle(), 500, 50, paint);
         canvas.drawText(getHealthString(), 2000, 50, paint);
         score.draw(canvas, resources);
+        canvas.drawRect(collisionShape, paint);
 
         if (getAvatarID() == R.drawable.player1) {
             sprite = BitmapFactory.decodeResource(resources, R.drawable.player1);

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.cs2340a.R;
 
+import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Leaderboard;
 import com.example.cs2340a.dungenCrawler.model.Player;
 
@@ -26,6 +27,7 @@ public class LeaderboardViewModel extends AppCompatActivity {
     private int minutes;
 
     private Player player;
+    private GameConfig gameConfig;
 
     private String[] names;
 
@@ -62,23 +64,24 @@ public class LeaderboardViewModel extends AppCompatActivity {
 
         // Carry over data from past screens
         // timeLeft = (int) getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);
-        player = getIntent().getParcelableExtra("player");
+        // player = getIntent().getParcelableExtra("player");
+        gameConfig = getIntent().getParcelableExtra("gameConfig");
         // score = getIntent().getIntExtra("score", player.getScore().getSeconds());
 
         // Initialize Leaderboard stuff
         date = new Date();
         hours = date.getHours();
         minutes = date.getMinutes();
-        score = player.getScore().getScore();
+        score = gameConfig.getPlayer().getScore().getScore();
         String time = hours + ":" + minutes;
 
-        leaderboard.addScores(score, player.getPlayerName(), time);
+        leaderboard.addScores(score, gameConfig.getPlayer().getPlayerName(), time);
         scores = leaderboard.getScores();
         names = leaderboard.getNames();
         times = leaderboard.getTimes();
 
         // Set texts
-        playerNameTV.setText(player.getPlayerName());
+        playerNameTV.setText(gameConfig.getPlayer().getPlayerName());
         score1.setText(names[0] + ", " + scores[0] + ", " + times[0]);
         score2.setText(names[1] + ", " + scores[1] + ", " + times[1]);
         score3.setText(names[2] + ", " + scores[2] + ", " + times[2]);

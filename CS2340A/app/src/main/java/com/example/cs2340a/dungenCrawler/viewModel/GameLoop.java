@@ -24,7 +24,8 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     private GameConfig gameConfig;
     private Thread thread;
     private boolean isPlaying;
-    private Background bg;
+    private boolean youWon = false;
+    // private Background bg;
 
     public GameLoop(Context context) {
         super(context);
@@ -33,8 +34,8 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     public GameLoop(Context context, GameConfig gameConfig) {
         this(context);
         this.gameConfig = gameConfig;
-        bg = gameConfig.getBG();
-        bg.createBitmap(bg.getPoint(), getResources(), bg.getResID());
+        // bg = gameConfig.getBG();
+        // bg.createBitmap(bg.getPoint(), getResources(), bg.getResID());
     }
 
     /*
@@ -65,8 +66,41 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         Log.d("in update()", "");
         gameConfig.getPlayer().getScore().setScore(gameConfig.getPlayer().getScore().getScore()
                 + 1);
+        gameConfig.getPlayer().update();
+
+        // Border collisions
+        if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().
+                getCollisionMap().getBottomBorder())) {
+            gameConfig.getPlayer().
+                    setY(gameConfig.getCurrRoom().getCollisionMap().getBottomBorderCollisionMark());
+        } else if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().
+                getCollisionMap().getTopBorder())) {
+            gameConfig.getPlayer().
+                    setY(gameConfig.getCurrRoom().getCollisionMap().getTopBorderCollisionMark());
+        } else if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().
+                getCollisionMap().getLeftBorder())) {
+            gameConfig.getPlayer().
+                    setX(gameConfig.getCurrRoom().getCollisionMap().getLeftBorderCollisionMark());
+        } else if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().
+                getCollisionMap().getRightBorder())) {
+            gameConfig.getPlayer().
+                    setX(gameConfig.getCurrRoom().getCollisionMap().getRightBorderCollisionMark());
+        }
+
+        // Doorway Collisions
+        if (gameConfig.getPlayer().getCollisionShape().
+                intersect(gameConfig.getCurrRoom().getCollisionMap().getDoorway1())
+                && gameConfig.getCurrRoom().getRoomID() == 3) {
+            youWon = true;
+            setIsPlaying(false);
+        } else if (gameConfig.getPlayer().getCollisionShape().
+                intersect(gameConfig.getCurrRoom().getCollisionMap().getDoorway1())) {
+            gameConfig.switchRoom(gameConfig.getCurrRoom().getRoomID());
+        }
         // gameConfig.getPlayer().getMovement().onKeyDown();
     }
+    public boolean won() { return youWon; }
+    public void setIsPlaying(boolean val) { this.isPlaying = val; }
 
     /*
     This is how we are seeing everything on screen. It takes the updated information changed by
@@ -77,7 +111,8 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         Log.d("in draw()", "");
         if (getHolder().getSurface().isValid()) {
             Canvas canvas = getHolder().lockCanvas();
-            canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), new Paint());
+            gameConfig.getCurrRoom().draw(canvas, getResources());
+            // canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), new Paint());
             gameConfig.getPlayer().draw(canvas, getResources());
             getHolder().unlockCanvasAndPost(canvas);
         }
