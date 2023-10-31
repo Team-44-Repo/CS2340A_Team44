@@ -11,16 +11,8 @@ public class HardConfig extends GameConfig {
     Contains all game info specific to a game played on the HARD difficulty.
      */
 
-    public HardConfig(Player player, Background bg) {
-        super(player, bg);
-    }
-    /*
-    public HardConfig(Player player, Background bg, int room) {
-        super(player, bg, room);
-    }
-     */
-    public HardConfig(Player player, Background bg, int room, Resources res) {
-        super(player, bg, room, res);
+    public HardConfig(Player player, Room room) {
+        super(player, room);
     }
 
     @Override
@@ -30,8 +22,8 @@ public class HardConfig extends GameConfig {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeParcelable(getPlayer(), flags);
-        dest.writeParcelable(super.getBG(), flags);
+        dest.writeParcelable(super.getPlayer(), flags);
+        dest.writeParcelable(super.getCurrRoom(), flags);
     }
 
     protected HardConfig(Parcel in) {

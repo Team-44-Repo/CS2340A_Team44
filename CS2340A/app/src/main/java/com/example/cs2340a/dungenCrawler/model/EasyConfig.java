@@ -9,19 +9,8 @@ public class EasyConfig extends GameConfig {
     /*
     Contains all game info specific to a game played on the EASY difficulty.
      */
-    public EasyConfig(Player player, Background bg) {
-        super(player, bg);
-    }
     public EasyConfig(Player player, Room room) {
         super(player, room);
-    }
-    /*
-    public EasyConfig(Player player, Background bg, int room) {
-        super(player, bg, room);
-    }
-     */
-    public EasyConfig(Player player, Background bg, int room, Resources res) {
-        super(player, bg, room, res);
     }
 
     @Override
@@ -32,7 +21,6 @@ public class EasyConfig extends GameConfig {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeParcelable(super.getPlayer(), flags);
-        //dest.writeParcelable(super.getBG(), flags);
         dest.writeParcelable(super.getCurrRoom(), flags);
     }
 

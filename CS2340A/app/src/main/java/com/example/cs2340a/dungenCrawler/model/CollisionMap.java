@@ -9,6 +9,8 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.example.cs2340a.R;
+
 public class CollisionMap implements Parcelable, IDrawable, Collidable {
     /*
     This class is made to create the proper collision map based on the room the player is currently
@@ -25,7 +27,10 @@ public class CollisionMap implements Parcelable, IDrawable, Collidable {
     private int bottomBorderCollisionMark = 800;
     private int leftBorderCollisionMark = 50;
     private int rightBorderCollisionMark = 2050;
-    private Rect doorway; // will be used to create detection area to move to next room
+    private Rect doorway1;
+    private Rect doorway2;
+    private Rect doorway3;
+    private Rect doorway4;
     private int roomID;
 
     public CollisionMap(int roomID) {
@@ -36,7 +41,13 @@ public class CollisionMap implements Parcelable, IDrawable, Collidable {
         leftBorder = new Rect(0, 0, 50, 1080);
         rightBorder = new Rect(2175, 0, 2300, 1080);
 
-        doorway = new Rect();
+        if (roomID == 1) {
+            doorway1 = new Rect(2050, 350, 2300, 650);
+        } else if (roomID == 2) {
+            doorway1 = new Rect(750, 0, 1000, 100);
+        } else if (roomID == 3) {
+            doorway1 = new Rect(2050, 550, 2300, 850);
+        }
     }
 
     protected CollisionMap(Parcel in) {
@@ -44,7 +55,7 @@ public class CollisionMap implements Parcelable, IDrawable, Collidable {
         bottomBorder = in.readParcelable(Rect.class.getClassLoader());
         leftBorder = in.readParcelable(Rect.class.getClassLoader());
         rightBorder = in.readParcelable(Rect.class.getClassLoader());
-        doorway = in.readParcelable(Rect.class.getClassLoader());
+        doorway1 = in.readParcelable(Rect.class.getClassLoader());
         roomID = in.readInt();
     }
 
@@ -77,6 +88,7 @@ public class CollisionMap implements Parcelable, IDrawable, Collidable {
     public int getRightBorderCollisionMark() {
         return rightBorderCollisionMark;
     }
+    public Rect getDoorway1() { return doorway1; }
 
     public static final int TILE_WIDTH_PIXELS = 83;
     public static final int TILE_HEIGHT_PIXELS = 84;
@@ -88,10 +100,12 @@ public class CollisionMap implements Parcelable, IDrawable, Collidable {
     @Override
     public void draw(Canvas canvas, Resources resources) {
         Paint paint = new Paint();
+        Paint whitePaint = new Paint(R.color.white);
         canvas.drawRect(topBorder, paint);
         canvas.drawRect(bottomBorder, paint);
         canvas.drawRect(leftBorder, paint);
         canvas.drawRect(rightBorder, paint);
+        canvas.drawRect(doorway1, whitePaint);
     }
 
     @Override
@@ -105,7 +119,7 @@ public class CollisionMap implements Parcelable, IDrawable, Collidable {
         parcel.writeParcelable(bottomBorder, i);
         parcel.writeParcelable(leftBorder, i);
         parcel.writeParcelable(rightBorder, i);
-        parcel.writeParcelable(doorway, i);
+        parcel.writeParcelable(doorway1, i);
         parcel.writeInt(roomID);
     }
 

@@ -9,14 +9,8 @@ public class MediumConfig extends GameConfig {
     /*
     Contains all game info specific to a game played on the MEDIUM difficulty.
      */
-
-    public MediumConfig(Player player, Background bg) {
-        super(player, bg); }
-    /*
-    public MediumConfig(Player player, Background bg, int room) { super(player, bg, room); }
-     */
-    public MediumConfig(Player player, Background bg, int room, Resources res) {
-        super(player, bg, room, res);
+    public MediumConfig(Player player, Room room) {
+        super(player, room);
     }
 
     @Override
@@ -26,8 +20,8 @@ public class MediumConfig extends GameConfig {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeParcelable(getPlayer(), flags);
-        dest.writeParcelable(super.getBG(), flags);
+        dest.writeParcelable(super.getPlayer(), flags);
+        dest.writeParcelable(super.getCurrRoom(), flags);
     }
 
     protected MediumConfig(Parcel in) {

@@ -24,6 +24,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     private GameConfig gameConfig;
     private Thread thread;
     private boolean isPlaying;
+    private boolean youWon = false;
     // private Background bg;
 
     public GameLoop(Context context) {
@@ -66,6 +67,8 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         gameConfig.getPlayer().getScore().setScore(gameConfig.getPlayer().getScore().getScore()
                 + 1);
         gameConfig.getPlayer().update();
+
+        // Border collisions
         if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().
                 getCollisionMap().getBottomBorder())) {
             gameConfig.getPlayer().
@@ -83,8 +86,21 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             gameConfig.getPlayer().
                     setX(gameConfig.getCurrRoom().getCollisionMap().getRightBorderCollisionMark());
         }
+
+        // Doorway Collisions
+        if (gameConfig.getPlayer().getCollisionShape().
+                intersect(gameConfig.getCurrRoom().getCollisionMap().getDoorway1())
+                && gameConfig.getCurrRoom().getRoomID() == 3) {
+            youWon = true;
+            setIsPlaying(false);
+        } else if (gameConfig.getPlayer().getCollisionShape().
+                intersect(gameConfig.getCurrRoom().getCollisionMap().getDoorway1())) {
+            gameConfig.switchRoom(gameConfig.getCurrRoom().getRoomID());
+        }
         // gameConfig.getPlayer().getMovement().onKeyDown();
     }
+    public boolean won() { return youWon; }
+    public void setIsPlaying(boolean val) { this.isPlaying = val; }
 
     /*
     This is how we are seeing everything on screen. It takes the updated information changed by

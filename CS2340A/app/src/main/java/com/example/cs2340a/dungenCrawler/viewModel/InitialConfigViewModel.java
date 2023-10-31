@@ -154,11 +154,11 @@ public class InitialConfigViewModel extends AppCompatActivity {
                     // gameConfig = new EasyConfig(player, bg, 1, getResources());
                     gameConfig = new EasyConfig(player, room);
                 } else if (difficulty == 0.75) {
-                    gameConfig = new MediumConfig(player, bg, 1, getResources());
+                    gameConfig = new MediumConfig(player, room);
                 } else if (difficulty == 0.5) {
-                    gameConfig = new HardConfig(player, bg, 1, getResources());
+                    gameConfig = new HardConfig(player, room);
                 } else {
-                    gameConfig = new EasyConfig(player, bg, 1, getResources());
+                    gameConfig = new EasyConfig(player, room);
                 }
 
 

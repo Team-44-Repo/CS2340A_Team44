@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 public abstract class Room implements Parcelable, IDrawable {
     private CollisionMap collisionMap;
     private String name; // A name or identifier for the room
+    private int roomID;
     private Room[] connectedRooms; // An array of rooms that are connected to this room
     private Room connectedRoom; //the one room that is connected (sprint 3 - only one room
     private Background bg;
@@ -24,6 +25,7 @@ public abstract class Room implements Parcelable, IDrawable {
     public Room(String name, int initialPlayerX, int initialPlayerY, int y1, int y2, int x1,
                 int x2, Background bg, int roomID) {
         this.name = name;
+        this.roomID = roomID;
         this.initialPlayerX = initialPlayerX;
         this.initialPlayerY = initialPlayerY;
         this.doorwayTopY = y1;
@@ -36,6 +38,7 @@ public abstract class Room implements Parcelable, IDrawable {
     }
     protected Room(Parcel in) {
         name = in.readString();
+        roomID = in.readInt();
         initialPlayerX = in.readInt();
         initialPlayerY = in.readInt();
         doorwayTopY = in.readInt();
@@ -77,6 +80,9 @@ public abstract class Room implements Parcelable, IDrawable {
     public int getDoorwayRightX() {
         return doorwayRightX;
     }
+    public int getRoomID() {
+        return roomID;
+    }
 
     //setters
     public void setConnectedRooms(Room[] connectedRooms) {
@@ -96,6 +102,7 @@ public abstract class Room implements Parcelable, IDrawable {
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeString(name);
+        parcel.writeInt(roomID);
         parcel.writeInt(initialPlayerX);
         parcel.writeInt(initialPlayerY);
         parcel.writeInt(doorwayTopY);

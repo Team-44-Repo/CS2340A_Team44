@@ -37,19 +37,23 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         gameLoop = new GameLoop(this, gameConfig);
         gameLoop.setCallback(this);
         setContentView(gameLoop);
+
+        if (gameLoop.won() == true) {
+            switchLeaderboardView();
+        }
     }
 
     @Override
     public void onRunnablePaused() {
         // This code is executed when the gameView is paused from within onTouchEvent.
         Log.d("executed after the gameView", "");
-        switchGameRoom1View();
+        switchLeaderboardView();
     }
 
-
-    public void switchGameRoom1View() {
-        Log.d("switchGameRoom1View()", "");
-        Intent game2 = new Intent(GameRoom1ViewModel.this, GameRoom2ViewModel.class);
+    public void switchLeaderboardView() {
+        System.out.println("You won!");
+        Log.d("switchLeaderboardView()", "");
+        Intent game2 = new Intent(GameRoom1ViewModel.this, LeaderboardViewModel.class);
         game2.putExtra("gameConfig", gameConfig);
         startActivity(game2);
     }

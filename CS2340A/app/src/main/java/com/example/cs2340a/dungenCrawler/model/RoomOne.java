@@ -15,6 +15,8 @@ public class RoomOne extends Room {
     protected RoomOne(Parcel in) {
         super(in);
     }
+
+
     public static final Creator<RoomOne> CREATOR = new Creator<RoomOne>() {
         @Override
         public RoomOne createFromParcel(Parcel in) {
