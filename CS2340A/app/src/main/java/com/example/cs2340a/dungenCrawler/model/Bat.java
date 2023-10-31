@@ -1,19 +1,51 @@
 package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Parcel;
+
+import androidx.annotation.NonNull;
 
 public class Bat extends Enemy implements IDrawable {
-    public void attack() {
-        // check collision
-        // apply damage dealt
+    private Bitmap sprite;
+    public Bat(Resources res, int resID, int speed, int attackPower) {
+        super(res, resID, speed, attackPower);
+        this.sprite = BitmapFactory.decodeResource(res, resID);
+        this.sprite = Bitmap.createBitmap(sprite);
+    }
+    protected Bat(Parcel in) {
+        super(in);
+        sprite = in.readParcelable(Bitmap.class.getClassLoader());
     }
 
     @Override
     public void draw(Canvas canvas, Resources resources) {
         Paint paint = new Paint();
-        canvas.drawCircle(super.getX() - 24, super.getY(), 20, paint); // temp
-        // canvas.drawBitmap(super.getSprite(), super.getX() - 24, super.getY(), paint);
+        canvas.drawBitmap(sprite, 500, 500, paint);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        super.writeToParcel(parcel, i);
+        parcel.writeParcelable(sprite, i);
+    }
+    public static final Creator<Bat> CREATOR = new Creator<Bat>() {
+        @Override
+        public Bat createFromParcel(Parcel in) {
+            return new Bat(in);
+        }
+
+        @Override
+        public Bat[] newArray(int size) {
+            return new Bat[size];
+        }
+    };
 }

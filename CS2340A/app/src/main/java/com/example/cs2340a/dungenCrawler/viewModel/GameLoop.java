@@ -2,14 +2,12 @@ package com.example.cs2340a.dungenCrawler.viewModel;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
-import com.example.cs2340a.dungenCrawler.model.Background;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 
 public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Callback {
@@ -99,8 +97,10 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         }
         // gameConfig.getPlayer().getMovement().onKeyDown();
     }
-    public boolean won() { return youWon; }
-    public void setIsPlaying(boolean val) { this.isPlaying = val; }
+    public boolean won() {
+        return youWon; }
+    public void setIsPlaying(boolean val) {
+        this.isPlaying = val; }
 
     /*
     This is how we are seeing everything on screen. It takes the updated information changed by
@@ -110,10 +110,11 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     private void draw() {
         Log.d("in draw()", "");
         if (getHolder().getSurface().isValid()) {
+            System.out.println("DRAWING");
             Canvas canvas = getHolder().lockCanvas();
             gameConfig.getCurrRoom().draw(canvas, getResources());
-            // canvas.drawBitmap(bg.getBackground(), bg.getX(), bg.getY(), new Paint());
             gameConfig.getPlayer().draw(canvas, getResources());
+            gameConfig.drawEnemies(canvas, getResources());
             getHolder().unlockCanvasAndPost(canvas);
         }
     }

@@ -38,7 +38,7 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         gameLoop.setCallback(this);
         setContentView(gameLoop);
 
-        if (gameLoop.won() == true) {
+        if (gameLoop.won()) {
             switchLeaderboardView();
         }
     }
