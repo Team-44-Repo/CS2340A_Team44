@@ -9,26 +9,27 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.view.KeyEvent;
 
 import com.example.cs2340a.R;
 
 
-public class Player implements Parcelable, MovementStrategy, IDrawable {
+public class Player implements Parcelable, IDrawable {
 
     //******* MAKE SINGLETON *********
 
     //attributes
     private String playerName;
-    //private CharSprite avatar;
     private int avatarID;
-//    private int currRoomId; // not sure if this is where we should keep track of this.
     private double difficulty;
     private int healthPoints;
     private Score score;
     private Rect collisionShape;
-    private int x = 990;
-    private int y = 800;
+    private int x = 1200;
+    private int y = 540;
+    private int collisionOffsetX = 30;
+    private int collisionOffsetY = 70;
+    private int screenX;
+    private int screenY;
     private int width = 74;
     private int height = 74; // Defaults for room1
     private MovementStrategy movement;
@@ -42,23 +43,13 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
         this.difficulty = difficulty;
         this.healthPoints = (int) (100 * difficulty);
         this.avatarID = avaID;
-        // this.score = score;
         score = new Score();
+        this.screenX = screenX;
+        this.screenY = screenY;
 
         movement = new PlayerMovement(screenX, screenY, res, avaID);
-        collisionShape = new Rect(x, y, x + width, y + height); //not used.
-        // but idk if can delete
-    }
-
-    public Player(String name, CharSprite sprite, int roomId, double difficulty, int hp) {
-        /*
-        this.playerName = name;
-        //this.avatar = sprite;
-        this.currRoomId = roomId;
-        this.difficulty = difficulty;
-        //this.healthPoints = 44;
-        this.healthPoints = (int) (100 * difficulty);
-         */
+        collisionShape = new Rect(x + collisionOffsetX, y + collisionOffsetY,
+                (x + collisionOffsetX) + width, (y + collisionOffsetY) + height);
     }
 
     protected Player(Parcel in) {
@@ -66,6 +57,8 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
         difficulty = in.readDouble();
         healthPoints = in.readInt();
         avatarID = in.readInt();
+        screenX = in.readInt();
+        screenY = in.readInt();
         movement = in.readParcelable(PlayerMovement.class.getClassLoader());
         score = in.readParcelable(Score.class.getClassLoader());
         collisionShape = in.readParcelable(Rect.class.getClassLoader());
@@ -77,7 +70,9 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
         dest.writeDouble(difficulty);
         dest.writeInt(healthPoints);
         dest.writeInt(avatarID);
-        dest.writeParcelable((Parcelable) movement, 0);
+        dest.writeInt(screenX);
+        dest.writeInt(screenY);
+        dest.writeParcelable(movement, 0);
         dest.writeParcelable((Parcelable) score, 0);
         dest.writeParcelable((Parcelable) collisionShape, 0);
     }
@@ -106,14 +101,6 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
     public int getAvatarID() {
         return avatarID;
     }
-    /*
-    public CharSprite getAvatar() {
-        return avatar;
-    }
-    public int getAvatarResId() {
-        return avatar.getSpriteResId();
-    }
-     */
     public double getDifficulty() {
         return difficulty;
     }
@@ -138,6 +125,12 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
     public int getY() {
         return y;
     }
+    public int getScreenX() {
+        return screenX;
+    }
+    public int getScreenY() {
+        return screenY;
+    }
     public Score getScore() {
         return score;
     }
@@ -151,11 +144,6 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
     public void setPlayerName(String name) {
         this.playerName = name;
     }
-    /*
-    public void setAvatar(CharSprite sprite) {
-        this.avatar = sprite;
-    }
-    */
     public void setAvatarID(int avaID) {
         this.avatarID = avaID;
     }
@@ -168,43 +156,21 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
     public void setY(int y) {
         this.y = y;
     }
-    // public void setScoreActivity(boolean activity) {
-    //    score.setActive(activity);
-    //}
+    public void setCollisionShape(Rect collisionShape) {
+        this.collisionShape = collisionShape;
+    }
+    public void setMovement(MovementStrategy movement) {
+        this.movement = movement;
+    }
 
     public void updateHealthPoints() {
 
         this.healthPoints = 200; //temp number so code runs
     }
 
-    @Override
-    public boolean onKey(KeyEvent event) {
-
-        return movement.onKey(event);
-    }
-
-    @Override
-    public boolean isMovingUp() {
-        return movement.isMovingUp();
-    }
-
-    @Override
-    public boolean isMovingDown() {
-        return movement.isMovingDown();
-    }
-
-    @Override
-    public boolean isMovingLeft() {
-        return movement.isMovingLeft();
-    }
-
-    @Override
-    public boolean isMovingRight() {
-        return movement.isMovingRight();
-    }
-
-    @Override
-    public void setUp(boolean up) {
+    public void update() {
+        setCollisionShape(new Rect(x + collisionOffsetX, y + collisionOffsetY,
+                (x + collisionOffsetX) + width, (y + collisionOffsetY) + height));
     }
 
     @Override
@@ -215,6 +181,7 @@ public class Player implements Parcelable, MovementStrategy, IDrawable {
         canvas.drawText(getDifficultyTitle(), 500, 50, paint);
         canvas.drawText(getHealthString(), 2000, 50, paint);
         score.draw(canvas, resources);
+        canvas.drawRect(collisionShape, paint);
 
         if (getAvatarID() == R.drawable.player1) {
             sprite = BitmapFactory.decodeResource(resources, R.drawable.player1);

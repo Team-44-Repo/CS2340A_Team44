@@ -1,13 +1,16 @@
 package com.example.cs2340a.dungenCrawler.model;
 
+import android.content.res.Resources;
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
 public class EasyConfig extends GameConfig {
-    public EasyConfig(Player player, Background bg) {
-        super(player, bg);
+    /*
+    Contains all game info specific to a game played on the EASY difficulty.
+     */
+    public EasyConfig(Player player, Room room) {
+        super(player, room);
     }
 
     @Override
@@ -18,7 +21,7 @@ public class EasyConfig extends GameConfig {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeParcelable(super.getPlayer(), flags);
-        dest.writeParcelable(super.getBG(), flags);
+        dest.writeParcelable(super.getCurrRoom(), flags);
     }
 
     protected EasyConfig(Parcel in) {

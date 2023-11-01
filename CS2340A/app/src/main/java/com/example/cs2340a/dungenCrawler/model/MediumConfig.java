@@ -1,13 +1,16 @@
 package com.example.cs2340a.dungenCrawler.model;
 
+import android.content.res.Resources;
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 
 public class MediumConfig extends GameConfig {
-
-    public MediumConfig(Player player, Background bg) {
-        super(player, bg);
+    /*
+    Contains all game info specific to a game played on the MEDIUM difficulty.
+     */
+    public MediumConfig(Player player, Room room) {
+        super(player, room);
     }
 
     @Override
@@ -17,8 +20,8 @@ public class MediumConfig extends GameConfig {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeParcelable(getPlayer(), flags);
-        dest.writeParcelable(super.getBG(), flags);
+        dest.writeParcelable(super.getPlayer(), flags);
+        dest.writeParcelable(super.getCurrRoom(), flags);
     }
 
     protected MediumConfig(Parcel in) {

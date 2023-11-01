@@ -1,3 +1,5 @@
+package com.example.cs2340a.dungenCrawler.model;
+
 public abstract class EnemyFactory {
     public Enemy launchEnemy() {
         Enemy enemy = spawnEnemy();

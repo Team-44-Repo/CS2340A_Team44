@@ -10,13 +10,14 @@ import android.widget.RadioGroup;
 
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.Background;
-import com.example.cs2340a.dungenCrawler.model.CharSprite;
+// import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.EasyConfig;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.HardConfig;
 import com.example.cs2340a.dungenCrawler.model.MediumConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
-import com.example.cs2340a.dungenCrawler.model.Score;
+import com.example.cs2340a.dungenCrawler.model.Room;
+import com.example.cs2340a.dungenCrawler.model.RoomOne;
 
 public class InitialConfigViewModel extends AppCompatActivity {
 
@@ -108,7 +109,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
             }
             */
             //the next line is still part of the old way, but
-            CharSprite avAtar = new CharSprite(R.drawable.player1, "Char1");
+            // CharSprite avAtar = new CharSprite(R.drawable.player1, "Char1");
 
             //****** OLD WAY ********
             //  3   gathering Character Sprite selection
@@ -147,14 +148,17 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 Player player = new Player(playerName, difficulty, point.x, point.y,
                         getResources(), avatar);
                 Background bg = new Background(point, getResources(), R.drawable.room1);
+                Room room = new RoomOne("room1", 1200, 540, 310,
+                        460, 2090, 2400, bg, 1);
                 if (difficulty == 1) {
-                    gameConfig = new EasyConfig(player, bg);
+                    // gameConfig = new EasyConfig(player, bg, 1, getResources());
+                    gameConfig = new EasyConfig(player, room);
                 } else if (difficulty == 0.75) {
-                    gameConfig = new MediumConfig(player, bg);
+                    gameConfig = new MediumConfig(player, room);
                 } else if (difficulty == 0.5) {
-                    gameConfig = new HardConfig(player, bg);
+                    gameConfig = new HardConfig(player, room);
                 } else {
-                    gameConfig = new EasyConfig(player, bg);
+                    gameConfig = new EasyConfig(player, room);
                 }
 
 
