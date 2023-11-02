@@ -17,6 +17,6 @@ public class EasyEnemyFactory extends EnemyFactory {
     // decouples things rather than being an attribute of player
 
 
-    // game loop class that has update drwa run sleep implements runnable
-    // thats what we instantiate in game room model
+    // game loop class that has update draw run sleep implements runnable
+    // that's what we instantiate in game room model
 }
