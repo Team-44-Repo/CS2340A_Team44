@@ -71,11 +71,16 @@ public class CollisionMap implements Parcelable, IDrawable, Collidable {
         }
     };
 
-    public int getRoomID() { return roomID; }
-    public Rect getTopBorder() { return topBorder; } // Call in draw() method in GameView
-    public Rect getBottomBorder() { return bottomBorder; } // Call in draw() method in GameView
-    public Rect getLeftBorder() { return leftBorder; } // Call in draw() method in GameView
-    public Rect getRightBorder() { return rightBorder; } // Call in draw() method in GameView
+    public int getRoomID() {
+        return roomID; }
+    public Rect getTopBorder() {
+        return topBorder; } // Call in draw() method in GameView
+    public Rect getBottomBorder() {
+        return bottomBorder; } // Call in draw() method in GameView
+    public Rect getLeftBorder() {
+        return leftBorder; } // Call in draw() method in GameView
+    public Rect getRightBorder() {
+        return rightBorder; } // Call in draw() method in GameView
     public int getTopBorderCollisionMark() {
         return topBorderCollisionMark;
     }
@@ -88,7 +93,8 @@ public class CollisionMap implements Parcelable, IDrawable, Collidable {
     public int getRightBorderCollisionMark() {
         return rightBorderCollisionMark;
     }
-    public Rect getDoorway1() { return doorway1; }
+    public Rect getDoorway1() {
+        return doorway1; }
 
     public static final int TILE_WIDTH_PIXELS = 83;
     public static final int TILE_HEIGHT_PIXELS = 84;

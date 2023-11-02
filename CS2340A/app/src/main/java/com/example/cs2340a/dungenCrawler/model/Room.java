@@ -91,8 +91,10 @@ public abstract class Room implements Parcelable, IDrawable {
     public void setConnectedRoom(Room connectedRoom) {
         this.connectedRoom = connectedRoom;
     }
-    public void setCollisionMap(CollisionMap collisionMap) { this.collisionMap = collisionMap; }
-    public void setBg(Background bg) { this.bg = bg; }
+    public void setCollisionMap(CollisionMap collisionMap) {
+        this.collisionMap = collisionMap; }
+    public void setBg(Background bg) {
+        this.bg = bg; }
 
     @Override
     public int describeContents() {

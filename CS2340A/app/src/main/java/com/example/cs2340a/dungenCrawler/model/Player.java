@@ -162,6 +162,9 @@ public class Player implements Parcelable, IDrawable {
     public void setMovement(MovementStrategy movement) {
         this.movement = movement;
     }
+    public void setHealthPoints(int i) {
+        this.healthPoints = i;
+    }
 
     public void updateHealthPoints() {
 

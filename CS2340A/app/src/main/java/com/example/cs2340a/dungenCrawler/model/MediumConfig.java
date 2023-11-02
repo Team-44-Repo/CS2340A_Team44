@@ -1,6 +1,7 @@
 package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.res.Resources;
+import android.graphics.Canvas;
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
@@ -9,8 +10,11 @@ public class MediumConfig extends GameConfig {
     /*
     Contains all game info specific to a game played on the MEDIUM difficulty.
      */
-    public MediumConfig(Player player, Room room) {
-        super(player, room);
+    private EnemyFactory factory;
+    public MediumConfig(Player player, Room room, Resources res) {
+        super(player, room, res);
+
+        factory = new MediumEnemyFactory();
     }
 
     @Override
@@ -26,6 +30,20 @@ public class MediumConfig extends GameConfig {
 
     protected MediumConfig(Parcel in) {
         super(in);
+    }
+
+    @Override
+    public EnemyFactory getFactory() {
+        return factory;
+    }
+
+    @Override
+    public void drawEnemies(Canvas canvas, Resources resources) {
+    }
+
+    @Override
+    public void updateEnemies() {
+
     }
 
     public static final Creator<MediumConfig> CREATOR = new Creator<MediumConfig>() {

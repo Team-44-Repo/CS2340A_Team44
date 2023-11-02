@@ -5,6 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 public class Vampire extends Enemy implements IDrawable {
+    public Vampire(Resources res, int resID, int speed, int attackPower) {
+        super(res, resID, speed, attackPower);
+    }
+
     public void attack() {
         // Vampire attack logic
         // bite/drink blood

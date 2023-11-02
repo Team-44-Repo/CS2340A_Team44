@@ -10,8 +10,8 @@ import android.widget.RadioGroup;
 
 import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.Background;
-// import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.EasyConfig;
+import com.example.cs2340a.dungenCrawler.model.EnemyFactory;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.HardConfig;
 import com.example.cs2340a.dungenCrawler.model.MediumConfig;
@@ -32,6 +32,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
     private Button exitbtn;
     private Button startGameButton;
     private GameConfig gameConfig;
+    private EnemyFactory enemyFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,13 +153,16 @@ public class InitialConfigViewModel extends AppCompatActivity {
                         460, 2090, 2400, bg, 1);
                 if (difficulty == 1) {
                     // gameConfig = new EasyConfig(player, bg, 1, getResources());
-                    gameConfig = new EasyConfig(player, room);
+                    // enemyFactory = new EasyEnemyFactory();
+                    gameConfig = new EasyConfig(player, room, getResources());
                 } else if (difficulty == 0.75) {
-                    gameConfig = new MediumConfig(player, room);
+                    // enemyFactory = new MediumEnemyFactory();
+                    gameConfig = new MediumConfig(player, room, getResources());
                 } else if (difficulty == 0.5) {
-                    gameConfig = new HardConfig(player, room);
+                    // enemyFactory = new HardEnemyFactory();
+                    gameConfig = new HardConfig(player, room, getResources());
                 } else {
-                    gameConfig = new EasyConfig(player, room);
+                    gameConfig = new EasyConfig(player, room, getResources());
                 }
 
 

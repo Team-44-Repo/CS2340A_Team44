@@ -1,11 +1,9 @@
 package com.example.cs2340a.dungenCrawler.model;
 
-public abstract class EnemyFactory {
-    public Enemy launchEnemy() {
-        Enemy enemy = spawnEnemy();
-        enemy.attack();
-        return enemy;
-    }
+import android.content.res.Resources;
+import android.os.Parcelable;
 
-    public abstract Enemy spawnEnemy();
+public abstract class EnemyFactory implements Parcelable {
+    public abstract Enemy spawnBat(Resources res);
+    public abstract Enemy spawnGhost(Resources res);
 }

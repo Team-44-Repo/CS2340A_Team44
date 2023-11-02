@@ -1,6 +1,7 @@
 package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.res.Resources;
+import android.graphics.Canvas;
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
@@ -11,8 +12,11 @@ public class HardConfig extends GameConfig {
     Contains all game info specific to a game played on the HARD difficulty.
      */
 
-    public HardConfig(Player player, Room room) {
-        super(player, room);
+    private HardEnemyFactory factory;
+
+    public HardConfig(Player player, Room room, Resources res) {
+        super(player, room, res);
+        factory = new HardEnemyFactory();
     }
 
     @Override
@@ -28,6 +32,20 @@ public class HardConfig extends GameConfig {
 
     protected HardConfig(Parcel in) {
         super(in);
+    }
+
+    @Override
+    public EnemyFactory getFactory() {
+        return factory;
+    }
+
+    @Override
+    public void drawEnemies(Canvas canvas, Resources resources) {
+    }
+
+    @Override
+    public void updateEnemies() {
+
     }
 
     public static final Creator<HardConfig> CREATOR = new Creator<HardConfig>() {
