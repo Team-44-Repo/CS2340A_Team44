@@ -3,6 +3,7 @@ package com.example.cs2340a.dungenCrawler.model;
 import android.content.res.Resources;
 import android.os.Parcel;
 
+import androidx.annotation.InspectableProperty;
 import androidx.annotation.NonNull;
 
 import com.example.cs2340a.R;
@@ -11,12 +12,23 @@ public class HardEnemyFactory extends EnemyFactory {
     @Override
     public Enemy spawnBat(Resources res) {
         Enemy enemy;
-        enemy = new Bat(res, R.drawable.bat, 30, 20);
+        enemy = new Bat(res, R.drawable.bat, 25, 20);
         return enemy;
     }
     public Enemy spawnGhost(Resources res) {
         Enemy enemy;
-        enemy = new Ghost(res, R.drawable.ghost, 20, 30);
+        enemy = new Ghost(res, R.drawable.ghost, 20, 20);
+        return enemy;
+    }
+    public Enemy spawnVampire(Resources res) {
+        Enemy enemy;
+        enemy = new Vampire(res, R.drawable.bat, 25, 25); //need to add Vampire sprite
+        return enemy;
+    }
+
+    public Enemy spawnZombie(Resources res) {
+        Enemy enemy;
+        enemy = new Zombie(res, R.drawable.zombie, 20, 25); //need to add Vampire sprite
         return enemy;
     }
 

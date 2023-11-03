@@ -16,7 +16,19 @@ public class EasyEnemyFactory extends EnemyFactory {
     }
     public Enemy spawnGhost(Resources res) {
         Enemy enemy;
-        enemy = new Ghost(res, R.drawable.ghost, 10, 5);
+        enemy = new Ghost(res, R.drawable.ghost, 5, 5);
+        return enemy;
+    }
+
+    public Enemy spawnVampire(Resources res) {
+        Enemy enemy;
+        enemy = new Vampire(res, R.drawable.bat, 10, 10); //need to add Vampire sprite
+        return enemy;
+    }
+
+    public Enemy spawnZombie(Resources res) {
+        Enemy enemy;
+        enemy = new Zombie(res, R.drawable.zombie, 5, 10); //need to add Vampire sprite
         return enemy;
     }
 

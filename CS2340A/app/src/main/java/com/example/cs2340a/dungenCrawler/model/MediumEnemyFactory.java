@@ -12,12 +12,24 @@ public class MediumEnemyFactory extends EnemyFactory {
     @Override
     public Enemy spawnBat(Resources res) {
         Enemy enemy;
-        enemy = new Bat(res, R.drawable.bat, 20, 10);
+        enemy = new Bat(res, R.drawable.bat, 15, 10);
         return enemy;
     }
     public Enemy spawnGhost(Resources res) {
         Enemy enemy;
-        enemy = new Ghost(res, R.drawable.ghost, 15, 15);
+        enemy = new Ghost(res, R.drawable.ghost, 10, 10);
+        return enemy;
+    }
+
+    public Enemy spawnVampire(Resources res) {
+        Enemy enemy;
+        enemy = new Vampire(res, R.drawable.bat, 15, 15); //need to add Vampire sprite
+        return enemy;
+    }
+
+    public Enemy spawnZombie(Resources res) {
+        Enemy enemy;
+        enemy = new Zombie(res, R.drawable.zombie, 10, 15); //need to add Vampire sprite
         return enemy;
     }
 
