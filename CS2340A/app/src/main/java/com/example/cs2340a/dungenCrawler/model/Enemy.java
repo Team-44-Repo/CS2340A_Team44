@@ -69,6 +69,20 @@ public abstract class Enemy implements Parcelable, IDrawable {
             player.setHealthPoints(player.getHealthPoints() - attackPower);
         }
     }
+    public void updateEnemy(int playerX, int playerY) {
+        if ((this.getX() != playerX) || (this.getY() != playerY)) {
+            if (this.getX() < playerX) {
+                this.setX(this.getX() + this.getSpeed());
+            } else if (this.getX() > playerX) {
+                this.setX(this.getX() - this.getSpeed());
+            }
+            if (this.getY() > playerY) {
+                this.setY(this.getY() - this.getSpeed());
+            } else if (this.getY() < playerY) {
+                this.setY(this.getY() + this.getSpeed());
+            }
+        }
+    }
 
     @Override
     public int describeContents() {
