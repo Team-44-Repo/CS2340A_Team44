@@ -13,6 +13,7 @@ public abstract class Room implements Parcelable, IDrawable {
     private Room[] connectedRooms; // An array of rooms that are connected to this room
     private Room connectedRoom; //the one room that is connected (sprint 3 - only one room
     private Background bg;
+    private int difficulty;
     // connected)
     private int initialPlayerX; // Initial player X-coordinate in the room
     private int initialPlayerY; // Initial player Y-coordinate in the room

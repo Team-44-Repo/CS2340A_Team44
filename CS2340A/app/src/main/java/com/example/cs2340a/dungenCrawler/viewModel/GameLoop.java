@@ -65,6 +65,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         gameConfig.getPlayer().getScore().setScore(gameConfig.getPlayer().getScore().getScore()
                 + 1);
         gameConfig.getPlayer().update();
+        gameConfig.updateEnemies(getResources());
 
         // Border collisions
         if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().

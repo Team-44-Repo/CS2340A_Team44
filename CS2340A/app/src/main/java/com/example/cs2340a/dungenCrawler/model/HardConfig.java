@@ -64,8 +64,17 @@ public class HardConfig extends GameConfig {
     }
 
     @Override
-    public void updateEnemies() {
-
+    public void updateEnemies(Resources res) {
+        if (getCurrRoom().getRoomID() == 1) {
+            this.enemy1 = factory.spawnBat(res);
+            this.enemy2 = factory.spawnGhost(res);
+        } else if (getCurrRoom().getRoomID() == 2) {
+            this.enemy1 = factory.spawnZombie(res);
+            this.enemy2 = factory.spawnVampire(res);
+        } else if (getCurrRoom().getRoomID() == 3) {
+            this.enemy1 = factory.spawnGhost(res);
+            this.enemy2 = factory.spawnVampire(res);
+        }
     }
 
     public static final Creator<HardConfig> CREATOR = new Creator<HardConfig>() {

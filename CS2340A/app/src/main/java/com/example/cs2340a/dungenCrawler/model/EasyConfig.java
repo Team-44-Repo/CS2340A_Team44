@@ -39,8 +39,27 @@ public class EasyConfig extends GameConfig {
     }
 
     @Override
-    public void updateEnemies() {
+    public void updateEnemies(Resources res) {
 
+        System.out.println("Enemy x: " + enemy1.getX());
+        if (enemy1.getX() != getPlayer().getX() && enemy1.getY() != getPlayer().getY()) {
+            if (enemy1.getX() < getPlayer().getX()) {
+                System.out.println("Enemy speed: " + enemy1.getSpeed());
+                enemy1.setX(enemy1.getX() + enemy1.getSpeed());
+            }
+        }
+
+        // Room Checks
+        if (getCurrRoom().getRoomID() == 1) {
+            this.enemy1 = factory.spawnBat(res);
+            this.enemy2 = factory.spawnGhost(res);
+        } else if (getCurrRoom().getRoomID() == 2) {
+            this.enemy1 = factory.spawnZombie(res);
+            this.enemy2 = factory.spawnVampire(res);
+        } else if (getCurrRoom().getRoomID() == 3) {
+            this.enemy1 = factory.spawnGhost(res);
+            this.enemy2 = factory.spawnVampire(res);
+        }
     }
 
     @Override
