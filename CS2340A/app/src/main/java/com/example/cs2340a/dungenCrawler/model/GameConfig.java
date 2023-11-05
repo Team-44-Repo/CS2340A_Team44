@@ -65,5 +65,5 @@ public abstract class GameConfig implements Parcelable {
     }
     public abstract EnemyFactory getFactory();
     public abstract void drawEnemies(Canvas canvas, Resources resources);
-    public abstract void updateEnemies();
+    public abstract void updateEnemies(Resources res);
 }

@@ -37,7 +37,7 @@ public class RoomTwo extends Room {
          */
         super.getBackground().createBitmap(super.getBackground().getPoint(), resources,
                 R.drawable.room2);
-        super.getBackground().draw(canvas, resources);
         super.getCollisionMap().draw(canvas, resources);
+        super.getBackground().draw(canvas, resources);
     }
 }
