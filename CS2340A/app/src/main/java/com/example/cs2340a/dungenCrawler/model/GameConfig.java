@@ -46,6 +46,7 @@ public abstract class GameConfig implements Parcelable {
         this.player = player; }
     public void switchRoom(int roomID) {
         if (roomID == 1) {
+            //removeEnemy()
             currRoom = new RoomTwo("room2", currRoom.getInitialPlayerX(),
                     currRoom.getInitialPlayerY(),
                     currRoom.getDoorwayTopY(), currRoom.getDoorwayBottomY(),
@@ -53,6 +54,7 @@ public abstract class GameConfig implements Parcelable {
                     currRoom.getBackground(), 2);
             player.setX(30);
             player.setY(400);
+            //addEnemy()
         } else if (roomID == 2) {
             currRoom = new RoomThree("room3", currRoom.getInitialPlayerX(),
                     currRoom.getInitialPlayerY(),
