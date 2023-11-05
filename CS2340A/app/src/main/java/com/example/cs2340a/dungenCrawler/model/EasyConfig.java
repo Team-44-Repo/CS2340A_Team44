@@ -22,9 +22,9 @@ public class EasyConfig extends GameConfig {
 
         this.numEnemies = 2;
         //this.enemy1 = factory.launchEnemy(player, room.getRoomID(), res);
-        this.enemy1 = factory.spawnBat(res);
+        // this.enemy1 = factory.spawnBat(res);
         System.out.println("enemy1: " + enemy1);
-        this.enemy2 = factory.spawnGhost(res);
+        //this.enemy2 = factory.spawnGhost(res);
         System.out.println("enemy2: " + enemy2);
 
         // Room Checks
@@ -53,15 +53,23 @@ public class EasyConfig extends GameConfig {
     @Override
     public void updateEnemies(Resources res) {
 
-        System.out.println("Enemy x: " + enemy1.getX());
-        if (enemy1.getX() != getPlayer().getX() && enemy1.getY() != getPlayer().getY()) {
+        enemy1.updateEnemy(getPlayer().getX(), getPlayer().getY());
+        enemy2.updateEnemy(getPlayer().getX(), getPlayer().getY());
+
+        /*
+        if ((enemy1.getX() != getPlayer().getX()) || (enemy1.getY() != getPlayer().getY())) {
             if (enemy1.getX() < getPlayer().getX()) {
-                System.out.println("Enemy speed: " + enemy1.getSpeed());
                 enemy1.setX(enemy1.getX() + enemy1.getSpeed());
+            } else if (enemy1.getX() > getPlayer().getX()) {
+                enemy1.setX(enemy1.getX() - enemy1.getSpeed());
+            }
+            if (enemy1.getY() > getPlayer().getY()) {
+                enemy1.setY(enemy1.getY() - enemy1.getSpeed());
+            } else if (enemy1.getY() < getPlayer().getY()) {
+                enemy1.setY(enemy1.getY() + enemy1.getSpeed());
             }
         }
-
-
+         */
     }
 
     @Override

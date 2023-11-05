@@ -55,6 +55,10 @@ public class Bat extends Enemy implements IDrawable {
     public void setX(int x) {
         this.x = x;
     }
+    @Override
+    public void setY(int y) {
+        this.y = y;
+    }
     public static final Creator<Bat> CREATOR = new Creator<Bat>() {
         @Override
         public Bat createFromParcel(Parcel in) {
