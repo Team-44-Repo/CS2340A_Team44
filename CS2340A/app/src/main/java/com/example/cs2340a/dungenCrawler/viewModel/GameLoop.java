@@ -32,6 +32,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     public GameLoop(Context context, GameConfig gameConfig) {
         this(context);
         this.gameConfig = gameConfig;
+        System.out.println(gameConfig.difType());
         // bg = gameConfig.getBG();
         // bg.createBitmap(bg.getPoint(), getResources(), bg.getResID());
     }
@@ -61,11 +62,14 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     update it in real time to our current gameplay.
      */
     private void update() {
+        //gameConfig.addRoom1Enemies();
         Log.d("in update()", "");
         gameConfig.getPlayer().getScore().setScore(gameConfig.getPlayer().getScore().getScore()
                 + 1);
         gameConfig.getPlayer().update();
-        gameConfig.updateEnemies(getResources());
+        System.out.println("about to notify observers");
+        gameConfig.notifyObservers();
+
 
         // Border collisions
         if (gameConfig.getPlayer().getCollisionShape().intersect(gameConfig.getCurrRoom().
@@ -96,7 +100,6 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
                 intersect(gameConfig.getCurrRoom().getCollisionMap().getDoorway1())) {
             gameConfig.switchRoom(gameConfig.getCurrRoom().getRoomID());
         }
-        // gameConfig.getPlayer().getMovement().onKeyDown();
     }
     public boolean won() {
         return youWon; }

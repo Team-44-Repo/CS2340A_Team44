@@ -2,8 +2,6 @@ package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.res.Resources;
 import android.os.Parcel;
-
-import androidx.annotation.InspectableProperty;
 import androidx.annotation.NonNull;
 
 import com.example.cs2340a.R;

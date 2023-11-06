@@ -32,6 +32,8 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         getWindowManager().getDefaultDisplay().getSize(point);
 
         gameConfig = getIntent().getParcelableExtra("gameConfig");
+        System.out.println("in room1 activity, post gameConfig get");
+        System.out.println(gameConfig.difType());
 
         // Initializing Runnable GameLoop
         gameLoop = new GameLoop(this, gameConfig);

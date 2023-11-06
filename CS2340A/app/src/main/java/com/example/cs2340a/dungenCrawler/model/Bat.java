@@ -10,16 +10,12 @@ import android.os.Parcel;
 import androidx.annotation.NonNull;
 
 public class Bat extends Enemy implements IDrawable {
-    int x;
-    int y;
     private Bitmap sprite;
     public Bat(Resources res, int resID, int speed, int attackPower) {
         super(res, resID, speed, attackPower);
         this.sprite = BitmapFactory.decodeResource(res, resID);
         this.sprite = Bitmap.createBitmap(sprite);
-
-        this.x = 500;
-        this.y = 500;
+        System.out.println("bat made");
     }
     protected Bat(Parcel in) {
         super(in);
@@ -29,7 +25,7 @@ public class Bat extends Enemy implements IDrawable {
     @Override
     public void draw(Canvas canvas, Resources resources) {
         Paint paint = new Paint();
-        canvas.drawBitmap(sprite, x, y, paint);
+        canvas.drawBitmap(sprite, getX(), getY(), paint);
     }
 
     @Override
@@ -41,23 +37,6 @@ public class Bat extends Enemy implements IDrawable {
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         super.writeToParcel(parcel, i);
         parcel.writeParcelable(sprite, i);
-    }
-
-    @Override
-    public int getX() {
-        return x;
-    }
-    @Override
-    public int getY() {
-        return y;
-    }
-    @Override
-    public void setX(int x) {
-        this.x = x;
-    }
-    @Override
-    public void setY(int y) {
-        this.y = y;
     }
     public static final Creator<Bat> CREATOR = new Creator<Bat>() {
         @Override

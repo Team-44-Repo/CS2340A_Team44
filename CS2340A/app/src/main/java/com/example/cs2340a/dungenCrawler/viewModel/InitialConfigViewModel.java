@@ -38,6 +38,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initial_config_activty);
+        System.out.println("in initialConfig onCreate");
 
         //viewModel elements
         playerNameInput = (EditText) findViewById(R.id.playerNameInput_id); //for gathering
@@ -154,6 +155,8 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 if (difficulty == 1) {
                     // gameConfig = new EasyConfig(player, bg, 1, getResources());
                     // enemyFactory = new EasyEnemyFactory();
+
+                    System.out.println("setting gameConfig to EasyConfig type");
                     gameConfig = new EasyConfig(player, room, getResources());
                 } else if (difficulty == 0.75) {
                     // enemyFactory = new MediumEnemyFactory();
@@ -162,6 +165,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
                     // enemyFactory = new HardEnemyFactory();
                     gameConfig = new HardConfig(player, room, getResources());
                 } else {
+                    System.out.println("setting gameConfig to EasyConfig type");
                     gameConfig = new EasyConfig(player, room, getResources());
                 }
 
@@ -172,6 +176,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
 
                 //pass Player and GameConfig objects (using Parcable)
                 // game.putExtra("player", player);
+                System.out.println("putting gameConfig");
                 game.putExtra("gameConfig", gameConfig);
                 startActivity(game);
             }

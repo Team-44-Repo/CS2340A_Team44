@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public abstract class Enemy implements Parcelable, IDrawable {
+public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     private int x;
     private int y;
     private int width = 74;
@@ -69,19 +69,25 @@ public abstract class Enemy implements Parcelable, IDrawable {
             player.setHealthPoints(player.getHealthPoints() - attackPower);
         }
     }
-    public void updateEnemy(int playerX, int playerY) {
-        if ((this.getX() != playerX) || (this.getY() != playerY)) {
-            if (this.getX() < playerX) {
+    @Override
+    public void update(Player player) {
+        System.out.println("in update");
+        if ((this.getX() != player.getX()) || (this.getY() != player.getY())) {
+            //change enemy's X
+            if (this.getX() < player.getX()) {
                 this.setX(this.getX() + this.getSpeed());
-            } else if (this.getX() > playerX) {
+            } else if (this.getX() > player.getX()) {
                 this.setX(this.getX() - this.getSpeed());
             }
-            if (this.getY() > playerY) {
+            //change enemy's Y
+            if (this.getY() > player.getY()) {
                 this.setY(this.getY() - this.getSpeed());
-            } else if (this.getY() < playerY) {
+            } else if (this.getY() < player.getY()) {
                 this.setY(this.getY() + this.getSpeed());
             }
         }
+        //check for collision using player.getCollisionShape()
+        //referance how this is done in the GameLoop
     }
 
     @Override

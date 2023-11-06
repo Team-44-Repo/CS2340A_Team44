@@ -166,9 +166,10 @@ public class Player implements Parcelable, IDrawable {
         this.healthPoints = i;
     }
 
-    public void updateHealthPoints() {
-
-        this.healthPoints = 200; //temp number so code runs
+    public void updateHealthPoints(int change) {
+        this.healthPoints += change;
+        //if negative number is passed in, health points are subtracted
+        //if positive number is passed in, health points are added
     }
 
     public void update() {
