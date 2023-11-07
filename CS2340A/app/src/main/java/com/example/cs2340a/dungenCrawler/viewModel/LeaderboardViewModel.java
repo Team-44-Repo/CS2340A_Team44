@@ -41,6 +41,8 @@ public class LeaderboardViewModel extends AppCompatActivity {
 
     private TextView playerNameTV;
 
+    private static TextView WinLoseTV;
+
     //using leaderboard from Leaderboard class, but only getting the single instance
     public LeaderboardViewModel() {
         //leaderboard = Leaderboard.getInstance();
@@ -48,6 +50,9 @@ public class LeaderboardViewModel extends AppCompatActivity {
     //when the game ends, this method should be called to see if score should be set to leaderboard
     //takes in the name of the player and score they just received
 
+    public static CharSequence getWinLoseText() {
+        return WinLoseTV.getText();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +66,13 @@ public class LeaderboardViewModel extends AppCompatActivity {
         score3 = findViewById(R.id.score_id3);
         score4 = findViewById(R.id.score_id4);
         score5 = findViewById(R.id.score_id5);
+
+        WinLoseTV = findViewById(R.id.WinLoseTV_id);
+        if (player.getHealthPoints() <= 0) {
+            WinLoseTV.setText("GAME OVER");
+        } else {
+            WinLoseTV.setText("YOU WIN!!!");
+        }
 
         // Carry over data from past screens
         // timeLeft = (int) getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);

@@ -25,7 +25,7 @@ public class EndViewModel extends AppCompatActivity {
         Player player = getIntent().getParcelableExtra("player");
 
         winningTV = findViewById(R.id.WinningText_id);
-        if (player.getHealthPoints() > 0) {
+        if (player.getHealthPoints() <= 0) {
             winningTV.setText("GAME OVER");
         } else {
             winningTV.setText("YOU WIN!!!");
