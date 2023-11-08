@@ -7,11 +7,6 @@ import android.os.Parcel;
 import com.example.cs2340a.R;
 
 public class RoomOne extends Room {
-    private EnemyFactory factory;
-    // private Enemy[] enemies;
-    private Enemy enemy1;
-    private Enemy enemy2;
-    private int numEnemies;
     public RoomOne(String name, int initialPlayerX,
                    int initialPlayerY, int y1, int y2, int x1, int x2, Background bg, int roomID) {
         super(name, initialPlayerX, initialPlayerY, y1, y2, x1, x2, bg, 1);

@@ -20,8 +20,8 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     private Bitmap sprite;
     private Rect collisionShape;
     public Enemy(Resources res, int resID, int speed, int attackPower) {
-        sprite = BitmapFactory.decodeResource(res, resID);
-        sprite = Bitmap.createBitmap(sprite);
+        //sprite = BitmapFactory.decodeResource(res, resID);
+        //sprite = Bitmap.createBitmap(sprite);
         this.resID = resID;
         this.speed = speed;
         this.attackPower = attackPower;
@@ -99,6 +99,7 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
         resID = in.readInt();
         speed = in.readInt();
         attackPower = in.readInt();
+        // sprite = in.readParcelable(Bitmap.class.getClassLoader());
         collisionShape = in.readParcelable(Player.class.getClassLoader());
     }
 
@@ -107,6 +108,7 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
         parcel.writeInt(resID);
         parcel.writeInt(speed);
         parcel.writeInt(attackPower);
+        // parcel.writeParcelable(sprite, i);
         parcel.writeParcelable(collisionShape, i);
     }
 

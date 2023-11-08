@@ -127,6 +127,12 @@ public class HardConfig extends GameConfig {
         enemy2 = in.readParcelable(Enemy.class.getClassLoader());
         numEnemies = in.readInt();
     }
+
+    @Override
+    public void switchRoom(int roomID) {
+
+    }
+
     public static final Creator<HardConfig> CREATOR = new Creator<HardConfig>() {
         @Override
         public HardConfig createFromParcel(Parcel in) {

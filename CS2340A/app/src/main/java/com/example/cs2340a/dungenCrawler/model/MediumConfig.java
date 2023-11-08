@@ -126,6 +126,12 @@ public class MediumConfig extends GameConfig {
         enemy2 = in.readParcelable(Enemy.class.getClassLoader());
         numEnemies = in.readInt();
     }
+
+    @Override
+    public void switchRoom(int roomID) {
+
+    }
+
     public static final Creator<MediumConfig> CREATOR = new Creator<MediumConfig>() {
         @Override
         public MediumConfig createFromParcel(Parcel in) {

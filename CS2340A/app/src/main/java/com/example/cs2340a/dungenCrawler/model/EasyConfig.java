@@ -36,9 +36,9 @@ public class EasyConfig extends GameConfig {
         System.out.println("enemy1: " + enemy1);
 
 
-        observerList.add(enemy1);
-        observerList.add(enemy2);
-        System.out.println("Enemy List Size: " + observerList.size());
+        //observerList.add(enemy1);
+        //observerList.add(enemy2);
+        //System.out.println("Enemy List Size: " + observerList.size());
         test = "correct";
         System.out.println("testString: " + test);
         //for other rooms, enemies are set in switchEnemies
@@ -90,7 +90,7 @@ public class EasyConfig extends GameConfig {
         case 1:
             System.out.println("in switch case 1");
             //sets room 2 enemies
-            //enemy1 = factory.spawnZombie(res);
+            enemy1 = factory.spawnZombie(res);
             System.out.println("after first enemy change");
             enemy2 = factory.spawnVampire(res);
             break;
@@ -133,7 +133,8 @@ public class EasyConfig extends GameConfig {
         dest.writeParcelable(enemy1, flags);
         dest.writeParcelable(enemy2, flags);
         dest.writeInt(numEnemies);
-        dest.writeString(test);
+        //dest.writeString(test);
+        //dest.writeList(observerList);
     }
     protected EasyConfig(Parcel in) {
         super(in);
@@ -141,7 +142,8 @@ public class EasyConfig extends GameConfig {
         enemy1 = in.readParcelable(Enemy.class.getClassLoader());
         enemy2 = in.readParcelable(Enemy.class.getClassLoader());
         numEnemies = in.readInt();
-        test = in.readString();
+        //test = in.readString();
+        //observerList = in.readArrayList(null);
     }
     public static final Creator<EasyConfig> CREATOR = new Creator<EasyConfig>() {
         @Override

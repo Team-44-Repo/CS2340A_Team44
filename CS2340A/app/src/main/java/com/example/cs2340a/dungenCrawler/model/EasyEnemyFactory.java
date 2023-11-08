@@ -22,13 +22,13 @@ public class EasyEnemyFactory extends EnemyFactory {
 
     public Enemy spawnVampire(Resources res) {
         Enemy enemy;
-        enemy = new Vampire(res, R.drawable.vampire, 10, 10); //need to add Vampire sprite
+        enemy = new Vampire(res, R.drawable.vampire, 10, 10);
         return enemy;
     }
 
     public Enemy spawnZombie(Resources res) {
         Enemy enemy;
-        enemy = new Zombie(res, R.drawable.zombie, 5, 10); //need to add Vampire sprite
+        enemy = new Zombie(res, R.drawable.zombie, 5, 10);
         return enemy;
     }
 
