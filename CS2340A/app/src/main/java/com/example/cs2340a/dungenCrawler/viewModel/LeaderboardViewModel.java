@@ -25,8 +25,6 @@ public class LeaderboardViewModel extends AppCompatActivity {
     private int hours;
     private int score;
     private int minutes;
-
-    private Player player;
     private GameConfig gameConfig;
 
     private String[] names;
@@ -68,17 +66,18 @@ public class LeaderboardViewModel extends AppCompatActivity {
         score5 = findViewById(R.id.score_id5);
 
         WinLoseTV = findViewById(R.id.WinLoseTV_id);
-        if (player.getHealthPoints() <= 0) {
-            WinLoseTV.setText("GAME OVER");
-        } else {
-            WinLoseTV.setText("YOU WIN!!!");
-        }
 
         // Carry over data from past screens
         // timeLeft = (int) getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);
         // player = getIntent().getParcelableExtra("player");
         gameConfig = getIntent().getParcelableExtra("gameConfig");
         // score = getIntent().getIntExtra("score", player.getScore().getSeconds());
+
+        if (gameConfig.getPlayer().getHealthPoints() <= 0) {
+            WinLoseTV.setText("GAME OVER");
+        } else {
+            WinLoseTV.setText("YOU WIN!!!");
+        }
 
         // Initialize Leaderboard stuff
         date = new Date();

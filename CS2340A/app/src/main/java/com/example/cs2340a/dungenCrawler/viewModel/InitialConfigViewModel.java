@@ -32,7 +32,6 @@ public class InitialConfigViewModel extends AppCompatActivity {
     private Button exitbtn;
     private Button startGameButton;
     private GameConfig gameConfig;
-    private EnemyFactory enemyFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,9 +152,6 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 Room room = new RoomOne("room1", 1200, 540, 310,
                         460, 2090, 2400, bg, 1);
                 if (difficulty == 1) {
-                    // gameConfig = new EasyConfig(player, bg, 1, getResources());
-                    // enemyFactory = new EasyEnemyFactory();
-
                     System.out.println("setting gameConfig to EasyConfig type");
                     gameConfig = new EasyConfig(player, room, getResources());
                 } else if (difficulty == 0.75) {
@@ -171,11 +167,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
 
 
                 Intent game = new Intent(InitialConfigViewModel.this, GameRoom1ViewModel.class);
-                // next line is the Old way to pass avatar, but I can't git it to work
-                // game.putExtra("avatar", avatar);
 
-                //pass Player and GameConfig objects (using Parcable)
-                // game.putExtra("player", player);
                 System.out.println("putting gameConfig");
                 game.putExtra("gameConfig", gameConfig);
                 startActivity(game);
