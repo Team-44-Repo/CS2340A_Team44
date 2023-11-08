@@ -36,9 +36,9 @@ public class EasyConfig extends GameConfig {
         System.out.println("enemy1: " + enemy1);
 
 
-        observerList.add(enemy1);
-        observerList.add(enemy2);
-        System.out.println("Enemy List Size: " + observerList.size());
+        //observerList.add(enemy1);
+        //observerList.add(enemy2);
+        //System.out.println("Enemy List Size: " + observerList.size());
         test = "correct";
         System.out.println("testString: " + test);
         //for other rooms, enemies are set in switchEnemies
