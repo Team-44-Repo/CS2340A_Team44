@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ public class Bat extends Enemy implements IDrawable {
     @Override
     public void draw(Canvas canvas, Resources resources) {
         Paint paint = new Paint();
+        canvas.drawRect(getCollisionShape(), paint);
         canvas.drawBitmap(sprite, getX(), getY(), paint);
     }
 

@@ -54,7 +54,8 @@ public class Zombie extends Enemy implements IDrawable {
     @Override
     public void draw(Canvas canvas, Resources resources) {
         Paint paint = new Paint();
-        canvas.drawBitmap(sprite, 200, 200, paint);
+        canvas.drawRect(getCollisionShape(), paint);
+        canvas.drawBitmap(sprite, getX(), getY(), paint);
     }
 
     @Override
