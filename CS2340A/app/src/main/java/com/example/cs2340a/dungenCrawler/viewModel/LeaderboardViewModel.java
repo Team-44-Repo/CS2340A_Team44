@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.example.cs2340a.R;
 
-import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Leaderboard;
+import com.example.cs2340a.dungenCrawler.model.Player;
 
 import java.util.Date;
 
@@ -22,9 +22,9 @@ public class LeaderboardViewModel extends AppCompatActivity {
     private int timeLeft;
     private Date date;
     private int hours;
-    private int score;
     private int minutes;
-    //private GameConfig gameConfig;
+
+    private Player player;
 
     private String[] names;
 
@@ -38,8 +38,6 @@ public class LeaderboardViewModel extends AppCompatActivity {
 
     private TextView playerNameTV;
 
-    private static TextView WinLoseTV;
-
     //using leaderboard from Leaderboard class, but only getting the single instance
     public LeaderboardViewModel() {
         //leaderboard = Leaderboard.getInstance();
@@ -47,9 +45,6 @@ public class LeaderboardViewModel extends AppCompatActivity {
     //when the game ends, this method should be called to see if score should be set to leaderboard
     //takes in the name of the player and score they just received
 
-    public static CharSequence getWinLoseText() {
-        return WinLoseTV.getText();
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,31 +59,23 @@ public class LeaderboardViewModel extends AppCompatActivity {
         score4 = findViewById(R.id.score_id4);
         score5 = findViewById(R.id.score_id5);
 
-        WinLoseTV = findViewById(R.id.WinLoseTV_id);
-
         // Carry over data from past screens
-        //          noting passed from GameRoom1ViewModel !
-
-        if (GameConfig.getPlayer().getHealthPoints() <= 0) {
-            WinLoseTV.setText("GAME OVER");
-        } else {
-            WinLoseTV.setText("YOU WIN!!!");
-        }
+        timeLeft = (int) getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);
+        player = getIntent().getParcelableExtra("player");
 
         // Initialize Leaderboard stuff
         date = new Date();
         hours = date.getHours();
         minutes = date.getMinutes();
-        score = GameConfig.getPlayer().getScore().getScore();
         String time = hours + ":" + minutes;
 
-        leaderboard.addScores(score, GameConfig.getPlayer().getPlayerName(), time);
+        leaderboard.addScores(timeLeft, player.getPlayerName(), time);
         scores = leaderboard.getScores();
         names = leaderboard.getNames();
         times = leaderboard.getTimes();
 
         // Set texts
-        playerNameTV.setText(GameConfig.getPlayer().getPlayerName());
+        playerNameTV.setText(player.getPlayerName());
         score1.setText(names[0] + ", " + scores[0] + ", " + times[0]);
         score2.setText(names[1] + ", " + scores[1] + ", " + times[1]);
         score3.setText(names[2] + ", " + scores[2] + ", " + times[2]);

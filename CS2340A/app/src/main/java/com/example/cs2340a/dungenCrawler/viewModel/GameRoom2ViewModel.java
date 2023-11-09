@@ -17,7 +17,7 @@ import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.view.GameView;
 
 
-public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Callback {
+public class GameRoom2ViewModel extends AppCompatActivity implements GameView.Callback {
 
     private GameView gameView;
     private int avatar;
@@ -32,7 +32,7 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Log.d("----room1--------", "------------------------");
+        Log.d("----room2--------", "------------------------");
         Point point = new Point();
 
         getWindowManager().getDefaultDisplay().getSize(point);
@@ -45,7 +45,7 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
 
 
         // Initialize Runnable GameView
-        gameView = new GameView(this, point.x, point.y, R.drawable.room1, player, 1);
+        gameView = new GameView(this, point.x, point.y, R.drawable.room2, player, 2);
         gameView.setCallback((GameView.Callback) this);
         //Setting the GameView as the content view
         Log.d("Activating gameView...", "");
@@ -65,7 +65,7 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
 
     public void switchGameRoom1View() {
         Log.d("switchGameRoom1View()", "");
-        Intent game2 = new Intent(GameRoom1ViewModel.this, GameRoom2ViewModel.class);
+        Intent game2 = new Intent(GameRoom2ViewModel.this, GameRoom3ViewModel.class);
         game2.putExtra("avatar", avatar);
         game2.putExtra("player", player);
         game2.putExtra("gameConfig", gameConfig);
@@ -83,10 +83,4 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
         super.onResume();
         gameView.resume();
     }
-
-    //for Unit testing
-    public GameView getGameView() {
-        return gameView;
-    }
 }
-
