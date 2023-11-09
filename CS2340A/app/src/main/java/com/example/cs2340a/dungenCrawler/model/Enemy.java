@@ -17,6 +17,8 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     private int speed;
     private int attackPower;
     private int resID;
+    private int collisionOffsetX = 30;
+    private int collisionOffsetY = 70;
     private Bitmap sprite;
     private Rect collisionShape;
     public Enemy(Resources res, int resID, int speed, int attackPower) {
@@ -29,7 +31,7 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
         this.x = 500;
         this.y = 500;
 
-        collisionShape = new Rect(x, y, x + width, y + height);
+        collisionShape = new Rect(x, y - 30, x + width + 50, y + height + 50);
     }
     public int getX() {
         return x;
@@ -86,6 +88,8 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
                 this.setY(this.getY() + this.getSpeed());
             }
         }
+        setCollisionShape(new Rect(x + collisionOffsetX, y + collisionOffsetY - 30,
+                (x + collisionOffsetX) + width + 50, (y + collisionOffsetY) + height + 50));
         //check for collision using player.getCollisionShape()
         //referance how this is done in the GameLoop
     }

@@ -24,6 +24,7 @@ public class Ghost extends Enemy implements IDrawable {
     @Override
     public void draw(Canvas canvas, Resources resources) {
         Paint paint = new Paint();
+        canvas.drawRect(getCollisionShape(), paint);
         canvas.drawBitmap(sprite, getX(), getY(), paint);
     }
 
