@@ -2,44 +2,30 @@ package com.example.cs2340a;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
-
-import android.content.Context;
-import android.graphics.Point;
-
-
-import com.example.cs2340a.dungenCrawler.model.GameConfig;
-import com.example.cs2340a.dungenCrawler.model.Player;
-import com.example.cs2340a.dungenCrawler.model.Room;
-import com.example.cs2340a.dungenCrawler.model.Score;
-
-import com.example.cs2340a.dungenCrawler.viewModel.GameRoom1ViewModel;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runner.manipulation.Ordering;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 
 import android.graphics.Bitmap;
 
+import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.model.PlayerMovement;
 import com.example.cs2340a.dungenCrawler.model.Room;
 import com.example.cs2340a.dungenCrawler.model.Score;
 import com.example.cs2340a.dungenCrawler.viewModel.GameRoom1ViewModel;
+import com.example.cs2340a.dungenCrawler.viewModel.GameRoom2ViewModel;
+import com.example.cs2340a.dungenCrawler.viewModel.GameRoom3ViewModel;
 import android.graphics.BitmapFactory;
 
 import org.junit.Test;
 
 public class UnitTests {
+
     /*
     To find the API and commands to use for JUnit, use this link:
     https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html#assertEquals(double,%20double,%20double)
-    */
+     * */
 
     @Test // Elizabeth Grace Tuggle
     public void difficultyEasySelected() {
@@ -89,9 +75,10 @@ public class UnitTests {
     @Test // Clare Cotter
     public void timedScore() {
         Score score = new Score(400, false);
-        assertEquals(null, score.timeLeftText());
+        assertEquals(null, score.timeLeft());
         assertNotNull(score);
     }
+
     @Test // Clare Cotter
     public void timedScore2() {
         Score score = new Score(400, false);
@@ -117,6 +104,7 @@ public class UnitTests {
         GameConfig gConfig = new GameConfig("null", 1.0, null, 2);
         assertEquals(2, gConfig.getCurrRoomId(), 0);
     }
+
     @Test //Catherine Trobradovic
     public void checkValidCurrRoom3Id() {
         GameConfig gConfig = new GameConfig("null", 1.0, null, 3);
@@ -206,5 +194,5 @@ public class UnitTests {
         GameConfig gameConfigTest = new GameConfig("name", 0.5, sprite, 2);
         assertNotNull(gameConfigTest);
     }
-
 }
+
