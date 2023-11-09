@@ -12,7 +12,6 @@ import com.example.cs2340a.R;
 
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Leaderboard;
-import com.example.cs2340a.dungenCrawler.model.Player;
 
 import java.util.Date;
 
@@ -25,7 +24,7 @@ public class LeaderboardViewModel extends AppCompatActivity {
     private int hours;
     private int score;
     private int minutes;
-    private GameConfig gameConfig;
+    //private GameConfig gameConfig;
 
     private String[] names;
 
@@ -68,12 +67,9 @@ public class LeaderboardViewModel extends AppCompatActivity {
         WinLoseTV = findViewById(R.id.WinLoseTV_id);
 
         // Carry over data from past screens
-        // timeLeft = (int) getIntent().getLongExtra("timeLeftInMilliseconds", timeLeft);
-        // player = getIntent().getParcelableExtra("player");
-        gameConfig = getIntent().getParcelableExtra("gameConfig");
-        // score = getIntent().getIntExtra("score", player.getScore().getSeconds());
+        //          noting passed from GameRoom1ViewModel !
 
-        if (gameConfig.getPlayer().getHealthPoints() <= 0) {
+        if (GameConfig.getPlayer().getHealthPoints() <= 0) {
             WinLoseTV.setText("GAME OVER");
         } else {
             WinLoseTV.setText("YOU WIN!!!");
@@ -83,16 +79,16 @@ public class LeaderboardViewModel extends AppCompatActivity {
         date = new Date();
         hours = date.getHours();
         minutes = date.getMinutes();
-        score = gameConfig.getPlayer().getScore().getScore();
+        score = GameConfig.getPlayer().getScore().getScore();
         String time = hours + ":" + minutes;
 
-        leaderboard.addScores(score, gameConfig.getPlayer().getPlayerName(), time);
+        leaderboard.addScores(score, GameConfig.getPlayer().getPlayerName(), time);
         scores = leaderboard.getScores();
         names = leaderboard.getNames();
         times = leaderboard.getTimes();
 
         // Set texts
-        playerNameTV.setText(gameConfig.getPlayer().getPlayerName());
+        playerNameTV.setText(GameConfig.getPlayer().getPlayerName());
         score1.setText(names[0] + ", " + scores[0] + ", " + times[0]);
         score2.setText(names[1] + ", " + scores[1] + ", " + times[1]);
         score3.setText(names[2] + ", " + scores[2] + ", " + times[2]);

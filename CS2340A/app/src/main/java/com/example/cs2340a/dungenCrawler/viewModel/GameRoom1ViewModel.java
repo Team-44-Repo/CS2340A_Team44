@@ -12,10 +12,11 @@ import android.view.KeyEvent;
 import android.view.WindowManager;
 
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
+//import com.example.cs2340a.dungenCrawler.model.GameConfig;
 
 
 public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Callback {
-    private GameConfig gameConfig;
+    //private GameConfig gameConfig;
     private GameLoop gameLoop;
     private Point point;
 
@@ -31,12 +32,12 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
 
         getWindowManager().getDefaultDisplay().getSize(point);
 
-        gameConfig = getIntent().getParcelableExtra("gameConfig");
-        System.out.println("in room1 activity, post gameConfig get");
-        System.out.println(gameConfig.difType());
+        //gameConfig = getIntent().getParcelableExtra("gameConfig");
+        //System.out.println("in room1 activity, post gameConfig get");
+        //System.out.println(gameConfig.difType());
 
         // Initializing Runnable GameLoop
-        gameLoop = new GameLoop(this, gameConfig);
+        gameLoop = new GameLoop(this);
         gameLoop.setCallback(this);
         setContentView(gameLoop);
 
@@ -56,7 +57,7 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         System.out.println("You won!");
         Log.d("switchLeaderboardView()", "");
         Intent game2 = new Intent(GameRoom1ViewModel.this, LeaderboardViewModel.class);
-        game2.putExtra("gameConfig", gameConfig);
+        //game2.putExtra("gameConfig", gameConfig);
         startActivity(game2);
     }
 
@@ -85,16 +86,16 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         System.out.println("KEY DOWN");
         switch (keyCode) {
         case KeyEvent.KEYCODE_W:
-            gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() - 30);
+            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY() - 30);
             return true;
         case KeyEvent.KEYCODE_A:
-            gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() - 30);
+            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX() - 30);
             return true;
         case KeyEvent.KEYCODE_S:
-            gameConfig.getPlayer().setY(gameConfig.getPlayer().getY() + 30);
+            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY() + 30);
             return true;
         case KeyEvent.KEYCODE_D:
-            gameConfig.getPlayer().setX(gameConfig.getPlayer().getX() + 30);
+            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX() + 30);
             return true;
         default:
             return super.onKeyDown(keyCode, event);
