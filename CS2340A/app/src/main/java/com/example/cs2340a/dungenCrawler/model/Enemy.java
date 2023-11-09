@@ -6,10 +6,17 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.content.Context;
+import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.graphics.Canvas;
 
 import androidx.annotation.NonNull;
 
 public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
+
+    //Attributes -----------------------------------------------------------
     private int x;
     private int y;
     private int width = 74;
@@ -21,6 +28,8 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     private int collisionOffsetY = 70;
     private Bitmap sprite;
     private Rect collisionShape;
+
+    //Constructor -----------------------------------------------------------
     public Enemy(Resources res, int resID, int speed, int attackPower) {
         //sprite = BitmapFactory.decodeResource(res, resID);
         //sprite = Bitmap.createBitmap(sprite);
@@ -33,47 +42,19 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
 
         collisionShape = new Rect(x, y - 30, x + width + 50, y + height + 50);
     }
-    public int getX() {
-        return x;
-    }
-    public int getY() {
-        return y;
-    }
-    public int getWidth() {
-        return width;
-    }
-    public int getHeight() {
-        return height;
-    }
-    public int getSpeed() {
-        return speed;
-    }
-    public Bitmap getSprite() {
-        return sprite;
-    }
-    public Rect getCollisionShape() {
-        return collisionShape;
-    }
-    public void setX(int x) {
-        this.x = x;
-    }
-    public void setY(int y) {
-        this.y = y;
-    }
-    public void setSprite(Bitmap sprite) {
-        this.sprite = sprite;
-    }
-    public void setCollisionShape(Rect collisionShape) {
-        this.collisionShape = collisionShape;
-    }
+
+
+    //Methods -----------------------------------------------------------
     public void attack(Player player) {
         if (player.getCollisionShape().intersect(this.getCollisionShape())) {
             player.setHealthPoints(player.getHealthPoints() - attackPower);
         }
     }
+
+    //Observer methods (Overrides)
     @Override
     public void update(Player player) {
-        System.out.println("in update");
+        System.out.println("in Enemy update");
         if ((this.getX() != player.getX()) || (this.getY() != player.getY())) {
             //change enemy's X
             if (this.getX() < player.getX()) {
@@ -93,7 +74,65 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
         //check for collision using player.getCollisionShape()
         //referance how this is done in the GameLoop
     }
+    @Override
+    public void checkCollision(Player player) {
+        if (this.getCollisionShape().intersect(player.getCollisionShape())) {
+            System.out.println("collision > reducing hp:");
+            GameConfig.setHealthPoints(GameConfig.getHealthPoints() - this.attackPower);
+        }
+    }
 
+
+    //getters and setters -----------------------------------------------------------
+    //      X & Y
+    public int getX() {
+        return x;
+    }
+    public void setX(int x) {
+        this.x = x;
+    }
+    public int getY() {
+        return y;
+    }
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    //      Attack power
+    protected int getAttackPower() {
+        return attackPower; }
+
+    //      Width & Height
+    public int getWidth() {
+        return width;
+    }
+    public int getHeight() {
+        return height;
+    }
+
+    //      speed
+    public int getSpeed() {
+        return speed;
+    }
+
+    //      Sprite
+    public Bitmap getSprite() {
+        return sprite;
+    }
+    public void setSprite(Bitmap sprite) {
+        this.sprite = sprite;
+    }
+
+    //      CollisionShape
+    public Rect getCollisionShape() {
+        return collisionShape;
+    }
+    public void setCollisionShape(Rect collisionShape) {
+        this.collisionShape = collisionShape;
+    }
+
+
+    // other stuff
     @Override
     public int describeContents() {
         return 0;
@@ -116,6 +155,5 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
         parcel.writeParcelable(collisionShape, i);
     }
 
-    protected int getAttackPower() {
-        return attackPower; }
+
 }

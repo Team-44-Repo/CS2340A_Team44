@@ -2,6 +2,8 @@ package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+
 
 import java.util.ArrayList;
 
@@ -20,13 +22,16 @@ public class GameConfig {
 
     //Attributes -----------------------------------------------------------
     private static Player player;
-    private static Room currRoom;
-    private static Background bg;
-    private static Resources res;
-    private static int resID;
     private static int avatar;
     private static double difficultyNum;
     private static DifficultyEnum difficulty;
+
+    private static int healthPoints;
+    private static Room currRoom;
+    private static int resID;
+    private static Background bg;
+    private static Resources res;
+
     private static EnemyFactory factory;
     private static Enemy enemy1;
     private static Enemy enemy2;
@@ -106,6 +111,12 @@ public class GameConfig {
         enemy1.draw(canvas, resources);
         enemy2.draw(canvas, resources);
     }
+    public static void drawHP(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setTextSize(50);
+        canvas.drawText("HP: " + healthPoints, 1700, 50, paint);
+    }
+
 
     //Observable methods
     public static void addObserver(Enemy enemy) {
@@ -117,14 +128,12 @@ public class GameConfig {
     public static void notifyObservers() {
         System.out.println("notifying observers --- easy");
         System.out.println("Enemy List Size: " + observerList.size());
-        /*
+
         for (Enemy observer : observerList) {
             System.out.println("call update");
             observer.update(getPlayer());
+            observer.checkCollision(getPlayer());
         }
-         */
-        enemy1.update(getPlayer());
-        enemy2.update(getPlayer());
     }
 
 
@@ -136,18 +145,22 @@ public class GameConfig {
         case EASY:
             difficultyNum = 1.0;
             factory = new EasyEnemyFactory();
+            healthPoints = 500;
             break;
         case MEDIUM:
             difficultyNum = 0.75;
             factory = new MediumEnemyFactory();
+            healthPoints = 300;
             break;
         case HARD:
             difficultyNum = 0.5;
             factory = new HardEnemyFactory();
+            healthPoints = 100;
             break;
         default:
             difficultyNum = 1.0;
             factory = new EasyEnemyFactory();
+            healthPoints = 1000;
             break;
         }
     }
@@ -169,6 +182,14 @@ public class GameConfig {
     //      Avatar
     public static void setAvatar(int avatarID) {
         avatar = avatarID;
+    }
+
+    //      Health Points
+    public static int getHealthPoints() {
+        return healthPoints;
+    }
+    public static void setHealthPoints(int hp) {
+        healthPoints = hp;
     }
 
     //      CurrRoom
@@ -204,5 +225,7 @@ public class GameConfig {
 
 
     //      numEnemies
+
+
 
 }
