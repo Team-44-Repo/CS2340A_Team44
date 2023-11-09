@@ -68,7 +68,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         GameConfig.getPlayer().getScore().setScore(GameConfig.getPlayer().getScore().getScore()
                 + 1);
         GameConfig.getPlayer().update();
-        System.out.println("about to notify observers");
+        //player made
         GameConfig.notifyObservers();
 
 
