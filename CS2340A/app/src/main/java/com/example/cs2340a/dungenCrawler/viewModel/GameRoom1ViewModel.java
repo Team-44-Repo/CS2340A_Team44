@@ -19,11 +19,9 @@ import com.example.cs2340a.dungenCrawler.view.GameView;
 
 public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Callback {
 
-    private GameView gameView;
-    private int avatar;
-    private Thread thread;
-    private Player player;
-    private GameConfig gameConfig;
+    //private GameConfig gameConfig;
+    private GameLoop gameLoop;
+    private Point point;
 
 
     @Override
@@ -33,60 +31,76 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Log.d("----room1--------", "------------------------");
-        Point point = new Point();
+        point = new Point();
 
         getWindowManager().getDefaultDisplay().getSize(point);
 
-        player = getIntent().getParcelableExtra("player");
-        gameConfig = getIntent().getParcelableExtra("gameConfig");
-        avatar = getIntent().getIntExtra("avatar", R.drawable.player1);
-        //compSprite = getIntent().getByteArrayExtra("compSprite");
-        //player.setSprite(BitmapFactory.decodeByteArray(compSprite, 0, compSprite.length));
 
+        // Initializing Runnable GameLoop
+        gameLoop = new GameLoop(this);
+        gameLoop.setCallback(this);
+        setContentView(gameLoop);
 
-        // Initialize Runnable GameView
-        gameView = new GameView(this, point.x, point.y, R.drawable.room1, player, 1);
-        gameView.setCallback((GameView.Callback) this);
-        //Setting the GameView as the content view
-        Log.d("Activating gameView...", "");
-        setContentView(gameView);
-        Log.d("right after setContentView", "");
-        player.getScore().startScore();
-
+        if (gameLoop.won()) {
+            switchLeaderboardView();
+        }
     }
 
     @Override
     public void onRunnablePaused() {
         // This code is executed when the gameView is paused from within onTouchEvent.
         Log.d("executed after the gameView", "");
-        switchGameRoom1View();
+        switchLeaderboardView();
     }
 
-
-    public void switchGameRoom1View() {
-        Log.d("switchGameRoom1View()", "");
-        Intent game2 = new Intent(GameRoom1ViewModel.this, GameRoom2ViewModel.class);
-        game2.putExtra("avatar", avatar);
-        game2.putExtra("player", player);
-        game2.putExtra("gameConfig", gameConfig);
+    public void switchLeaderboardView() {
+        System.out.println("You won!");
+        Log.d("switchLeaderboardView()", "");
+        Intent game2 = new Intent(GameRoom1ViewModel.this, LeaderboardViewModel.class);
+        //game2.putExtra("gameConfig", gameConfig);
         startActivity(game2);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        gameView.pause();
+        gameLoop.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        gameView.resume();
+        gameLoop.resume();
     }
 
-    //for Unit testing
-    public GameView getGameView() {
-        return gameView;
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
+
+    /*
+    Allows the Player to move with WASD key movement.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        System.out.println("KEY DOWN");
+        switch (keyCode) {
+        case KeyEvent.KEYCODE_W:
+            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY() - 30);
+            return true;
+        case KeyEvent.KEYCODE_A:
+            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX() - 30);
+            return true;
+        case KeyEvent.KEYCODE_S:
+            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY() + 30);
+            return true;
+        case KeyEvent.KEYCODE_D:
+            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX() + 30);
+            return true;
+        default:
+            return super.onKeyDown(keyCode, event);
+        }
+        //because player has moved >> update enemies (and check for collisions)
     }
 }
 

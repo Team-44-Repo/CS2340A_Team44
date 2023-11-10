@@ -18,11 +18,9 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
      */
 
     private Callback callback;
-    //private GameConfig gameConfig;
     private Thread thread;
     private boolean isPlaying;
     private boolean youWon = false;
-    // private Background bg;
 
     public GameLoop(Context context) {
         super(context);
@@ -120,6 +118,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             GameConfig.getCurrRoom().draw(canvas, getResources());
             GameConfig.getPlayer().draw(canvas, getResources());
             GameConfig.drawEnemies(canvas, getResources());
+            GameConfig.drawHP(canvas);
             getHolder().unlockCanvasAndPost(canvas);
         }
     }
