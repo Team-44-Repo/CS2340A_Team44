@@ -1,6 +1,6 @@
 package com.example.cs2340a.dungenCrawler.model;
 
-import android.content.res.Resources;
+
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -116,8 +116,7 @@ public class GameConfig {
         paint.setTextSize(50);
         canvas.drawText("HP: " + healthPoints, 1700, 50, paint);
     }
-
-
+  
     //Observable methods
     public static void addObserver(Enemy enemy) {
         observerList.add(enemy);
@@ -135,6 +134,12 @@ public class GameConfig {
             observer.checkCollision(getPlayer());
         }
     }
+
+    public static final Creator<GameConfig> CREATOR = new Creator<GameConfig>() {
+        @Override
+        public GameConfig createFromParcel(Parcel in) {
+            return new GameConfig(in);
+        }
 
 
     //getters and setters -----------------------------------------------------------
@@ -162,10 +167,10 @@ public class GameConfig {
             factory = new EasyEnemyFactory();
             healthPoints = 1000;
             break;
+
         }
     }
-
-    //      Background
+//      Background
     public static void setBackground(Background pbg) {
         bg = pbg;
     }
@@ -225,7 +230,5 @@ public class GameConfig {
 
 
     //      numEnemies
-
-
 
 }
