@@ -183,7 +183,7 @@ public class Player implements Parcelable, IDrawable {
         paint.setTextSize(50);
         canvas.drawText(playerName, 50, 50, paint);
         canvas.drawText(getDifficultyTitle(), 500, 50, paint);
-        canvas.drawText(getHealthString(), 2000, 50, paint);
+        //canvas.drawText(getHealthString(), 2000, 50, paint);
         score.draw(canvas, resources);
         canvas.drawRect(collisionShape, paint);
 
