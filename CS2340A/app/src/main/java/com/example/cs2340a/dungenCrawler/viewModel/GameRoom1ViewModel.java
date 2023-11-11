@@ -38,7 +38,12 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         gameLoop.setCallback(this);
         setContentView(gameLoop);
 
-        if (gameLoop.won()) {
+        //if (gameLoop.lost()) {
+            // System.out.println("I LOST");
+        //    gameOver();
+        //}
+
+        if (gameLoop.won() || gameLoop.lost()) {
             switchLeaderboardView();
         }
     }
@@ -56,6 +61,12 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         Intent game2 = new Intent(GameRoom1ViewModel.this, LeaderboardViewModel.class);
         //game2.putExtra("gameConfig", gameConfig);
         startActivity(game2);
+    }
+
+    public void gameOver() {
+        System.out.println("IN GAME OVER");
+        Intent endgame = new Intent(GameRoom1ViewModel.this, LeaderboardViewModel.class);
+        startActivity(endgame);
     }
 
     @Override

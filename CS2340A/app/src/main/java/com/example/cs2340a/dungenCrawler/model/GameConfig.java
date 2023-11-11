@@ -1,9 +1,13 @@
 package com.example.cs2340a.dungenCrawler.model;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+
+import com.example.cs2340a.dungenCrawler.viewModel.GameRoom1ViewModel;
+import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
 
 import java.util.ArrayList;
 
@@ -70,6 +74,10 @@ public class GameConfig {
             player.setX(800);
             player.setY(800);
         }
+    }
+
+    public static void endGame() {
+
     }
 
     /**
@@ -184,6 +192,8 @@ public class GameConfig {
         avatar = avatarID;
     }
 
+    public static int getAvatar () {return avatar;}
+
     //      Health Points
     public static int getHealthPoints() {
         return healthPoints;
@@ -221,6 +231,10 @@ public class GameConfig {
     //      res
     public static void setRes(Resources resource) {
         res = resource;
+    }
+
+    public static DifficultyEnum getDifficulty() {
+        return difficulty;
     }
 
 

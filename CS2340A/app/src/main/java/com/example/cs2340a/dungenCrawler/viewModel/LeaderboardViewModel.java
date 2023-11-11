@@ -69,7 +69,7 @@ public class LeaderboardViewModel extends AppCompatActivity {
         // Carry over data from past screens
         //          noting passed from GameRoom1ViewModel !
 
-        if (GameConfig.getPlayer().getHealthPoints() <= 0) {
+        if (GameConfig.getHealthPoints() <= 0) {
             WinLoseTV.setText("GAME OVER");
         } else {
             WinLoseTV.setText("YOU WIN!!!");
