@@ -8,17 +8,14 @@ import android.os.Bundle;
 
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 
-import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
-
-import com.example.cs2340a.dungenCrawler.model.Player;
-import com.example.cs2340a.dungenCrawler.view.GameView;
+//import com.example.cs2340a.dungenCrawler.model.GameConfig;
 
 
-public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Callback {
-
+public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Callback {
     //private GameConfig gameConfig;
     private GameLoop gameLoop;
     private Point point;

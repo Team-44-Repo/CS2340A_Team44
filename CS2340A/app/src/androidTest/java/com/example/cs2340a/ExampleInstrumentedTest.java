@@ -1,7 +1,6 @@
 package com.example.cs2340a;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -10,11 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
-
-import com.example.cs2340a.dungenCrawler.model.Player;
-import com.example.cs2340a.dungenCrawler.model.Score;
-import com.example.cs2340a.dungenCrawler.view.GameView;
-import com.example.cs2340a.dungenCrawler.viewModel.GameRoom1ViewModel;
 
 /**
  * Instrumented test, which will execute on an Android device.

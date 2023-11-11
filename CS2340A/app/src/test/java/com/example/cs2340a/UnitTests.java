@@ -5,18 +5,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 
-import android.graphics.Bitmap;
-
 import com.example.cs2340a.dungenCrawler.model.CharSprite;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
-import com.example.cs2340a.dungenCrawler.model.PlayerMovement;
 import com.example.cs2340a.dungenCrawler.model.Room;
 import com.example.cs2340a.dungenCrawler.model.Score;
-import com.example.cs2340a.dungenCrawler.viewModel.GameRoom1ViewModel;
-import com.example.cs2340a.dungenCrawler.viewModel.GameRoom2ViewModel;
-import com.example.cs2340a.dungenCrawler.viewModel.GameRoom3ViewModel;
-import android.graphics.BitmapFactory;
 
 import org.junit.Test;
 
