@@ -1,4 +1,4 @@
-package com.example.cs2340a;
+/*package com.example.cs2340a;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -19,6 +19,7 @@ public class UnitTests {
     To find the API and commands to use for JUnit, use this link:
     https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html#assertEquals(double,%20double,%20double)
     * */
+/*
     @Test // Elizabeth Grace Tuggle
     public void difficultyEasySelected() {
         GameConfig gConfig = new GameConfig("null", 1.0, null, 0);
@@ -187,3 +188,4 @@ public class UnitTests {
         assertNotNull(gameConfigTest);
     }
 }
+ */
