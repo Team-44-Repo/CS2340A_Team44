@@ -93,4 +93,16 @@ public class UnitTestsSprint4 {
         assertTrue("Game should be lost.", result);
     }
 
+    @Test //Catherine Trobradovic
+    public void setCharacter2() {
+        GameConfig.setAvatar(2);
+        assertEquals(2, GameConfig.getAvatar());
+    }
+
+    @Test //Catherine Trobradovic
+    public void setCharacter3() {
+        GameConfig.setAvatar(3);
+        assertEquals(3, GameConfig.getAvatar());
+    }
+
 }
