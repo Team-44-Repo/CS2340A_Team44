@@ -1,6 +1,7 @@
 package com.example.cs2340a.dungenCrawler.viewModel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -18,11 +19,10 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
      */
 
     private Callback callback;
-    //private GameConfig gameConfig;
     private Thread thread;
     private boolean isPlaying;
     private boolean youWon = false;
-    // private Background bg;
+    private boolean youLost = false;
 
     public GameLoop(Context context) {
         super(context);
@@ -101,9 +101,17 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
                 intersect(GameConfig.getCurrRoom().getCollisionMap().getDoorway1())) {
             GameConfig.switchRoom(GameConfig.getCurrRoom().getRoomID());
         }
+
+        if (GameConfig.getHealthPoints() <= 0) {
+            System.out.println("YOU LOST: " + youLost);
+            youLost = true;
+            setIsPlaying(false);
+        }
     }
     public boolean won() {
         return youWon; }
+    public boolean lost() {
+        return youLost; }
     public void setIsPlaying(boolean val) {
         this.isPlaying = val; }
 
@@ -120,6 +128,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             GameConfig.getCurrRoom().draw(canvas, getResources());
             GameConfig.getPlayer().draw(canvas, getResources());
             GameConfig.drawEnemies(canvas, getResources());
+            GameConfig.drawHP(canvas);
             getHolder().unlockCanvasAndPost(canvas);
         }
     }

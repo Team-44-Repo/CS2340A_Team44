@@ -3,9 +3,9 @@ package com.example.cs2340a;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import android.graphics.Rect;
 
-import com.example.cs2340a.dungenCrawler.model.Bat;
+import com.example.cs2340a.dungenCrawler.model.DifficultyEnum;
+import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.model.PlayerMovement;
 import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
@@ -15,27 +15,31 @@ import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
 
 import org.junit.Test;
 public class UnitTestsSprint4 {
-    /*
-
-    //these used BITMAP so they did not work
-    //DONT USE BITMAP
 
     @Test
-    public void createBat() {
-        Bat bat = new Bat(null, 1, 5, 10);
-        assertEquals(5, bat.getSpeed());
-        assertEquals(500, bat.getX());
-        assertEquals(500, bat.getY());
+    public void setDifficultyEasy() { // Elizabeth Grace Tuggle
+        GameConfig.setDifficulty(DifficultyEnum.EASY);
+        assertEquals(DifficultyEnum.EASY, GameConfig.getDifficulty());
     }
 
     @Test
-    public void createVampire() {
-        Vampire vampire = new Vampire(null, 1, 3, 10);
-        assertEquals(3, vampire.getSpeed());
-        assertEquals(new Rect(500, 500 - 30, 500 + 74 + 50, 500 + 74 + 50), vampire.getCollisionShape());
+    public void setDifficultyMedium() { // Elizabeth Grace Tuggle
+        GameConfig.setDifficulty(DifficultyEnum.MEDIUM);
+        assertEquals(DifficultyEnum.MEDIUM, GameConfig.getDifficulty());
     }
 
-     */
+    @Test
+    public void setDifficultyHard() { // Olivia Klemmer
+        GameConfig.setDifficulty(DifficultyEnum.HARD);
+        assertEquals(DifficultyEnum.HARD, GameConfig.getDifficulty());
+    }
+
+    @Test
+    public void setCharacter1() {
+        GameConfig.setAvatar(1);
+        assertEquals(1, GameConfig.getAvatar());
+    }
+
     @Test //Clare Cotter
     public void addObserver() {
         class item implements PositionObserver {
