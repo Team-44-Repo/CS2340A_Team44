@@ -19,6 +19,7 @@ public class UnitTests {
     To find the API and commands to use for JUnit, use this link:
     https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html#assertEquals(double,%20double,%20double)
     * */
+
 /*
     @Test // Elizabeth Grace Tuggle
     public void difficultyEasySelected() {
@@ -188,4 +189,5 @@ public class UnitTests {
         assertNotNull(gameConfigTest);
     }
 }
- */
+*/
+
