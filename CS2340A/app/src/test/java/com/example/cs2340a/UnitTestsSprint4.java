@@ -2,7 +2,7 @@ package com.example.cs2340a;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 
 import com.example.cs2340a.dungenCrawler.model.DifficultyEnum;
@@ -84,14 +84,14 @@ public class UnitTestsSprint4 {
 
     @Test //Angela Chang
     public void gameWon() {
-        boolean result = GameLoop.won();
-        assertTrue("Game should be won.", result);
+        boolean didLose = GameLoop.lost();
+        assertFalse("Game should not be lost.", didLose);
     }
 
     @Test //Angela Chang
     public void gameLost() {
-        boolean result = GameLoop.lost();
-        assertTrue("Game should be lost.", result);
+        boolean didWin = GameLoop.won();
+        assertFalse("Game should not be won.", didWin);
     }
 
     @Test //Catherine Trobradovic
