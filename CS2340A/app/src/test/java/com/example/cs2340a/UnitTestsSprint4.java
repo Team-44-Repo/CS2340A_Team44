@@ -12,6 +12,7 @@ import com.example.cs2340a.dungenCrawler.model.PlayerMovement;
 import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
 import com.example.cs2340a.dungenCrawler.model.Vampire;
 import com.example.cs2340a.dungenCrawler.view.PositionObserver;
+import com.example.cs2340a.dungenCrawler.viewModel.GameRoom1ViewModel;
 import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
 import com.example.cs2340a.dungenCrawler.viewModel.GameLoop;
 
@@ -37,7 +38,7 @@ public class UnitTestsSprint4 {
     }
 
     @Test
-    public void setCharacter1() {
+    public void setCharacter1() { // Olivia Klemmer
         GameConfig.setAvatar(1);
         assertEquals(1, GameConfig.getAvatar());
     }
@@ -104,5 +105,24 @@ public class UnitTestsSprint4 {
         GameConfig.setAvatar(3);
         assertEquals(3, GameConfig.getAvatar());
     }
+
+    @Test //Daysen Gyatt
+    public void setHealthPointsEasy() {
+        GameConfig.setDifficulty(DifficultyEnum.EASY);
+        assertEquals(500, GameConfig.getHealthPoints());
+    }
+
+    @Test //Daysen Gyatt
+    public void setHealthPointsMedium() {
+        GameConfig.setDifficulty(DifficultyEnum.MEDIUM);
+        assertEquals(300, GameConfig.getHealthPoints());
+    }
+
+    @Test //Daysen Gyatt
+    public void setHealthPointsHard() {
+        GameConfig.setDifficulty(DifficultyEnum.HARD);
+        assertEquals(100, GameConfig.getHealthPoints());
+    }
+
 
 }
