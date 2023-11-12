@@ -2,7 +2,6 @@ package com.example.cs2340a;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertFalse;
 
 
 import com.example.cs2340a.dungenCrawler.model.DifficultyEnum;
@@ -11,10 +10,10 @@ import com.example.cs2340a.dungenCrawler.model.Player;
 import com.example.cs2340a.dungenCrawler.model.PlayerMovement;
 import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
 import com.example.cs2340a.dungenCrawler.model.Vampire;
+import com.example.cs2340a.dungenCrawler.model.Enemy;
 import com.example.cs2340a.dungenCrawler.view.PositionObserver;
 import com.example.cs2340a.dungenCrawler.viewModel.GameRoom1ViewModel;
 import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
-import com.example.cs2340a.dungenCrawler.viewModel.GameLoop;
 
 import org.junit.Test;
 public class UnitTestsSprint4 {
@@ -83,17 +82,16 @@ public class UnitTestsSprint4 {
     }
 
     @Test //Angela Chang
-    public void setHealthPointsDefault() {
-        GameConfig.setDifficulty(null);
-        assertEquals(1000, GameConfig.getHealthPoints());
+    public void setHealthPointsEasy() {
+        GameConfig.setDifficulty(DifficultyEnum.EASY);
+        assertEquals(500, GameConfig.getHealthPoints());
 
     }
 
     @Test //Angela Chang
-    public void setDifficultyDefault() {
-        GameConfig.setDifficulty(null);
-        //assertEquals(DifficultyEnum.EASY, GameConfig.getDifficulty());
-        assertEquals(null, GameConfig.getDifficulty());
+    public void setEnemyFactoryEasy() {
+        GameConfig.setDifficulty(DifficultyEnum.EASY);
+        assertEquals(1, GameConfig.getEnemy1().getAttackPower());
     }
 
     @Test //Catherine Trobradovic
@@ -106,12 +104,6 @@ public class UnitTestsSprint4 {
     public void setCharacter3() {
         GameConfig.setAvatar(3);
         assertEquals(3, GameConfig.getAvatar());
-    }
-
-    @Test //Daysen Gyatt
-    public void setHealthPointsEasy() {
-        GameConfig.setDifficulty(DifficultyEnum.EASY);
-        assertEquals(500, GameConfig.getHealthPoints());
     }
 
     @Test //Daysen Gyatt
