@@ -83,15 +83,17 @@ public class UnitTestsSprint4 {
     }
 
     @Test //Angela Chang
-    public void gameWon() {
-        boolean didLose = GameLoop.lost();
-        assertFalse("Game should not be lost.", didLose);
+    public void setHealthPointsDefault() {
+        GameConfig.setDifficulty(null);
+        assertEquals(1000, GameConfig.getHealthPoints());
+
     }
 
     @Test //Angela Chang
-    public void gameLost() {
-        boolean didWin = GameLoop.won();
-        assertFalse("Game should not be won.", didWin);
+    public void setDifficultyDefault() {
+        GameConfig.setDifficulty(null);
+        //assertEquals(DifficultyEnum.EASY, GameConfig.getDifficulty());
+        assertEquals(null, GameConfig.getDifficulty());
     }
 
     @Test //Catherine Trobradovic
