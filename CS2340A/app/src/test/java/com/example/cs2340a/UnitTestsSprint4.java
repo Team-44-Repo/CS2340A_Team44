@@ -2,6 +2,7 @@ package com.example.cs2340a;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 
 import com.example.cs2340a.dungenCrawler.model.DifficultyEnum;
@@ -12,6 +13,7 @@ import com.example.cs2340a.dungenCrawler.model.PlayerPosition;
 import com.example.cs2340a.dungenCrawler.model.Vampire;
 import com.example.cs2340a.dungenCrawler.view.PositionObserver;
 import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
+import com.example.cs2340a.dungenCrawler.viewModel.GameLoop;
 
 import org.junit.Test;
 public class UnitTestsSprint4 {
@@ -77,6 +79,18 @@ public class UnitTestsSprint4 {
         position.removeObserver(i);
         position.notifyObservers();
         assertEquals(0, i.count);
+    }
+
+    @Test //Angela Chang
+    public void gameWon() {
+        boolean result = GameLoop.won();
+        assertTrue("Game should be won.", result);
+    }
+
+    @Test //Angela Chang
+    public void gameLost() {
+        boolean result = GameLoop.lost();
+        assertTrue("Game should be lost.", result);
     }
 
 }
