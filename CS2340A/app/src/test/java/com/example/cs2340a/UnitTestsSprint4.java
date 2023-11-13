@@ -82,18 +82,16 @@ public class UnitTestsSprint4 {
         assertEquals(0, i.count);
     }
 
-    @Test //Angela Chang
-    public void setHealthPointsDefault() {
-        GameConfig.setDifficulty(null);
-        assertEquals(1000, GameConfig.getHealthPoints());
-
+    @Test // Angela Chang
+    public void setHealthPointsHard() {
+        GameConfig.setDifficulty(DifficultyEnum.HARD);
+        assertEquals(100, GameConfig.getHealthPoints());
     }
 
     @Test //Angela Chang
-    public void setDifficultyDefault() {
-        GameConfig.setDifficulty(null);
-        //assertEquals(DifficultyEnum.EASY, GameConfig.getDifficulty());
-        assertEquals(null, GameConfig.getDifficulty());
+    public void setEasyDifficultyNum() {
+        GameConfig.setDifficulty(DifficultyEnum.EASY);
+        assertEquals(1.0, GameConfig.getDifficultyNum(), 0);
     }
 
     @Test //Catherine Trobradovic
@@ -120,11 +118,6 @@ public class UnitTestsSprint4 {
         assertEquals(300, GameConfig.getHealthPoints());
     }
 
-    @Test //Daysen Gyatt
-    public void setHealthPointsHard() {
-        GameConfig.setDifficulty(DifficultyEnum.HARD);
-        assertEquals(100, GameConfig.getHealthPoints());
-    }
 
 
 }

@@ -236,6 +236,9 @@ public class GameConfig {
     public static DifficultyEnum getDifficulty() {
         return difficulty;
     }
+    public static double getDifficultyNum() {
+        return difficultyNum;
+    }
 
 
     //      numEnemies
