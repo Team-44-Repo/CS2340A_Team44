@@ -125,8 +125,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 GameConfig.setBackground(bg);
 
                 //create room 1 > pass it to GameConfigTest for currRoom
-                Room room = new RoomOne("room1", 1200, 540, 310,
-                        460, 2090, 2400, bg, 1);
+                Room room = new RoomOne(1200, 540,  bg, 1);
                 GameConfig.setCurrRoom(room);
 
                 //use switchEnemies() to set the first two enemies for room1

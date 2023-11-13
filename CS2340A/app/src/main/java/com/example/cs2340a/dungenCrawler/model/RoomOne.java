@@ -7,9 +7,10 @@ import android.os.Parcel;
 import com.example.cs2340a.R;
 
 public class RoomOne extends Room {
-    public RoomOne(String name, int initialPlayerX,
-                   int initialPlayerY, int y1, int y2, int x1, int x2, Background bg, int roomID) {
-        super(name, initialPlayerX, initialPlayerY, y1, y2, x1, x2, bg, 1);
+    public RoomOne(int initialPlayerX,
+                   int initialPlayerY, Background bg, int roomID) {
+        //super(name, initialPlayerX, initialPlayerY, y1, y2, x1, x2, bg, 1);
+        super(initialPlayerX, initialPlayerY, bg, roomID);
     }
 
     protected RoomOne(Parcel in) {
