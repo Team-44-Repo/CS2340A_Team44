@@ -1,7 +1,7 @@
 package com.example.cs2340a.dungenCrawler.viewModel;
 
 import android.content.Context;
-import android.content.Intent;
+
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;

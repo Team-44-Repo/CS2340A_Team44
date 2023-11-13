@@ -1,13 +1,12 @@
 package com.example.cs2340a.dungenCrawler.model;
 
-import android.content.Intent;
+
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
 
-import com.example.cs2340a.dungenCrawler.viewModel.GameRoom1ViewModel;
-import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
+
 
 import java.util.ArrayList;
 
@@ -149,7 +148,7 @@ public class GameConfig {
     //      Difficulty
     public static void setDifficulty(DifficultyEnum difficultyE) {
         difficulty = difficultyE;
-        switch(difficultyE) {
+        switch (difficultyE) {
         case EASY:
             difficultyNum = 1.0;
             factory = new EasyEnemyFactory();
@@ -192,7 +191,8 @@ public class GameConfig {
         avatar = avatarID;
     }
 
-    public static int getAvatar () {return avatar;}
+    public static int getAvatar() {
+        return avatar; }
 
     //      Health Points
     public static int getHealthPoints() {
