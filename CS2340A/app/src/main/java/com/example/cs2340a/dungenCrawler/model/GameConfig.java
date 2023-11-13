@@ -55,20 +55,16 @@ public class GameConfig {
         System.out.println("in switchRooms");
         if (roomID == 1) {
             switchEnemies(1);
-            currRoom = new RoomTwo("room2", currRoom.getInitialPlayerX(),
+            currRoom = new RoomTwo(currRoom.getInitialPlayerX(),
                     currRoom.getInitialPlayerY(),
-                    currRoom.getDoorwayTopY(), currRoom.getDoorwayBottomY(),
-                    currRoom.getDoorwayLeftX(), currRoom.getDoorwayRightX(),
                     currRoom.getBackground(), 2);
             player.setX(30);
             player.setY(400);
 
         } else if (roomID == 2) {
             switchEnemies(2);
-            currRoom = new RoomThree("room3", currRoom.getInitialPlayerX(),
+            currRoom = new RoomThree(currRoom.getInitialPlayerX(),
                     currRoom.getInitialPlayerY(),
-                    currRoom.getDoorwayTopY(), currRoom.getDoorwayBottomY(),
-                    currRoom.getDoorwayLeftX(), currRoom.getDoorwayRightX(),
                     currRoom.getBackground(), 3);
             player.setX(800);
             player.setY(800);
