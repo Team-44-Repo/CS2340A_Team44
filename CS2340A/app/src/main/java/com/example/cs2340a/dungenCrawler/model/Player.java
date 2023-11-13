@@ -34,6 +34,7 @@ public class Player implements Parcelable, IDrawable {
     private int height = 74; // Defaults for room1
     private MovementStrategy movement;
     private Bitmap sprite;
+    private Slingshot slingshot;
 
     //temporary basic public constructor
 
@@ -46,6 +47,7 @@ public class Player implements Parcelable, IDrawable {
         score = new Score();
         this.screenX = screenX;
         this.screenY = screenY;
+        this.slingshot = new Slingshot(5, res);
 
         movement = new PlayerMovement(screenX, screenY, res, avaID);
         collisionShape = new Rect(x + collisionOffsetX, y + collisionOffsetY,
@@ -124,6 +126,9 @@ public class Player implements Parcelable, IDrawable {
     }
     public int getY() {
         return y;
+    }
+    public Slingshot getSlingshot() {
+        return slingshot;
     }
     public int getScreenX() {
         return screenX;

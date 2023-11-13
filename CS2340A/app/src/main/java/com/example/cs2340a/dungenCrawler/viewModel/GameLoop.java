@@ -129,6 +129,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             GameConfig.getPlayer().draw(canvas, getResources());
             GameConfig.drawEnemies(canvas, getResources());
             GameConfig.drawHP(canvas);
+            GameConfig.getPlayer().getSlingshot().draw(canvas, getResources());
             getHolder().unlockCanvasAndPost(canvas);
         }
     }
