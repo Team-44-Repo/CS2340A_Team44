@@ -39,7 +39,7 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         setContentView(gameLoop);
 
         //if (gameLoop.lost()) {
-            // System.out.println("I LOST");
+        // System.out.println("I LOST");
         //    gameOver();
         //}
 

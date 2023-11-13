@@ -38,7 +38,7 @@ public class LeaderboardViewModel extends AppCompatActivity {
 
     private TextView playerNameTV;
 
-    private static TextView WinLoseTV;
+    private static TextView winLoseTV;
 
     //using leaderboard from Leaderboard class, but only getting the single instance
     public LeaderboardViewModel() {
@@ -48,7 +48,7 @@ public class LeaderboardViewModel extends AppCompatActivity {
     //takes in the name of the player and score they just received
 
     public static CharSequence getWinLoseText() {
-        return WinLoseTV.getText();
+        return winLoseTV.getText();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,15 +64,15 @@ public class LeaderboardViewModel extends AppCompatActivity {
         score4 = findViewById(R.id.score_id4);
         score5 = findViewById(R.id.score_id5);
 
-        WinLoseTV = findViewById(R.id.WinLoseTV_id);
+        winLoseTV = findViewById(R.id.WinLoseTV_id);
 
         // Carry over data from past screens
         //          noting passed from GameRoom1ViewModel !
 
         if (GameConfig.getHealthPoints() <= 0) {
-            WinLoseTV.setText("GAME OVER");
+            winLoseTV.setText("GAME OVER");
         } else {
-            WinLoseTV.setText("YOU WIN!!!");
+            winLoseTV.setText("YOU WIN!!!");
         }
 
         // Initialize Leaderboard stuff

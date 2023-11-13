@@ -63,7 +63,8 @@ public class InitialConfigViewModel extends AppCompatActivity {
 
             ///  2   gathering difficulty selection
             double difficulty = 1.0; //default value = 1.0
-            DifficultyEnum difficultyE = DifficultyEnum.EASY; //temp object to hold chosen difficulty
+            DifficultyEnum difficultyE = DifficultyEnum.EASY;
+            //temp object to hold chosen difficulty
             switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
             case R.id.radioMedium_id:
                 difficultyE = DifficultyEnum.MEDIUM;
@@ -118,7 +119,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 //  set chosen avatar
                 GameConfig.setAvatar(avatar);
                 //  call createPlayer to create singleton instance of player in GameConfigTest
-                GameConfig.createPlayer(playerName,point.x, point.y, getResources());
+                GameConfig.createPlayer(playerName, point.x, point.y, getResources());
                 //create a Background > then pass it to GameConfigTest
                 Background bg = new Background(point, getResources(), R.drawable.room1);
                 GameConfig.setBackground(bg);
