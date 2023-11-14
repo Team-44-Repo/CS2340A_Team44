@@ -105,6 +105,9 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         case KeyEvent.KEYCODE_D:
             GameConfig.getPlayer().setX(GameConfig.getPlayer().getX() + 30);
             return true;
+            case KeyEvent.KEYCODE_SHIFT_LEFT:
+            GameConfig.getPlayer().getSlingshot().shoot();
+            return true;
         default:
             return super.onKeyDown(keyCode, event);
         }
