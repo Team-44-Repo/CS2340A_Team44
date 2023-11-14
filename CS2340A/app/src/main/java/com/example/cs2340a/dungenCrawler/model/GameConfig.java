@@ -111,8 +111,12 @@ public class GameConfig {
     }
     public static void drawEnemies(Canvas canvas, Resources resources) {
         System.out.println("Drawing enemies!");
-        enemy1.draw(canvas, resources);
-        enemy2.draw(canvas, resources);
+        if (enemy1 != null) {
+            enemy1.draw(canvas, resources);
+        }
+        if (enemy2 != null) {
+            enemy2.draw(canvas, resources);
+        }
     }
     public static void drawHP(Canvas canvas) {
         Paint paint = new Paint();

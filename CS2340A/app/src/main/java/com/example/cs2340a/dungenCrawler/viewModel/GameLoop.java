@@ -70,6 +70,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         GameConfig.getPlayer().update();
         //player made
         GameConfig.notifyObservers();
+        GameConfig.getPlayer().getSlingshot().updatePellet();
 
 
         // Border collisions
@@ -107,6 +108,17 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             youLost = true;
             setIsPlaying(false);
         }
+
+        // Weapon Collisions
+        if (GameConfig.getPlayer().getSlingshot().getPellet().
+                intersect(GameConfig.getEnemy1().getCollisionShape())) {
+            System.out.println("HIT1");
+            //GameConfig.setEnemies(null, GameConfig.getEnemy2());
+        } else if (GameConfig.getPlayer().getSlingshot().getPellet().
+                intersect(GameConfig.getEnemy2().getCollisionShape())) {
+            System.out.println("HIT2");
+            //GameConfig.setEnemies(GameConfig.getEnemy1(), null);
+        }
     }
     public boolean won() {
         return youWon; }
@@ -127,8 +139,10 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             Canvas canvas = getHolder().lockCanvas();
             GameConfig.getCurrRoom().draw(canvas, getResources());
             GameConfig.getPlayer().draw(canvas, getResources());
+            GameConfig.getPlayer().getSlingshot().drawPellet(canvas, getResources());
             GameConfig.drawEnemies(canvas, getResources());
             GameConfig.drawHP(canvas);
+            GameConfig.getPlayer().getSlingshot().draw(canvas, getResources());
             getHolder().unlockCanvasAndPost(canvas);
         }
     }
