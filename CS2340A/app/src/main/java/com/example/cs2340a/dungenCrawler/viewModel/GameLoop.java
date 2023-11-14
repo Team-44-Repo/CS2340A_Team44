@@ -108,6 +108,17 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             youLost = true;
             setIsPlaying(false);
         }
+
+        // Weapon Collisions
+        if (GameConfig.getPlayer().getSlingshot().getPellet().
+                intersect(GameConfig.getEnemy1().getCollisionShape())) {
+            System.out.println("HIT1");
+            //GameConfig.setEnemies(null, GameConfig.getEnemy2());
+        } else if (GameConfig.getPlayer().getSlingshot().getPellet().
+                intersect(GameConfig.getEnemy2().getCollisionShape())) {
+            System.out.println("HIT2");
+            //GameConfig.setEnemies(GameConfig.getEnemy1(), null);
+        }
     }
     public boolean won() {
         return youWon; }

@@ -23,13 +23,14 @@ public class Slingshot implements IDrawable, Parcelable {
     private int movingX = 0;
     private int stagnantY = 0;
     private boolean shooting;
-    public Slingshot (int numPellets, Resources res) {
+    public Slingshot(int numPellets, Resources res) {
         this.numPellets = numPellets;
         this.x = 2050;
         this.y = 800;
         this.sprite = BitmapFactory.decodeResource(res, R.drawable.slingshot);
         this.sprite = Bitmap.createBitmap(sprite);
         this.shooting = false;
+        this.pellet = new Rect(1, 2, 1, 2);
         // this.movingX = GameConfig.getPlayer().getX() - 20;
     }
 
@@ -41,6 +42,7 @@ public class Slingshot implements IDrawable, Parcelable {
         y = in.readInt();
         movingX = in.readInt();
         shooting = in.readByte() != 0;
+        pellet = in.readParcelable(Rect.class.getClassLoader());
     }
 
     public static final Creator<Slingshot> CREATOR = new Creator<Slingshot>() {
@@ -122,6 +124,9 @@ public class Slingshot implements IDrawable, Parcelable {
     public boolean getShooting() {
         return shooting;
     }
+    public Rect getPellet() {
+        return pellet;
+    }
     public void setShooting(boolean shooting) {
         this.shooting = shooting;
     }
@@ -136,10 +141,10 @@ public class Slingshot implements IDrawable, Parcelable {
 
         parcel.writeInt(numPellets);
         parcel.writeParcelable(sprite, i);
-        parcel.writeParcelable(pellet, i);
         parcel.writeInt(x);
         parcel.writeInt(y);
         parcel.writeInt(movingX);
         parcel.writeByte((byte) (shooting ? 1 : 0));
+        parcel.writeParcelable(pellet, i);
     }
 }
