@@ -19,7 +19,9 @@ public class Slingshot implements IDrawable, Parcelable {
     private Rect pellet;
     private int x;
     private int y;
-    private int movingX;
+    private String direction;
+    private int movingX = 0;
+    private int stagnantY = 0;
     private boolean shooting;
     public Slingshot (int numPellets, Resources res) {
         this.numPellets = numPellets;
@@ -53,28 +55,75 @@ public class Slingshot implements IDrawable, Parcelable {
         }
     };
 
+    /*
+        This draws the slingshot IMAGE in the corner of the screen.
+        NOT THE PELLETS.
+     */
     @Override
     public void draw(Canvas canvas, Resources resources) {
         System.out.println("DRAWING SLINGSHOT");
         Paint paint = new Paint();
         canvas.drawBitmap(sprite, x, y, paint);
     }
-
+    /*
+        This updates the pellet's location when you're shooting.
+     */
+    public void updatePellet() {
+        if (shooting) {
+            if (direction.equals("left")) {
+                movingX -= 80;
+            } else {
+                movingX += 80;
+            }
+        }
+        if (movingX <= 0 || movingX >= 2100) {
+            shooting = false;
+        }
+    }
+    /*
+        Draws pellets in front of player when not shooting and
+        shows the pellets moving when fired.
+     */
     public void drawPellet(Canvas canvas, Resources resources) {
         Paint paint = new Paint();
-        this.pellet = new Rect(GameConfig.getPlayer().getX() - 20,
-                GameConfig.getPlayer().getY() + 80,
-                GameConfig.getPlayer().getX(),
-                GameConfig.getPlayer().getY() + 100);
+        if (shooting) {
+            System.out.println("Drawing while shooting");
+            this.pellet = new Rect(movingX, stagnantY,
+                    movingX + 20, stagnantY + 20);
+        } else {
+            this.pellet = new Rect(GameConfig.getPlayer().getX() - 20,
+                    GameConfig.getPlayer().getY() + 80,
+                    GameConfig.getPlayer().getX(),
+                    GameConfig.getPlayer().getY() + 100);
+        }
         canvas.drawRect(pellet, paint);
     }
-    public void shoot() {
-        System.out.println("SHOOTING");
-        this.movingX = GameConfig.getPlayer().getX() - 20;
-        this.movingX -= 30;
+    /*
+        Called when the Player presses the "E" key to allow the slingshot to shoot.
+        movingX: locks the location of the Player's current position to move left
+        stagnantY: locks the location of the Player's y and DOESN'T CHANGE
+     */
+    public void shootLeft() {
+        if (!shooting) {
+            shooting = true;
+            movingX = GameConfig.getPlayer().getX() - 20;
+            stagnantY = GameConfig.getPlayer().getY() + 80;
+            direction = "left";
+        }
+    }
+    public void shootRight() {
+        if (!shooting) {
+            shooting = true;
+            movingX = GameConfig.getPlayer().getX() + 80;
+            stagnantY = GameConfig.getPlayer().getY() + 80;
+            direction = "right";
+        }
     }
     public boolean getShooting() {
         return shooting;
+    }
+    public void setShooting(boolean shooting) {
+        this.shooting = shooting;
     }
 
     @Override

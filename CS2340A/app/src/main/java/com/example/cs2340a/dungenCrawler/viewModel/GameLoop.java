@@ -70,6 +70,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         GameConfig.getPlayer().update();
         //player made
         GameConfig.notifyObservers();
+        GameConfig.getPlayer().getSlingshot().updatePellet();
 
 
         // Border collisions
