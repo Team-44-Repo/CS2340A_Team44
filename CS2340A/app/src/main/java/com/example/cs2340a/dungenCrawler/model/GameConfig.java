@@ -110,11 +110,10 @@ public class GameConfig {
         System.out.println("after switch statement in switchEnemies()");
     }
     public static void drawEnemies(Canvas canvas, Resources resources) {
-        System.out.println("Drawing enemies!");
-        if (enemy1 != null) {
+        if (enemy1.isActive()) {
             enemy1.draw(canvas, resources);
         }
-        if (enemy2 != null) {
+        if (enemy2.isActive()) {
             enemy2.draw(canvas, resources);
         }
     }
