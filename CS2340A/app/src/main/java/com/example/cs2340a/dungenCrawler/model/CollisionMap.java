@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.example.cs2340a.R;
 
-public class CollisionMap implements Parcelable, IDrawable, Collidable {
+public class CollisionMap implements Parcelable, IDrawable {
     /*
     This class is made to create the proper collision map based on the room the player is currently
     in. In the GameView class, there will need to be a method called in the update() function to

@@ -121,6 +121,8 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             GameConfig.getPlayer().getSlingshot().setShooting(false);
             //GameConfig.setEnemies(GameConfig.getEnemy1(), null);
         }
+
+        // PowerUp Collisions
     }
     public boolean won() {
         return youWon; }
@@ -144,6 +146,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             GameConfig.getPlayer().getSlingshot().drawPellet(canvas, getResources());
             GameConfig.drawEnemies(canvas, getResources());
             GameConfig.drawHP(canvas);
+            GameConfig.getPowerUp().draw(canvas, getResources());
             GameConfig.getPlayer().getSlingshot().draw(canvas, getResources());
             getHolder().unlockCanvasAndPost(canvas);
         }

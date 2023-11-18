@@ -1,6 +1,11 @@
 package com.example.cs2340a.dungenCrawler.model;
 
+import android.graphics.Rect;
+
 public interface Collidable {
-    // void alertCollisionObserver();
-    // void collides(Rect a, Rect b);
+    void checkCollision(Player player);
+    Rect getCollisionShape();
+    void setCollisionShape(Rect rect);
+    boolean isActive();
+    void setActive(boolean isActive);
 }

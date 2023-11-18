@@ -14,6 +14,7 @@ import com.example.cs2340a.dungenCrawler.model.Background;
 import com.example.cs2340a.dungenCrawler.model.DifficultyEnum;
 import com.example.cs2340a.dungenCrawler.model.Room;
 import com.example.cs2340a.dungenCrawler.model.RoomOne;
+import com.example.cs2340a.dungenCrawler.model.SpeedPower;
 
 public class InitialConfigViewModel extends AppCompatActivity {
 
@@ -130,6 +131,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
 
                 //use switchEnemies() to set the first two enemies for room1
                 GameConfig.switchEnemies(0);
+                GameConfig.setPowerUp(new SpeedPower(getResources()));
 
                 //switching screens/activities to the GameRoom1ViewModel
                 Intent game = new Intent(InitialConfigViewModel.this, GameRoom1ViewModel.class);

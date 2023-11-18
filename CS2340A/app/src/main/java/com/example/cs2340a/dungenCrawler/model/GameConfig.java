@@ -38,6 +38,7 @@ public class GameConfig {
     private static EnemyFactory factory;
     private static Enemy enemy1;
     private static Enemy enemy2;
+    private static PowerUp powerUp;
     // List of current Enemy Observers
     private static ArrayList<Enemy> observerList = new ArrayList<>();
 
@@ -108,6 +109,24 @@ public class GameConfig {
         addObserver(enemy2);
         System.out.println("after adds - observerList size: " + observerList.size());
         System.out.println("after switch statement in switchEnemies()");
+    }
+    public static void switchPowerUps(int roomID) {
+        switch (roomID) {
+            case 1:
+                //sets room 2 enemies, replacing room1 enemies
+                //powerUp = new HeartPower(res);
+                break;
+            case 2:
+                System.out.println("in switch case 2");
+                //sets room 3 enemies, replacing room2 enemies
+                enemy1 = factory.spawnGhost(res);
+                enemy2 = factory.spawnVampire(res);
+                break;
+            default:
+                //sets room 1 enemies for default
+                enemy1 = factory.spawnBat(res);
+                enemy2 = factory.spawnGhost(res);
+        }
     }
     public static void drawEnemies(Canvas canvas, Resources resources) {
         if (enemy1.isActive()) {
@@ -237,6 +256,12 @@ public class GameConfig {
     }
     public static double getDifficultyNum() {
         return difficultyNum;
+    }
+    public static PowerUp getPowerUp() {
+        return powerUp;
+    }
+    public static void setPowerUp(PowerUp pUp) {
+        powerUp = pUp;
     }
 
 
