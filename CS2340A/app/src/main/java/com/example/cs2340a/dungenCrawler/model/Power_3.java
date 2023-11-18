@@ -42,6 +42,5 @@ public class Power_3 extends PowerUp implements Collidable {
 
     @Override
     public void draw(Canvas canvas, Resources resources) {
-
     }
 }

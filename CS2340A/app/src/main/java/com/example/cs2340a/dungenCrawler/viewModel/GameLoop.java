@@ -111,12 +111,12 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         }
 
         // Weapon Collisions
-        if (GameConfig.getPlayer().getSlingshot().getPellet().
+        if (GameConfig.getEnemy1().isActive() && GameConfig.getPlayer().getSlingshot().getPellet().
                 intersect(GameConfig.getEnemy1().getCollisionShape())) {
             GameConfig.getEnemy1().setActive(false);
             GameConfig.getPlayer().getSlingshot().setShooting(false);
             //GameConfig.setEnemies(null, GameConfig.getEnemy2());
-        } else if (GameConfig.getPlayer().getSlingshot().getPellet().
+        } else if (GameConfig.getEnemy2().isActive() && GameConfig.getPlayer().getSlingshot().getPellet().
                 intersect(GameConfig.getEnemy2().getCollisionShape())) {
             GameConfig.getEnemy2().setActive(false);
             GameConfig.getPlayer().getSlingshot().setShooting(false);
@@ -130,7 +130,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             System.out.println("COLLIDING WITH POWERUP");
             GameConfig.getPowerUp().checkCollision(GameConfig.getPlayer());
             // used up power up so set to false
-            //GameConfig.getPowerUp().setActive(false);
+            GameConfig.getPowerUp().setActive(false);
         }
 
         //GameConfig.getPowerUp().checkCollision(GameConfig.getPlayer());
