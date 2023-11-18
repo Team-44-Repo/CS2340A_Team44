@@ -68,7 +68,6 @@ public class SpeedPower extends PowerUp implements IDrawable, Collidable {
     public void drawIcon(Canvas canvas, Resources resources) {
         Paint paint = new Paint();
         if (!super.isActive()) {
-            canvas.drawRect(getCollisionShape(), paint);
             canvas.drawBitmap(sprite, 148, 800, paint);
         }
     }

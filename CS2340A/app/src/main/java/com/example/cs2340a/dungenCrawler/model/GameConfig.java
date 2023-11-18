@@ -117,15 +117,15 @@ public class GameConfig {
             case 1:
                 //sets room 2 enemies, replacing room1 enemies
                 System.out.println("switch case 1, speed powerup");
-                powerUp = new SpeedPower(res);
+                powerUp = new HeartPower(res);
                 break;
             case 2:
                 System.out.println("switch case 2, speed powerup");
-                powerUp = new HeartPower(res);
+                powerUp = new SpeedPower(res);
                 break;
             default:
                 System.out.println("default switch case, speed powerup");
-                powerUp = new HeartPower(res);
+                powerUp = new ShieldPower(res);
         }
     }
     public static void drawEnemies(Canvas canvas, Resources resources) {

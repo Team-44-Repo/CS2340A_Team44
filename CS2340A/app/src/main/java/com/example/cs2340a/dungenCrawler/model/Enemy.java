@@ -99,6 +99,9 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     public void setY(int y) {
         this.y = y;
     }
+    public void setAttackPower(int power) {
+        this.attackPower = power;
+    }
 
     //      Attack power
     protected int getAttackPower() {

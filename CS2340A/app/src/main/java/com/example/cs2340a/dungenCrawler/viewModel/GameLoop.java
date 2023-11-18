@@ -112,12 +112,15 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
 
         // Weapon Collisions
         if (GameConfig.getEnemy1().isActive() && GameConfig.getPlayer().getSlingshot().getPellet().
-                intersect(GameConfig.getEnemy1().getCollisionShape())) {
+                intersect(GameConfig.getEnemy1().getCollisionShape()) && GameConfig.getPlayer().
+                getSlingshot().getShooting()) {
             GameConfig.getEnemy1().setActive(false);
             GameConfig.getPlayer().getSlingshot().setShooting(false);
             //GameConfig.setEnemies(null, GameConfig.getEnemy2());
-        } else if (GameConfig.getEnemy2().isActive() && GameConfig.getPlayer().getSlingshot().getPellet().
-                intersect(GameConfig.getEnemy2().getCollisionShape())) {
+        } else if (GameConfig.getEnemy2().isActive() && GameConfig.getPlayer().getSlingshot().
+                getPellet().
+                intersect(GameConfig.getEnemy2().getCollisionShape()) && GameConfig.getPlayer().
+                getSlingshot().getShooting()) {
             GameConfig.getEnemy2().setActive(false);
             GameConfig.getPlayer().getSlingshot().setShooting(false);
             //GameConfig.setEnemies(GameConfig.getEnemy1(), null);
