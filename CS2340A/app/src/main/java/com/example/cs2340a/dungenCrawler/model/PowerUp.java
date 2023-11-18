@@ -1,6 +1,7 @@
 package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.res.Resources;
+import android.graphics.Canvas;
 
 public abstract class PowerUp implements IDrawable, Collidable {
     private Resources res;
@@ -40,4 +41,5 @@ public abstract class PowerUp implements IDrawable, Collidable {
         this.isActive = isActive;
     }
     public abstract int applyEffect();
+    public abstract void drawIcon(Canvas canvas, Resources res);
 }
