@@ -23,8 +23,10 @@ public class SpeedPower extends PowerUp implements IDrawable, Collidable {
 
     @Override
     public void checkCollision(Player player) {
+        System.out.println("speedpower's check collision method");
         if (isActive()) {
             if (this.getCollisionShape().intersect(player.getCollisionShape())) {
+                System.out.println("increasing speed");
                 GameConfig.getPlayer().setSpeed(50);
             }
         }

@@ -56,6 +56,7 @@ public class GameConfig {
         System.out.println("in switchRooms");
         if (roomID == 1) {
             switchEnemies(1);
+            switchPowerUps(1);
             currRoom = new RoomTwo(currRoom.getInitialPlayerX(),
                     currRoom.getInitialPlayerY(),
                     currRoom.getBackground(), 2);
@@ -64,6 +65,7 @@ public class GameConfig {
 
         } else if (roomID == 2) {
             switchEnemies(2);
+            switchPowerUps(2);
             currRoom = new RoomThree(currRoom.getInitialPlayerX(),
                     currRoom.getInitialPlayerY(),
                     currRoom.getBackground(), 3);
@@ -114,18 +116,16 @@ public class GameConfig {
         switch (roomID) {
             case 1:
                 //sets room 2 enemies, replacing room1 enemies
-                //powerUp = new HeartPower(res);
+                System.out.println("switch case 1, speed powerup");
+                powerUp = new SpeedPower(res);
                 break;
             case 2:
-                System.out.println("in switch case 2");
-                //sets room 3 enemies, replacing room2 enemies
-                enemy1 = factory.spawnGhost(res);
-                enemy2 = factory.spawnVampire(res);
+                System.out.println("switch case 2, speed powerup");
+                powerUp = new HeartPower(res);
                 break;
             default:
-                //sets room 1 enemies for default
-                enemy1 = factory.spawnBat(res);
-                enemy2 = factory.spawnGhost(res);
+                System.out.println("default switch case, speed powerup");
+                powerUp = new HeartPower(res);
         }
     }
     public static void drawEnemies(Canvas canvas, Resources resources) {

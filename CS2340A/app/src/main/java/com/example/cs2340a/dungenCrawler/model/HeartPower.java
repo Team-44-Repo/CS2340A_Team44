@@ -14,7 +14,7 @@ public class HeartPower extends PowerUp implements IDrawable, Collidable {
     private Rect collisionShape;
     public HeartPower(Resources res) {
         super(res);
-        this.sprite = BitmapFactory.decodeResource(res, R.drawable.power2speed);
+        this.sprite = BitmapFactory.decodeResource(res, R.drawable.power1heart);
         this.sprite = Bitmap.createBitmap(sprite);
 
         this.collisionShape = new Rect(getX(), getY(), getX() + getWidth(),
@@ -25,7 +25,8 @@ public class HeartPower extends PowerUp implements IDrawable, Collidable {
     public void checkCollision(Player player) {
         if (isActive()) {
             if (this.getCollisionShape().intersect(player.getCollisionShape())) {
-                GameConfig.getPlayer().setSpeed(50);
+                System.out.println("restoring health");
+                GameConfig.getPlayer().setHealthPoints((int) (100 * GameConfig.getPlayer().getDifficulty()));
             }
         }
     }

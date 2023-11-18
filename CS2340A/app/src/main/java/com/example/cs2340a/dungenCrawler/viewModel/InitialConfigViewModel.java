@@ -131,7 +131,7 @@ public class InitialConfigViewModel extends AppCompatActivity {
 
                 //use switchEnemies() to set the first two enemies for room1
                 GameConfig.switchEnemies(0);
-                GameConfig.setPowerUp(new SpeedPower(getResources()));
+                GameConfig.switchPowerUps(0);
 
                 //switching screens/activities to the GameRoom1ViewModel
                 Intent game = new Intent(InitialConfigViewModel.this, GameRoom1ViewModel.class);
