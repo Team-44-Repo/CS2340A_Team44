@@ -124,13 +124,14 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         }
 
         // PowerUp Collisions
-        /*if(GameConfig.getPowerUp().isActive() && GameConfig.getPowerUp().getCollisionShape().intersect(GameConfig.getPlayer().getCollisionShape())) {
-            System.out.println("power up collision, will work if power up active");
+        if(GameConfig.getPowerUp().getCollisionShape().
+                intersect(GameConfig.getPlayer().getCollisionShape())) {
+            // System.out.println("power up collision, will work if power up active");
+            System.out.println("COLLIDING WITH POWERUP");
             GameConfig.getPowerUp().checkCollision(GameConfig.getPlayer());
-            //used up power up so set to false
-            GameConfig.getPowerUp().setActive(false);
+            // used up power up so set to false
+            //GameConfig.getPowerUp().setActive(false);
         }
-         */
 
         //GameConfig.getPowerUp().checkCollision(GameConfig.getPlayer());
     }

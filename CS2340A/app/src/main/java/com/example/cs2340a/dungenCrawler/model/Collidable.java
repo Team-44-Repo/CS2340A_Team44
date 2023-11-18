@@ -6,6 +6,5 @@ public interface Collidable {
     void checkCollision(Player player);
     Rect getCollisionShape();
     void setCollisionShape(Rect rect);
-    boolean isActive();
     void setActive(boolean isActive);
 }

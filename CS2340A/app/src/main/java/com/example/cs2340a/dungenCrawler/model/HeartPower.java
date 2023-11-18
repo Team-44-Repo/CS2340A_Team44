@@ -12,6 +12,7 @@ import com.example.cs2340a.R;
 public class HeartPower extends PowerUp implements IDrawable, Collidable {
     private Bitmap sprite;
     private Rect collisionShape;
+    private String powerType = "heart";
     public HeartPower(Resources res) {
         super(res);
         this.sprite = BitmapFactory.decodeResource(res, R.drawable.power1heart);
@@ -23,17 +24,12 @@ public class HeartPower extends PowerUp implements IDrawable, Collidable {
 
     @Override
     public void checkCollision(Player player) {
-        if (isActive()) {
-            if (this.getCollisionShape().intersect(player.getCollisionShape())) {
-                System.out.println("restoring health");
-                GameConfig.getPlayer().setHealthPoints((int) (100 * GameConfig.getPlayer().getDifficulty()));
-            }
-        }
+        GameConfig.setHealthPoints(GameConfig.getHealthPoints() + applyEffect());
     }
 
     @Override
     public int applyEffect() {
-        return 0;
+        return 100;
     }
 
     @Override
@@ -48,12 +44,12 @@ public class HeartPower extends PowerUp implements IDrawable, Collidable {
 
     @Override
     public boolean isActive() {
-        return isActive();
+        return super.isActive();
     }
 
     @Override
     public void setActive(boolean isActive) {
-        setActive(isActive);
+        super.setActive(isActive);
     }
 
     @Override
@@ -61,5 +57,8 @@ public class HeartPower extends PowerUp implements IDrawable, Collidable {
         Paint paint = new Paint();
         canvas.drawRect(getCollisionShape(), paint);
         canvas.drawBitmap(sprite, getX(), getY(), paint);
+    }
+    public String getPowerType() {
+        return powerType;
     }
 }

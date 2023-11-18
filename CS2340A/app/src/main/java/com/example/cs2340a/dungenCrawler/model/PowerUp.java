@@ -33,5 +33,11 @@ public abstract class PowerUp implements IDrawable, Collidable {
     public int getHeight() {
         return height;
     }
+    public boolean isActive() {
+        return isActive;
+    }
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
     public abstract int applyEffect();
 }

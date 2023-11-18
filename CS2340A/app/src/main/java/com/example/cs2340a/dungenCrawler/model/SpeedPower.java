@@ -12,6 +12,7 @@ import com.example.cs2340a.R;
 public class SpeedPower extends PowerUp implements IDrawable, Collidable {
     private Bitmap sprite;
     private Rect collisionShape;
+    private String powerType = "speed";
     public SpeedPower(Resources res) {
         super(res);
         this.sprite = BitmapFactory.decodeResource(res, R.drawable.power2speed);
@@ -24,17 +25,12 @@ public class SpeedPower extends PowerUp implements IDrawable, Collidable {
     @Override
     public void checkCollision(Player player) {
         System.out.println("speedpower's check collision method");
-        if (isActive()) {
-            if (this.getCollisionShape().intersect(player.getCollisionShape())) {
-                System.out.println("increasing speed");
-                GameConfig.getPlayer().setSpeed(50);
-            }
-        }
+        GameConfig.getPlayer().setSpeed(applyEffect());
     }
 
     @Override
     public int applyEffect() {
-        return 0;
+        return 50;
     }
 
     @Override
@@ -49,12 +45,12 @@ public class SpeedPower extends PowerUp implements IDrawable, Collidable {
 
     @Override
     public boolean isActive() {
-        return isActive();
+        return super.isActive();
     }
 
     @Override
     public void setActive(boolean isActive) {
-        setActive(isActive);
+        super.setActive(isActive);
     }
 
     @Override
@@ -62,5 +58,8 @@ public class SpeedPower extends PowerUp implements IDrawable, Collidable {
         Paint paint = new Paint();
         canvas.drawRect(getCollisionShape(), paint);
         canvas.drawBitmap(sprite, getX(), getY(), paint);
+    }
+    public String getPowerType() {
+        return powerType;
     }
 }

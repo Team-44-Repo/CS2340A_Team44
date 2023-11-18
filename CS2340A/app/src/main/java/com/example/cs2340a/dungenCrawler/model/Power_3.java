@@ -32,12 +32,12 @@ public class Power_3 extends PowerUp implements Collidable {
 
     @Override
     public boolean isActive() {
-        return false;
+        return super.isActive();
     }
 
     @Override
     public void setActive(boolean isActive) {
-
+        super.setActive(isActive);
     }
 
     @Override
