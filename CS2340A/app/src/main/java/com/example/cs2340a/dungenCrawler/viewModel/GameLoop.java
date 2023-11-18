@@ -103,6 +103,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             GameConfig.switchRoom(GameConfig.getCurrRoom().getRoomID());
         }
 
+        //end game if health points have dropped to zero
         if (GameConfig.getHealthPoints() <= 0) {
             System.out.println("YOU LOST: " + youLost);
             youLost = true;
@@ -123,6 +124,15 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         }
 
         // PowerUp Collisions
+        /*if(GameConfig.getPowerUp().isActive() && GameConfig.getPowerUp().getCollisionShape().intersect(GameConfig.getPlayer().getCollisionShape())) {
+            System.out.println("power up collision, will work if power up active");
+            GameConfig.getPowerUp().checkCollision(GameConfig.getPlayer());
+            //used up power up so set to false
+            GameConfig.getPowerUp().setActive(false);
+        }
+         */
+
+        //GameConfig.getPowerUp().checkCollision(GameConfig.getPlayer());
     }
     public boolean won() {
         return youWon; }
