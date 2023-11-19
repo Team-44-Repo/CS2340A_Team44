@@ -38,7 +38,7 @@ public class GameConfig {
     private static EnemyFactory factory;
     private static Enemy enemy1;
     private static Enemy enemy2;
-    private static PowerUp powerUp;
+    private static PowerUpBase powerUp;
     // List of current Enemy Observers
     private static ArrayList<Enemy> observerList = new ArrayList<>();
 
@@ -114,18 +114,18 @@ public class GameConfig {
     }
     public static void switchPowerUps(int roomID) {
         switch (roomID) {
-            case 1:
-                //sets room 2 enemies, replacing room1 enemies
-                System.out.println("switch case 1, speed powerup");
-                powerUp = new HeartPower(res);
-                break;
-            case 2:
-                System.out.println("switch case 2, speed powerup");
-                powerUp = new SpeedPower(res);
-                break;
-            default:
-                System.out.println("default switch case, speed powerup");
-                powerUp = new ShieldPower(res);
+        case 1:
+            //sets room 2 enemies, replacing room1 enemies
+            System.out.println("switch case 1, speed powerup");
+            powerUp = new HeartPower(res, new PowerUp());
+            break;
+        case 2:
+            System.out.println("switch case 2, speed powerup");
+            powerUp = new SpeedPower(res, new PowerUp());
+            break;
+        default:
+            System.out.println("default switch case, speed powerup");
+            powerUp = new ShieldPower(res, new PowerUp());
         }
     }
     public static void drawEnemies(Canvas canvas, Resources resources) {
@@ -257,7 +257,7 @@ public class GameConfig {
     public static double getDifficultyNum() {
         return difficultyNum;
     }
-    public static PowerUp getPowerUp() {
+    public static PowerUpBase getPowerUp() {
         return powerUp;
     }
     public static void setPowerUp(PowerUp pUp) {

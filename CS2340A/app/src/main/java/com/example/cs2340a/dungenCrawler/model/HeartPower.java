@@ -9,12 +9,13 @@ import android.graphics.Rect;
 
 import com.example.cs2340a.R;
 
-public class HeartPower extends PowerUp implements IDrawable, Collidable {
+public class HeartPower extends PowerUpDecorator implements IDrawable, Collidable {
     private Bitmap sprite;
     private Rect collisionShape;
     private String powerType = "heart";
-    public HeartPower(Resources res) {
+    public HeartPower(Resources res, PowerUp powerUp) {
         super(res);
+        this.powerUp = powerUp;
         this.sprite = BitmapFactory.decodeResource(res, R.drawable.power1heart);
         this.sprite = Bitmap.createBitmap(sprite);
 
@@ -24,7 +25,8 @@ public class HeartPower extends PowerUp implements IDrawable, Collidable {
 
     @Override
     public void checkCollision(Player player) {
-        GameConfig.setHealthPoints(GameConfig.getHealthPoints() + applyEffect());
+        GameConfig.setHealthPoints(GameConfig.getHealthPoints() + powerUp.applyEffect()
+                + applyEffect());
     }
 
     @Override

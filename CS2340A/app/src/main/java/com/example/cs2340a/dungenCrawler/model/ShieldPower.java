@@ -9,13 +9,14 @@ import android.graphics.Rect;
 
 import com.example.cs2340a.R;
 
-public class ShieldPower extends PowerUp implements IDrawable, Collidable {
+public class ShieldPower extends PowerUpDecorator implements IDrawable, Collidable {
 
     private Bitmap sprite;
     private Rect collisionShape;
-    private String powerType = "heart";
-    public ShieldPower(Resources res) {
+    private String powerType = "shield";
+    public ShieldPower(Resources res, PowerUp powerUp) {
         super(res);
+        this.powerUp = powerUp;
         this.sprite = BitmapFactory.decodeResource(res, R.drawable.power3shield);
         this.sprite = Bitmap.createBitmap(sprite);
 
@@ -26,9 +27,9 @@ public class ShieldPower extends PowerUp implements IDrawable, Collidable {
     @Override
     public void checkCollision(Player player) {
         GameConfig.getEnemy1().setAttackPower(GameConfig.getEnemy1().getAttackPower()
-                - applyEffect());
+                - powerUp.applyEffect() + applyEffect());
         GameConfig.getEnemy2().setAttackPower(GameConfig.getEnemy2().getAttackPower()
-                - applyEffect());
+                - powerUp.applyEffect() + applyEffect());
     }
 
     @Override
