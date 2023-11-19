@@ -14,7 +14,6 @@ import com.example.cs2340a.dungenCrawler.model.Background;
 import com.example.cs2340a.dungenCrawler.model.DifficultyEnum;
 import com.example.cs2340a.dungenCrawler.model.Room;
 import com.example.cs2340a.dungenCrawler.model.RoomOne;
-import com.example.cs2340a.dungenCrawler.model.SpeedPower;
 
 public class InitialConfigViewModel extends AppCompatActivity {
 
