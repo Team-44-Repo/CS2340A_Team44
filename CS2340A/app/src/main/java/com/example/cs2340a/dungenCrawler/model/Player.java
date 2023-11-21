@@ -24,16 +24,18 @@ public class Player implements Parcelable, IDrawable {
     private int healthPoints;
     private Score score;
     private Rect collisionShape;
-    private int x = 1200;
-    private int y = 540;
+    private int x;
+    private int y;
     private int collisionOffsetX = 30;
     private int collisionOffsetY = 70;
     private int screenX;
     private int screenY;
     private int width = 74;
     private int height = 74; // Defaults for room1
+    private int speed;
     private MovementStrategy movement;
     private Bitmap sprite;
+    private Slingshot slingshot;
 
     //temporary basic public constructor
 
@@ -46,6 +48,10 @@ public class Player implements Parcelable, IDrawable {
         score = new Score();
         this.screenX = screenX;
         this.screenY = screenY;
+        this.x = 1200;
+        this.y = 540;
+        this.slingshot = new Slingshot(5, res);
+        this.speed = 30;
 
         movement = new PlayerMovement(screenX, screenY, res, avaID);
         collisionShape = new Rect(x + collisionOffsetX, y + collisionOffsetY,
@@ -62,6 +68,8 @@ public class Player implements Parcelable, IDrawable {
         movement = in.readParcelable(PlayerMovement.class.getClassLoader());
         score = in.readParcelable(Score.class.getClassLoader());
         collisionShape = in.readParcelable(Rect.class.getClassLoader());
+        slingshot = in.readParcelable(Slingshot.class.getClassLoader());
+        speed = in.readInt();
     }
 
     @Override
@@ -75,6 +83,8 @@ public class Player implements Parcelable, IDrawable {
         dest.writeParcelable(movement, 0);
         dest.writeParcelable((Parcelable) score, 0);
         dest.writeParcelable((Parcelable) collisionShape, 0);
+        dest.writeParcelable(slingshot, 0);
+        dest.writeInt(speed);
     }
 
     @Override
@@ -125,6 +135,9 @@ public class Player implements Parcelable, IDrawable {
     public int getY() {
         return y;
     }
+    public Slingshot getSlingshot() {
+        return slingshot;
+    }
     public int getScreenX() {
         return screenX;
     }
@@ -139,6 +152,9 @@ public class Player implements Parcelable, IDrawable {
     }
     public Rect getCollisionShape() {
         return collisionShape;
+    }
+    public int getSpeed() {
+        return speed;
     }
 
     public void setPlayerName(String name) {
@@ -164,6 +180,9 @@ public class Player implements Parcelable, IDrawable {
     }
     public void setHealthPoints(int i) {
         this.healthPoints = i;
+    }
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public void updateHealthPoints(int change) {

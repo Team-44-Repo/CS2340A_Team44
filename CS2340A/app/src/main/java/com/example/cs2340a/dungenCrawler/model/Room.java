@@ -23,16 +23,10 @@ public abstract class Room implements Parcelable, IDrawable {
     private int doorwayRightX;
 
 
-    public Room(String name, int initialPlayerX, int initialPlayerY, int y1, int y2, int x1,
-                int x2, Background bg, int roomID) {
-        this.name = name;
+    public Room(int initialPlayerX, int initialPlayerY, Background bg, int roomID) {
         this.roomID = roomID;
         this.initialPlayerX = initialPlayerX;
         this.initialPlayerY = initialPlayerY;
-        this.doorwayTopY = y1;
-        this.doorwayBottomY = y2;
-        this.doorwayLeftX = x1;
-        this.doorwayRightX = x2;
         this.bg = bg;
 
         collisionMap = new CollisionMap(roomID);

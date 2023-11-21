@@ -1,13 +1,12 @@
 package com.example.cs2340a.dungenCrawler.model;
 
-import android.content.Intent;
+
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
 
-import com.example.cs2340a.dungenCrawler.viewModel.GameRoom1ViewModel;
-import com.example.cs2340a.dungenCrawler.viewModel.LeaderboardViewModel;
+
 
 import java.util.ArrayList;
 
@@ -39,6 +38,7 @@ public class GameConfig {
     private static EnemyFactory factory;
     private static Enemy enemy1;
     private static Enemy enemy2;
+    private static PowerUpBase powerUp;
     // List of current Enemy Observers
     private static ArrayList<Enemy> observerList = new ArrayList<>();
 
@@ -56,20 +56,18 @@ public class GameConfig {
         System.out.println("in switchRooms");
         if (roomID == 1) {
             switchEnemies(1);
-            currRoom = new RoomTwo("room2", currRoom.getInitialPlayerX(),
+            switchPowerUps(1);
+            currRoom = new RoomTwo(currRoom.getInitialPlayerX(),
                     currRoom.getInitialPlayerY(),
-                    currRoom.getDoorwayTopY(), currRoom.getDoorwayBottomY(),
-                    currRoom.getDoorwayLeftX(), currRoom.getDoorwayRightX(),
                     currRoom.getBackground(), 2);
             player.setX(30);
             player.setY(400);
 
         } else if (roomID == 2) {
             switchEnemies(2);
-            currRoom = new RoomThree("room3", currRoom.getInitialPlayerX(),
+            switchPowerUps(2);
+            currRoom = new RoomThree(currRoom.getInitialPlayerX(),
                     currRoom.getInitialPlayerY(),
-                    currRoom.getDoorwayTopY(), currRoom.getDoorwayBottomY(),
-                    currRoom.getDoorwayLeftX(), currRoom.getDoorwayRightX(),
                     currRoom.getBackground(), 3);
             player.setX(800);
             player.setY(800);
@@ -114,10 +112,29 @@ public class GameConfig {
         System.out.println("after adds - observerList size: " + observerList.size());
         System.out.println("after switch statement in switchEnemies()");
     }
+    public static void switchPowerUps(int roomID) {
+        switch (roomID) {
+        case 1:
+            //sets room 2 enemies, replacing room1 enemies
+            System.out.println("switch case 1, speed powerup");
+            powerUp = new HeartPower(res, new PowerUp());
+            break;
+        case 2:
+            System.out.println("switch case 2, speed powerup");
+            powerUp = new SpeedPower(res, new PowerUp());
+            break;
+        default:
+            System.out.println("default switch case, speed powerup");
+            powerUp = new ShieldPower(res, new PowerUp());
+        }
+    }
     public static void drawEnemies(Canvas canvas, Resources resources) {
-        System.out.println("Drawing enemies!");
-        enemy1.draw(canvas, resources);
-        enemy2.draw(canvas, resources);
+        if (enemy1.isActive()) {
+            enemy1.draw(canvas, resources);
+        }
+        if (enemy2.isActive()) {
+            enemy2.draw(canvas, resources);
+        }
     }
     public static void drawHP(Canvas canvas) {
         Paint paint = new Paint();
@@ -149,7 +166,7 @@ public class GameConfig {
     //      Difficulty
     public static void setDifficulty(DifficultyEnum difficultyE) {
         difficulty = difficultyE;
-        switch(difficultyE) {
+        switch (difficultyE) {
         case EASY:
             difficultyNum = 1.0;
             factory = new EasyEnemyFactory();
@@ -192,7 +209,8 @@ public class GameConfig {
         avatar = avatarID;
     }
 
-    public static int getAvatar () {return avatar;}
+    public static int getAvatar() {
+        return avatar; }
 
     //      Health Points
     public static int getHealthPoints() {
@@ -235,6 +253,15 @@ public class GameConfig {
 
     public static DifficultyEnum getDifficulty() {
         return difficulty;
+    }
+    public static double getDifficultyNum() {
+        return difficultyNum;
+    }
+    public static PowerUpBase getPowerUp() {
+        return powerUp;
+    }
+    public static void setPowerUp(PowerUp pUp) {
+        powerUp = pUp;
     }
 
 

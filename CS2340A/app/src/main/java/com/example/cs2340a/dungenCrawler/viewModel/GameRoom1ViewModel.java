@@ -39,7 +39,7 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         setContentView(gameLoop);
 
         //if (gameLoop.lost()) {
-            // System.out.println("I LOST");
+        // System.out.println("I LOST");
         //    gameOver();
         //}
 
@@ -94,16 +94,26 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Ca
         System.out.println("KEY DOWN");
         switch (keyCode) {
         case KeyEvent.KEYCODE_W:
-            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY() - 30);
+            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY()
+                    - GameConfig.getPlayer().getSpeed());
             return true;
         case KeyEvent.KEYCODE_A:
-            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX() - 30);
+            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX()
+                    - GameConfig.getPlayer().getSpeed());
             return true;
         case KeyEvent.KEYCODE_S:
-            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY() + 30);
+            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY()
+                    + GameConfig.getPlayer().getSpeed());
             return true;
         case KeyEvent.KEYCODE_D:
-            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX() + 30);
+            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX()
+                    + GameConfig.getPlayer().getSpeed());
+            return true;
+        case KeyEvent.KEYCODE_E:
+            GameConfig.getPlayer().getSlingshot().shootRight();
+            return true;
+        case KeyEvent.KEYCODE_Q:
+            GameConfig.getPlayer().getSlingshot().shootLeft();
             return true;
         default:
             return super.onKeyDown(keyCode, event);

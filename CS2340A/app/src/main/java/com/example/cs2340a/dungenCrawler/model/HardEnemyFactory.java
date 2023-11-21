@@ -7,28 +7,28 @@ import androidx.annotation.NonNull;
 import com.example.cs2340a.R;
 
 public class HardEnemyFactory extends EnemyFactory {
-    private int HardAttackPower = 5;
+    private int hardAttackPower = 5;
 
     @Override
     public Enemy spawnBat(Resources res) {
         Enemy enemy;
-        enemy = new Bat(res, R.drawable.bat, 25, HardAttackPower);
+        enemy = new Bat(res, R.drawable.bat, 25, hardAttackPower);
         return enemy;
     }
     public Enemy spawnGhost(Resources res) {
         Enemy enemy;
-        enemy = new Ghost(res, R.drawable.ghost, 20, HardAttackPower);
+        enemy = new Ghost(res, R.drawable.ghost, 20, hardAttackPower);
         return enemy;
     }
     public Enemy spawnVampire(Resources res) {
         Enemy enemy;
-        enemy = new Vampire(res, R.drawable.vampire, 25, HardAttackPower);
+        enemy = new Vampire(res, R.drawable.vampire, 25, hardAttackPower);
         return enemy;
     }
 
     public Enemy spawnZombie(Resources res) {
         Enemy enemy;
-        enemy = new Zombie(res, R.drawable.zombie, 20, HardAttackPower);
+        enemy = new Zombie(res, R.drawable.zombie, 20, hardAttackPower);
         return enemy;
     }
 

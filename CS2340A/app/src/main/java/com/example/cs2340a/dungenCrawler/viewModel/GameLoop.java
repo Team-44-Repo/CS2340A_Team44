@@ -1,7 +1,7 @@
 package com.example.cs2340a.dungenCrawler.viewModel;
 
 import android.content.Context;
-import android.content.Intent;
+
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -70,6 +70,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
         GameConfig.getPlayer().update();
         //player made
         GameConfig.notifyObservers();
+        GameConfig.getPlayer().getSlingshot().updatePellet();
 
 
         // Border collisions
@@ -102,11 +103,40 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             GameConfig.switchRoom(GameConfig.getCurrRoom().getRoomID());
         }
 
+        //end game if health points have dropped to zero
         if (GameConfig.getHealthPoints() <= 0) {
             System.out.println("YOU LOST: " + youLost);
             youLost = true;
             setIsPlaying(false);
         }
+
+        // Weapon Collisions
+        if (GameConfig.getEnemy1().isActive() && GameConfig.getPlayer().getSlingshot().getPellet().
+                intersect(GameConfig.getEnemy1().getCollisionShape()) && GameConfig.getPlayer().
+                getSlingshot().getShooting()) {
+            GameConfig.getEnemy1().setActive(false);
+            GameConfig.getPlayer().getSlingshot().setShooting(false);
+            //GameConfig.setEnemies(null, GameConfig.getEnemy2());
+        } else if (GameConfig.getEnemy2().isActive() && GameConfig.getPlayer().getSlingshot().
+                getPellet().
+                intersect(GameConfig.getEnemy2().getCollisionShape()) && GameConfig.getPlayer().
+                getSlingshot().getShooting()) {
+            GameConfig.getEnemy2().setActive(false);
+            GameConfig.getPlayer().getSlingshot().setShooting(false);
+            //GameConfig.setEnemies(GameConfig.getEnemy1(), null);
+        }
+
+        // PowerUp Collisions
+        if (GameConfig.getPowerUp().getCollisionShape().
+                intersect(GameConfig.getPlayer().getCollisionShape())) {
+            // System.out.println("power up collision, will work if power up active");
+            System.out.println("COLLIDING WITH POWERUP");
+            GameConfig.getPowerUp().checkCollision(GameConfig.getPlayer());
+            // used up power up so set to false
+            GameConfig.getPowerUp().setActive(false);
+        }
+
+        //GameConfig.getPowerUp().checkCollision(GameConfig.getPlayer());
     }
     public boolean won() {
         return youWon; }
@@ -127,8 +157,12 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
             Canvas canvas = getHolder().lockCanvas();
             GameConfig.getCurrRoom().draw(canvas, getResources());
             GameConfig.getPlayer().draw(canvas, getResources());
+            GameConfig.getPlayer().getSlingshot().drawPellet(canvas, getResources());
             GameConfig.drawEnemies(canvas, getResources());
             GameConfig.drawHP(canvas);
+            GameConfig.getPowerUp().draw(canvas, getResources());
+            GameConfig.getPlayer().getSlingshot().draw(canvas, getResources());
+            GameConfig.getPowerUp().drawIcon(canvas, getResources());
             getHolder().unlockCanvasAndPost(canvas);
         }
     }

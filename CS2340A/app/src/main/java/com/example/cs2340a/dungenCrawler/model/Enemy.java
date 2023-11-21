@@ -2,15 +2,11 @@ package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.content.Context;
-import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.graphics.Canvas;
+
 
 import androidx.annotation.NonNull;
 
@@ -26,6 +22,7 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     private int resID;
     private int collisionOffsetX = 30;
     private int collisionOffsetY = 70;
+    private boolean isActive;
     private Bitmap sprite;
     private Rect collisionShape;
 
@@ -39,6 +36,7 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
 
         this.x = 500;
         this.y = 500;
+        this.isActive = true;
 
         collisionShape = new Rect(x, y - 30, x + width + 50, y + height + 50);
     }
@@ -54,31 +52,35 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     //Observer methods (Overrides)
     @Override
     public void update(Player player) {
-        System.out.println("in Enemy update");
-        if ((this.getX() != player.getX()) || (this.getY() != player.getY())) {
-            //change enemy's X
-            if (this.getX() < player.getX()) {
-                this.setX(this.getX() + this.getSpeed());
-            } else if (this.getX() > player.getX()) {
-                this.setX(this.getX() - this.getSpeed());
+        if (isActive) {
+            //System.out.println("in Enemy update");
+            if ((this.getX() != player.getX()) || (this.getY() != player.getY())) {
+                //change enemy's X
+                if (this.getX() < player.getX()) {
+                    this.setX(this.getX() + this.getSpeed());
+                } else if (this.getX() > player.getX()) {
+                    this.setX(this.getX() - this.getSpeed());
+                }
+                //change enemy's Y
+                if (this.getY() > player.getY()) {
+                    this.setY(this.getY() - this.getSpeed());
+                } else if (this.getY() < player.getY()) {
+                    this.setY(this.getY() + this.getSpeed());
+                }
             }
-            //change enemy's Y
-            if (this.getY() > player.getY()) {
-                this.setY(this.getY() - this.getSpeed());
-            } else if (this.getY() < player.getY()) {
-                this.setY(this.getY() + this.getSpeed());
-            }
+            setCollisionShape(new Rect(x + collisionOffsetX, y + collisionOffsetY - 30,
+                    (x + collisionOffsetX) + width + 50, (y + collisionOffsetY) + height + 50));
         }
-        setCollisionShape(new Rect(x + collisionOffsetX, y + collisionOffsetY - 30,
-                (x + collisionOffsetX) + width + 50, (y + collisionOffsetY) + height + 50));
         //check for collision using player.getCollisionShape()
         //referance how this is done in the GameLoop
     }
     @Override
     public void checkCollision(Player player) {
-        if (this.getCollisionShape().intersect(player.getCollisionShape())) {
-            System.out.println("collision > reducing hp:");
-            GameConfig.setHealthPoints(GameConfig.getHealthPoints() - this.attackPower);
+        if (isActive) {
+            if (this.getCollisionShape().intersect(player.getCollisionShape())) {
+                System.out.println("collision > reducing hp:");
+                GameConfig.setHealthPoints(GameConfig.getHealthPoints() - this.attackPower);
+            }
         }
     }
 
@@ -96,6 +98,9 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     }
     public void setY(int y) {
         this.y = y;
+    }
+    public void setAttackPower(int power) {
+        this.attackPower = power;
     }
 
     //      Attack power
@@ -130,6 +135,12 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     public void setCollisionShape(Rect collisionShape) {
         this.collisionShape = collisionShape;
     }
+    public boolean isActive() {
+        return isActive;
+    }
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
 
 
     // other stuff
@@ -151,6 +162,7 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
         parcel.writeInt(resID);
         parcel.writeInt(speed);
         parcel.writeInt(attackPower);
+        //parcel.writeBoolean(isActive);
         // parcel.writeParcelable(sprite, i);
         parcel.writeParcelable(collisionShape, i);
     }

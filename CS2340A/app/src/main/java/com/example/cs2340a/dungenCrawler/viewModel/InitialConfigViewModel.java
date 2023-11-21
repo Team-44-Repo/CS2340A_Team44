@@ -63,7 +63,8 @@ public class InitialConfigViewModel extends AppCompatActivity {
 
             ///  2   gathering difficulty selection
             double difficulty = 1.0; //default value = 1.0
-            DifficultyEnum difficultyE = DifficultyEnum.EASY; //temp object to hold chosen difficulty
+            DifficultyEnum difficultyE = DifficultyEnum.EASY;
+            //temp object to hold chosen difficulty
             switch (difficultyRadioGroup.getCheckedRadioButtonId()) {
             case R.id.radioMedium_id:
                 difficultyE = DifficultyEnum.MEDIUM;
@@ -118,18 +119,18 @@ public class InitialConfigViewModel extends AppCompatActivity {
                 //  set chosen avatar
                 GameConfig.setAvatar(avatar);
                 //  call createPlayer to create singleton instance of player in GameConfigTest
-                GameConfig.createPlayer(playerName,point.x, point.y, getResources());
+                GameConfig.createPlayer(playerName, point.x, point.y, getResources());
                 //create a Background > then pass it to GameConfigTest
                 Background bg = new Background(point, getResources(), R.drawable.room1);
                 GameConfig.setBackground(bg);
 
                 //create room 1 > pass it to GameConfigTest for currRoom
-                Room room = new RoomOne("room1", 1200, 540, 310,
-                        460, 2090, 2400, bg, 1);
+                Room room = new RoomOne(1200, 540,  bg, 1);
                 GameConfig.setCurrRoom(room);
 
                 //use switchEnemies() to set the first two enemies for room1
                 GameConfig.switchEnemies(0);
+                GameConfig.switchPowerUps(0);
 
                 //switching screens/activities to the GameRoom1ViewModel
                 Intent game = new Intent(InitialConfigViewModel.this, GameRoom1ViewModel.class);
