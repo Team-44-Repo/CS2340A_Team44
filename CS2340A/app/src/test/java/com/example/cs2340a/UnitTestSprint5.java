@@ -7,6 +7,8 @@ import com.example.cs2340a.dungenCrawler.model.DifficultyEnum;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
 import com.example.cs2340a.dungenCrawler.model.HeartPower;
 import com.example.cs2340a.dungenCrawler.model.PowerUp;
+import com.example.cs2340a.R;
+import android.content.res.Resources;
 
 import org.junit.Test;
 
@@ -36,5 +38,26 @@ public class UnitTestSprint5 {
         power.setActive(true);
         GameConfig.setPowerUp(power);
         assertEquals(true, power.isActive());
+    }
+
+    @Test //Angela Chang
+    public void applyEffectPowerUp() {
+        PowerUp power = new PowerUp();
+        GameConfig.setPowerUp(power);
+        assertEquals(1, power.applyEffect());
+    }
+
+    @Test // Angela Chang
+    public void checkSpeedPowerType() {
+        PowerUp power = new PowerUp();
+        GameConfig.setPowerUp(power);
+        SpeedPower enhancedSpeed = new SpeedPower(getResources(), power);
+        assertEquals("speed", enhancedSpeed.getPowerType());
+    }
+
+    @Test
+    public void setDifficultyHard() { // Angela Chang
+        GameConfig.setDifficulty(DifficultyEnum.HARD);
+        assertEquals(DifficultyEnum.HARD, GameConfig.getDifficulty());
     }
 }
