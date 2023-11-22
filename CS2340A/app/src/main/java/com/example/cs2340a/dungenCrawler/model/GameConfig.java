@@ -30,6 +30,8 @@ public class GameConfig {
     private static DifficultyEnum difficulty;
 
     private static int healthPoints;
+
+    //private static Scoreore score;
     private static Room currRoom;
     private static int resID;
     private static Background bg;
@@ -219,6 +221,10 @@ public class GameConfig {
     public static void setHealthPoints(int hp) {
         healthPoints = hp;
     }
+
+    // Score
+    public static int getScore() { return player.getScore().getScore(); }
+    public static void setScore(int s) { player.getScore().setScore(s);}
 
     //      CurrRoom
     public static void setCurrRoom(Room room) {
