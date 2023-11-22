@@ -65,8 +65,8 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     private void update() {
         //gameConfig.addRoom1Enemies();
         Log.d("in update()", "");
-        GameConfig.getPlayer().getScore().setScore(GameConfig.getPlayer().getScore().getScore()
-                + 1);
+//        GameConfig.getPlayer().getScore().setScore(GameConfig.getPlayer().getScore().getScore()
+//                + 1);
         GameConfig.getPlayer().update();
         //player made
         GameConfig.notifyObservers();
@@ -116,6 +116,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
                 getSlingshot().getShooting()) {
             GameConfig.getEnemy1().setActive(false);
             GameConfig.getPlayer().getSlingshot().setShooting(false);
+            GameConfig.setScore(GameConfig.getScore() + 5);
             //GameConfig.setEnemies(null, GameConfig.getEnemy2());
         } else if (GameConfig.getEnemy2().isActive() && GameConfig.getPlayer().getSlingshot().
                 getPellet().
@@ -123,6 +124,7 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
                 getSlingshot().getShooting()) {
             GameConfig.getEnemy2().setActive(false);
             GameConfig.getPlayer().getSlingshot().setShooting(false);
+            GameConfig.setScore(GameConfig.getScore() + 5);
             //GameConfig.setEnemies(GameConfig.getEnemy1(), null);
         }
 

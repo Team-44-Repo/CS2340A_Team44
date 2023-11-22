@@ -24,6 +24,8 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     private int collisionOffsetY = 70;
     private boolean isActive;
     private Bitmap sprite;
+
+    private Score score;
     private Rect collisionShape;
 
     //Constructor -----------------------------------------------------------
@@ -80,6 +82,12 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
             if (this.getCollisionShape().intersect(player.getCollisionShape())) {
                 System.out.println("collision > reducing hp:");
                 GameConfig.setHealthPoints(GameConfig.getHealthPoints() - this.attackPower);
+                System.out.println("collision > reducing score:");
+                if (GameConfig.getScore() >=5) {
+                    GameConfig.setScore(GameConfig.getScore() - 5);
+                } else {
+                    GameConfig.setScore(0);
+                }
             }
         }
     }
@@ -127,6 +135,10 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     public void setSprite(Bitmap sprite) {
         this.sprite = sprite;
     }
+
+    //  Score
+    public Score getScore() { return score;}
+    public void setScore(Score score) {this.score = score;}
 
     //      CollisionShape
     public Rect getCollisionShape() {
