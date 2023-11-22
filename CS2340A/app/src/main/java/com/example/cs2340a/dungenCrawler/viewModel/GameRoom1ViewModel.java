@@ -8,17 +8,14 @@ import android.os.Bundle;
 
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 
-import com.example.cs2340a.R;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
-
-import com.example.cs2340a.dungenCrawler.model.Player;
-import com.example.cs2340a.dungenCrawler.view.GameView;
+//import com.example.cs2340a.dungenCrawler.model.GameConfig;
 
 
-public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Callback {
-
+public class GameRoom1ViewModel extends AppCompatActivity implements GameLoop.Callback {
     //private GameConfig gameConfig;
     private GameLoop gameLoop;
     private Point point;
@@ -41,7 +38,12 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
         gameLoop.setCallback(this);
         setContentView(gameLoop);
 
-        if (gameLoop.won()) {
+        //if (gameLoop.lost()) {
+        // System.out.println("I LOST");
+        //    gameOver();
+        //}
+
+        if (gameLoop.won() || gameLoop.lost()) {
             switchLeaderboardView();
         }
     }
@@ -59,6 +61,12 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
         Intent game2 = new Intent(GameRoom1ViewModel.this, LeaderboardViewModel.class);
         //game2.putExtra("gameConfig", gameConfig);
         startActivity(game2);
+    }
+
+    public void gameOver() {
+        System.out.println("IN GAME OVER");
+        Intent endgame = new Intent(GameRoom1ViewModel.this, LeaderboardViewModel.class);
+        startActivity(endgame);
     }
 
     @Override
@@ -86,16 +94,26 @@ public class GameRoom1ViewModel extends AppCompatActivity implements GameView.Ca
         System.out.println("KEY DOWN");
         switch (keyCode) {
         case KeyEvent.KEYCODE_W:
-            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY() - 30);
+            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY()
+                    - GameConfig.getPlayer().getSpeed());
             return true;
         case KeyEvent.KEYCODE_A:
-            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX() - 30);
+            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX()
+                    - GameConfig.getPlayer().getSpeed());
             return true;
         case KeyEvent.KEYCODE_S:
-            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY() + 30);
+            GameConfig.getPlayer().setY(GameConfig.getPlayer().getY()
+                    + GameConfig.getPlayer().getSpeed());
             return true;
         case KeyEvent.KEYCODE_D:
-            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX() + 30);
+            GameConfig.getPlayer().setX(GameConfig.getPlayer().getX()
+                    + GameConfig.getPlayer().getSpeed());
+            return true;
+        case KeyEvent.KEYCODE_E:
+            GameConfig.getPlayer().getSlingshot().shootRight();
+            return true;
+        case KeyEvent.KEYCODE_Q:
+            GameConfig.getPlayer().getSlingshot().shootLeft();
             return true;
         default:
             return super.onKeyDown(keyCode, event);

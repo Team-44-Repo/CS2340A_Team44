@@ -2,79 +2,89 @@ package com.example.cs2340a.dungenCrawler.model;
 
 import android.content.res.Resources;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.view.KeyEvent;
+
+import com.example.cs2340a.R;
 
 
-
-public class Player implements Parcelable, MovementStrategy {
+public class Player implements Parcelable, IDrawable {
 
     //******* MAKE SINGLETON *********
 
     //attributes
     private String playerName;
-    //private CharSprite avatar;
     private int avatarID;
-    private int currRoomId; // not sure if this is where we should keep track of this.
     private double difficulty;
     private int healthPoints;
     private Score score;
     private Rect collisionShape;
-    private int x = 990;
-    private int y = 800;
+    private int x;
+    private int y;
+    private int collisionOffsetX = 30;
+    private int collisionOffsetY = 70;
+    private int screenX;
+    private int screenY;
     private int width = 74;
     private int height = 74; // Defaults for room1
+    private int speed;
     private MovementStrategy movement;
+    private Bitmap sprite;
+    private Slingshot slingshot;
 
     //temporary basic public constructor
 
     public Player(String name, double difficulty, int screenX, int screenY, Resources res,
-                  int avaID, Score score) {
+                  int avaID) {
         this.playerName = name;
         this.difficulty = difficulty;
         this.healthPoints = (int) (100 * difficulty);
         this.avatarID = avaID;
-        this.score = score;
+        score = new Score();
+        this.screenX = screenX;
+        this.screenY = screenY;
+        this.x = 1200;
+        this.y = 540;
+        this.slingshot = new Slingshot(5, res);
+        this.speed = 30;
 
         movement = new PlayerMovement(screenX, screenY, res, avaID);
-        collisionShape = new Rect(x, y, x + width, y + height); //not used.
-
-    }
-
-    public Player(String name, CharSprite sprite, int roomId, double difficulty, int hp) {
-        /*
-        this.playerName = name;
-        //this.avatar = sprite;
-        this.currRoomId = roomId;
-        this.difficulty = difficulty;
-        //this.healthPoints = 44;
-        this.healthPoints = (int) (100 * difficulty);
-         */
+        collisionShape = new Rect(x + collisionOffsetX, y + collisionOffsetY,
+                (x + collisionOffsetX) + width, (y + collisionOffsetY) + height);
     }
 
     protected Player(Parcel in) {
         playerName = in.readString();
-        currRoomId = in.readInt();
         difficulty = in.readDouble();
         healthPoints = in.readInt();
         avatarID = in.readInt();
+        screenX = in.readInt();
+        screenY = in.readInt();
         movement = in.readParcelable(PlayerMovement.class.getClassLoader());
         score = in.readParcelable(Score.class.getClassLoader());
         collisionShape = in.readParcelable(Rect.class.getClassLoader());
+        slingshot = in.readParcelable(Slingshot.class.getClassLoader());
+        speed = in.readInt();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(playerName);
-        dest.writeInt(currRoomId);
         dest.writeDouble(difficulty);
         dest.writeInt(healthPoints);
         dest.writeInt(avatarID);
-        dest.writeParcelable((Parcelable) movement, 0);
+        dest.writeInt(screenX);
+        dest.writeInt(screenY);
+        dest.writeParcelable(movement, 0);
         dest.writeParcelable((Parcelable) score, 0);
         dest.writeParcelable((Parcelable) collisionShape, 0);
+        dest.writeParcelable(slingshot, 0);
+        dest.writeInt(speed);
     }
 
     @Override
@@ -99,17 +109,7 @@ public class Player implements Parcelable, MovementStrategy {
         return playerName;
     }
     public int getAvatarID() {
-        return avatarID; }
-    /*
-    public CharSprite getAvatar() {
-        return avatar;
-    }
-    public int getAvatarResId() {
-        return avatar.getSpriteResId();
-    }
-     */
-    public int getCurrRoomId() {
-        return currRoomId;
+        return avatarID;
     }
     public double getDifficulty() {
         return difficulty;
@@ -124,82 +124,98 @@ public class Player implements Parcelable, MovementStrategy {
         }
     }
     public int getHealthPoints() {
-
         return healthPoints;
     }
     public String getHealthString() {
-        return "HP: " + healthPoints; }
+        return "HP: " + healthPoints;
+    }
     public int getX() {
-        return x; }
+        return x;
+    }
     public int getY() {
-        return y; }
+        return y;
+    }
+    public Slingshot getSlingshot() {
+        return slingshot;
+    }
+    public int getScreenX() {
+        return screenX;
+    }
+    public int getScreenY() {
+        return screenY;
+    }
     public Score getScore() {
-        return score; }
+        return score;
+    }
+    public void setScore(Score score) {this.score = score;}
     public MovementStrategy getMovement() {
-        return movement; }
+        return movement;
+    }
     public Rect getCollisionShape() {
-        return collisionShape; }
+        return collisionShape;
+    }
+    public int getSpeed() {
+        return speed;
+    }
 
     public void setPlayerName(String name) {
-
         this.playerName = name;
     }
-    /*
-    public void setAvatar(CharSprite sprite) {
-        this.avatar = sprite;
-    }
-    */
-    public void setCurrRoomId(int roomNum) {
-
-        this.currRoomId = roomNum;
-    }
     public void setAvatarID(int avaID) {
-        this.avatarID = avaID; }
+        this.avatarID = avaID;
+    }
     public void setDifficulty(double diff) {
-        this.difficulty = diff; }
+        this.difficulty = diff;
+    }
     public void setX(int x) {
-        this.x = x; }
+        this.x = x;
+    }
     public void setY(int y) {
-        this.y = y; }
-    public void setScoreActivity(boolean activity) {
-        score.setActive(activity); }
+        this.y = y;
+    }
+    public void setCollisionShape(Rect collisionShape) {
+        this.collisionShape = collisionShape;
+    }
+    public void setMovement(MovementStrategy movement) {
+        this.movement = movement;
+    }
+    public void setHealthPoints(int i) {
+        this.healthPoints = i;
+    }
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
 
-    public void updateHealthPoints() {
+    public void updateHealthPoints(int change) {
+        this.healthPoints += change;
+        //if negative number is passed in, health points are subtracted
+        //if positive number is passed in, health points are added
+    }
 
-        this.healthPoints = 200; //temp number so code runs
+    public void update() {
+        setCollisionShape(new Rect(x + collisionOffsetX, y + collisionOffsetY,
+                (x + collisionOffsetX) + width, (y + collisionOffsetY) + height));
     }
 
     @Override
-    public boolean onKey(KeyEvent event) {
+    public void draw(Canvas canvas, Resources resources) {
+        Paint paint = new Paint();
+        paint.setTextSize(50);
+        canvas.drawText(playerName, 50, 50, paint);
+        canvas.drawText(getDifficultyTitle(), 500, 50, paint);
+        //canvas.drawText(getHealthString(), 2000, 50, paint);
+        score.draw(canvas, resources);
+        canvas.drawRect(collisionShape, paint);
 
-        return movement.onKey(event);
-    }
-
-    @Override
-    public boolean isMovingUp() {
-
-        return movement.isMovingUp();
-    }
-
-    @Override
-    public boolean isMovingDown() {
-
-        return movement.isMovingDown();
-    }
-
-    @Override
-    public boolean isMovingLeft() {
-
-        return movement.isMovingLeft();
-    }
-
-    @Override
-    public boolean isMovingRight() {
-
-        return movement.isMovingRight();
-    }
-
-    @Override
-    public void setUp(boolean up) {
+        if (getAvatarID() == R.drawable.player1) {
+            sprite = BitmapFactory.decodeResource(resources, R.drawable.player1);
+            canvas.drawBitmap(sprite, x - 24, y, paint);
+        } else if (avatarID == R.drawable.player2) {
+            sprite = BitmapFactory.decodeResource(resources, R.drawable.player2);
+            canvas.drawBitmap(sprite, x - 24, y, paint);
+        } else if (avatarID == R.drawable.player3) {
+            sprite = BitmapFactory.decodeResource(resources, R.drawable.player3);
+            canvas.drawBitmap(sprite, x - 24, y, paint);
+        }
     }
 }
