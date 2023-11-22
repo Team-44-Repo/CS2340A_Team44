@@ -240,6 +240,10 @@ public class GameConfig {
         factory = factoryType;
     } */
 
+    public static EnemyFactory getFactory() {
+        return factory;
+    }
+
     //      enemy1 and enemy2
     public static void setEnemies(Enemy e1, Enemy e2) {
         enemy1 = e1;
