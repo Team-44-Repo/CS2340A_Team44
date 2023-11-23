@@ -9,7 +9,7 @@ import com.example.cs2340a.dungenCrawler.model.DifficultyEnum;
 import com.example.cs2340a.dungenCrawler.model.EasyEnemyFactory;
 import com.example.cs2340a.dungenCrawler.model.EnemyFactory;
 import com.example.cs2340a.dungenCrawler.model.GameConfig;
-import com.example.cs2340a.dungenCrawler.model.HardEnemyFactory;
+import com.example.cs2340a.dungenCrawler.model.MediumEnemyFactory;
 import com.example.cs2340a.dungenCrawler.model.HeartPower;
 import com.example.cs2340a.dungenCrawler.model.PowerUp;
 import com.example.cs2340a.R;
@@ -54,14 +54,6 @@ public class UnitTestSprint5 {
         assertEquals(1, power.applyEffect());
     }
 
-    @Test // Angela Chang
-    public void checkSpeedPowerType() {
-        PowerUp power = new PowerUp();
-        GameConfig.setPowerUp(power);
-        SpeedPower enhancedSpeed = new SpeedPower(getResources(), power);
-        assertEquals("speed", enhancedSpeed.getPowerType());
-    }
-
     @Test
     public void setDifficultyHard() { // Angela Chang
         GameConfig.setDifficulty(DifficultyEnum.HARD);
@@ -81,5 +73,19 @@ public class UnitTestSprint5 {
         GameConfig.setDifficulty(DifficultyEnum.HARD);
         EnemyFactory testFactory = new EasyEnemyFactory();
         assertNotSame(testFactory, GameConfig.getFactory());
+    }
+
+    @Test //Catherine Trobradovic
+    public void testEasyFactory() {
+        GameConfig.setDifficulty(DifficultyEnum.EASY);
+        EnemyFactory testFactory = new EasyEnemyFactory();
+        assertEquals(testFactory, GameConfig.getFactory());
+    }
+
+    @Test //Catherine Trobradovic
+    public void testMediumFactory() {
+        GameConfig.setDifficulty(DifficultyEnum.MEDIUM);
+        EnemyFactory testFactory = new MediumEnemyFactory();
+        assertEquals(testFactory, GameConfig.getFactory());
     }
 }
