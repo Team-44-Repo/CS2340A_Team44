@@ -223,8 +223,12 @@ public class GameConfig {
     }
 
     // Score
-    public static int getScore() { return player.getScore().getScore(); }
-    public static void setScore(int s) { player.getScore().setScore(s);}
+    public static int getScore() {
+        return player.getScore().getScore();
+    }
+    public static void setScore(int s) {
+        player.getScore().setScore(s);
+    }
 
     //      CurrRoom
     public static void setCurrRoom(Room room) {

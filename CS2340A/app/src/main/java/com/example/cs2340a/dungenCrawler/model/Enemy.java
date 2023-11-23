@@ -83,7 +83,7 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
                 System.out.println("collision > reducing hp:");
                 GameConfig.setHealthPoints(GameConfig.getHealthPoints() - this.attackPower);
                 System.out.println("collision > reducing score:");
-                if (GameConfig.getScore() >=5) {
+                if (GameConfig.getScore() >= 5) {
                     GameConfig.setScore(GameConfig.getScore() - 5);
                 } else {
                     GameConfig.setScore(0);
@@ -137,8 +137,13 @@ public abstract class Enemy implements EnemyObserver, Parcelable, IDrawable {
     }
 
     //  Score
-    public Score getScore() { return score;}
-    public void setScore(Score score) {this.score = score;}
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
+    }
 
     //      CollisionShape
     public Rect getCollisionShape() {

@@ -65,8 +65,6 @@ public class GameLoop extends SurfaceView implements Runnable, SurfaceHolder.Cal
     private void update() {
         //gameConfig.addRoom1Enemies();
         Log.d("in update()", "");
-//        GameConfig.getPlayer().getScore().setScore(GameConfig.getPlayer().getScore().getScore()
-//                + 1);
         GameConfig.getPlayer().update();
         //player made
         GameConfig.notifyObservers();

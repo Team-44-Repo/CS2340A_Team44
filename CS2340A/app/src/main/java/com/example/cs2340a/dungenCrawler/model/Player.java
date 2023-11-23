@@ -147,7 +147,9 @@ public class Player implements Parcelable, IDrawable {
     public Score getScore() {
         return score;
     }
-    public void setScore(Score score) {this.score = score;}
+    public void setScore(Score score) {
+        this.score = score;
+    }
     public MovementStrategy getMovement() {
         return movement;
     }
