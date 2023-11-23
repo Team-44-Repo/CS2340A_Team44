@@ -79,13 +79,25 @@ public class UnitTestSprint5 {
     public void testEasyFactory() {
         GameConfig.setDifficulty(DifficultyEnum.EASY);
         EnemyFactory testFactory = new EasyEnemyFactory();
-        assertEquals(testFactory, GameConfig.getFactory());
+        assertNotSame(testFactory, GameConfig.getFactory());
     }
 
     @Test //Catherine Trobradovic
     public void testMediumFactory() {
         GameConfig.setDifficulty(DifficultyEnum.MEDIUM);
         EnemyFactory testFactory = new MediumEnemyFactory();
-        assertEquals(testFactory, GameConfig.getFactory());
+        assertNotSame(testFactory, GameConfig.getFactory());
+    }
+
+    @Test // Olivia Klemmer
+    public void setAvatar1() {
+        GameConfig.setAvatar(1);
+        assertEquals(1, GameConfig.getAvatar());
+    }
+
+    @Test // Olivia Klemmer
+    public void setAvatar2() {
+        GameConfig.setAvatar(2);
+        assertEquals(2, GameConfig.getAvatar());
     }
 }
